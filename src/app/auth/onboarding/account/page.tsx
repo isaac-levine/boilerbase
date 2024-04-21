@@ -15,7 +15,7 @@ export default async function Page() {
   }
 
   return (
-    <main className="w-full ">
+    <main className="w-full">
       <OnboardingForm user={user} />
       <GradientBackground></GradientBackground>
     </main>

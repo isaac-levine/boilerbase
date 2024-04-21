@@ -87,7 +87,7 @@ export function OnboardingForm({ user }: { user: User }) {
   }
 
   return (
-    <div className="flex flex-col m-auto w-full select-none">
+    <div className="flex flex-col m-auto select-none ">
       <div className="flex flex-col pb-8">
         <p className=" text-lg font-medium text-left">
           {"Tell us about yourself"}
@@ -126,7 +126,7 @@ export function OnboardingForm({ user }: { user: User }) {
             control={form.control}
             name="role"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="pb-10">
                 <FormLabel>Role</FormLabel>
                 <Select
                   onValueChange={field.onChange}
@@ -134,7 +134,7 @@ export function OnboardingForm({ user }: { user: User }) {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
+                      <SelectValue placeholder="Select a role" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -146,11 +146,19 @@ export function OnboardingForm({ user }: { user: User }) {
                   </SelectContent>
                 </Select>
                 <FormMessage />
+                <FormDescription>
+                  {"Your role will determine your permissions."}
+                </FormDescription>
               </FormItem>
             )}
           />
 
-          <Button loading={loading} className="w-full " type="submit">
+          <Button
+            loading={loading}
+            className="w-full "
+            type="submit"
+            variant={"secondary"}
+          >
             Continue
           </Button>
         </form>
