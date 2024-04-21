@@ -2,30 +2,65 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
 import { completeOnboarding } from "../_actions/complete-onboarding-action";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, ChevronsUpDown } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "@/components/ui/use-toast";
+import Link from "next/link";
+
+let roles = [
+  { label: "User", value: "USER" },
+  { label: "Seller", value: "SELLER" },
+];
 
 const onboardingSchema = z.object({
   name: z.string().min(2).max(64),
   last_name: z.string().min(2).max(64),
+  role: z
+    .string({
+      required_error: "Please select a role.",
+    })
+    .default("USER"),
 });
 
 export function OnboardingForm({ user }: { user: User }) {
+  if (user.role === "ADMIN") {
+    roles.push({ label: "Admin", value: "ADMIN" });
+  }
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -35,12 +70,13 @@ export function OnboardingForm({ user }: { user: User }) {
     defaultValues: {
       name: "" + user.name,
       last_name: "" + user.last_name,
+      role: user.role,
     },
   });
 
   async function onSubmit(values: z.infer<typeof onboardingSchema>) {
     setLoading(true);
-    await completeOnboarding(values.name, values.last_name);
+    await completeOnboarding(values.name, values.last_name, values.role);
     toast({
       title: "Updated",
       description: "You have successfully changed your personal information",
@@ -51,9 +87,11 @@ export function OnboardingForm({ user }: { user: User }) {
   }
 
   return (
-    <div className="flex flex-col m-auto w-full ">
+    <div className="flex flex-col m-auto w-full select-none">
       <div className="flex flex-col pb-8">
-        <p className=" text-lg font-medium text-left">{"Tell us about yourself"}</p>
+        <p className=" text-lg font-medium text-left">
+          {"Tell us about yourself"}
+        </p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -83,7 +121,36 @@ export function OnboardingForm({ user }: { user: User }) {
               </FormItem>
             )}
           />
-          <Button loading={loading} className="w-full" type="submit">
+
+          <FormField
+            control={form.control}
+            name="role"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Role</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a verified email to display" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {user.role === "ADMIN" && (
+                      <SelectItem value="ADMIN">Admin</SelectItem>
+                    )}
+                    <SelectItem value="USER">User</SelectItem>
+                    <SelectItem value="SELLER">Seller</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button loading={loading} className="w-full " type="submit">
             Continue
           </Button>
         </form>

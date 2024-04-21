@@ -7,7 +7,7 @@ export default async function Page() {
   const session = await getServerSession(authOptions);
 
   if (session) {
-    redirect("/onboarding/account");
+    redirect("/auth/onboarding/account");
   } else {
     redirect("/auth/sign-in");
   }

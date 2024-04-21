@@ -1,13 +1,17 @@
-import Header from "@/components/Header";
+"use client"
+import GradientBackground from "@/components/GradientBackground";
+import NavigationBar from "@/components/NavigationBar";
 import { getSignedInUser } from "@/lib/auth/helper";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-export default async function Home() {
-  const session = await getSignedInUser();
+export default function Home() {
+  const session =  useSession();
 
   return (
     <>
-      <Header session={session}></Header>
+      <NavigationBar session={session}></NavigationBar>
+      <GradientBackground></GradientBackground>
     </>
   );
 }

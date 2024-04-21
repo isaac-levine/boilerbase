@@ -14,7 +14,7 @@ export const authOptions = {
   pages: {
     signIn: "/auth/sign-in",
     verifyRequest: "/auth/magic-link-sent",
-    newUser: "/onboarding/account",
+    newUser: "/auth/onboarding/account",
     error: "/auth/error",
   },
   callbacks: {

@@ -6,15 +6,23 @@ import { getServerSession } from "next-auth";
 
 export async function completeOnboarding(
   updatedName: string,
-  updatedLastName: string
+  updatedLastName: string,
+  updatedRole: string
 ) {
   const session = await getServerSession(authOptions);
+
+  //check if updatedRole match enum
+  if (updatedRole !== "USER" && updatedRole !== "SELLER") {
+    return;
+  }
+
 
   if (!session) {
     return;
   }
 
   const count = await prisma.user.count();
+
 
   await prisma.user.update({
     where: {
@@ -24,7 +32,7 @@ export async function completeOnboarding(
       name: updatedName,
       last_name: updatedLastName,
       onboarded: true,
-      role: count == 1 ? "ADMIN" : "USER",
+      role: count == 1 ? "ADMIN" : updatedRole,
     },
   });
 

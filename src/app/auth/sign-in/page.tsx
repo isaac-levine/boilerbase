@@ -126,6 +126,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import BoilerBackground from "@/components/BoilerBackground";
+import GradientBackground from "@/components/GradientBackground";
 
 export default function SignIn() {
   const session = useSession();
@@ -169,7 +170,7 @@ export default function SignIn() {
   }
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] h-screen select-none">
-      <div className="flex items-center justify-center py-12 bg-gradient-to-b from-slate-50 to-slate-300">
+      <div className="flex items-center justify-center py-12 bg-gradient-to-b from-slate-50 to-slate-300 h-full px-12">
         <div className="mx-auto grid w-[350px] gap-6 ">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
@@ -204,9 +205,10 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full">
+      <div className="hidden bg-muted sm:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full">
         <BoilerBackground />
       </div>
+
     </div>
   );
 }

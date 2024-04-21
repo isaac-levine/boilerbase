@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { OnboardingForm } from "./_components/onboarding-form";
+import GradientBackground from "@/components/GradientBackground";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -14,8 +15,9 @@ export default async function Page() {
   }
 
   return (
-    <main className="w-full">
+    <main className="w-full ">
       <OnboardingForm user={user} />
+      <GradientBackground></GradientBackground>
     </main>
   );
 }
