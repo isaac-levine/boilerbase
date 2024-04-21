@@ -16,55 +16,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Menu, X } from "lucide-react";
 
-const discoverList: { title: string; href: string; description: string }[] = [
-  {
-    title: "Discover 🌐",
-    href: "/discover",
-    description: "Explore the latest templates and boilerplates.",
-  },
-  {
-    title: "Featured ⭐",
-    href: "/discover/featured",
-    description: "Curated list of the best templates and boilerplates.",
-  },
-];
-
-const dashboardList: { title: string; href: string; description: string }[] = [
-  {
-    title: "Overview 📊",
-    href: "/dashboard",
-    description: "View all your projects in one place.",
-  },
-  {
-    title: "Products 📦",
-    href: "/dashboard/products",
-    description: "Manage your products and inventory.",
-  },
-  {
-    title: "Orders 📄",
-    href: "/dashboard/orders",
-    description: "View and manage all your orders.",
-  },
-  {
-    title: "Customers 👥",
-    href: "/dashboard/customers",
-    description: "Manage your customers and their orders.",
-  },
-];
-
-const resourcesList: { title: string; href: string; description: string }[] = [
-  {
-    title: "Support 📧",
-    href: "/support",
-    description: "Get help from our team.",
-  },
-  {
-    title: "About Us 🌐",
-    href: "/about",
-    description: "Learn more about our mission and values.",
-  },
-];
-
 export default function NavigationBar({
   session,
   dark = true,
@@ -72,6 +23,90 @@ export default function NavigationBar({
   session: any;
   dark?: boolean;
 }) {
+  let userSession;
+
+  if (session.data != null) {
+    userSession = session.data.user;
+  } else if (session.user != null) {
+    userSession = session.user;
+  } else {
+    userSession = null;
+  }
+
+  const hasAccess = (!["SELLER","ADMIN"].includes(userSession?.role));
+
+  const discoverList: {
+    title: string;
+    href: string;
+    description: string;
+    disabled: boolean;
+  }[] = [
+    {
+      title: "Discover 🌐",
+      href: "/discover",
+      description: "Explore the latest templates and boilerplates.",
+      disabled: false,
+    },
+    {
+      title: "Featured ⭐",
+      href: "/discover/featured",
+      description: "Curated list of the best templates and boilerplates.",
+      disabled: false,
+    },
+  ];
+
+  const dashboardList: {
+    title: string;
+    href: string;
+    description: string;
+    disabled: boolean;
+  }[] = [
+    {
+      title: "Overview 📊",
+      href: "/dashboard",
+      description: "View all your projects in one place.",
+      disabled: false,
+    },
+    {
+      title: "Products 📦",
+      href: "/dashboard/products",
+      description: "Manage your products and inventory.",
+      disabled: hasAccess,
+    },
+    {
+      title: "Orders 📄",
+      href: "/dashboard/orders",
+      description: "View and manage all your orders.",
+      disabled: false,
+    },
+    {
+      title: "Customers 👥",
+      href: "/dashboard/customers",
+      description: "Manage your customers and their orders.",
+      disabled: hasAccess,
+    },
+  ];
+
+  const resourcesList: {
+    title: string;
+    href: string;
+    description: string;
+    disabled: boolean;
+  }[] = [
+    {
+      title: "Support 📧",
+      href: "/support",
+      description: "Get help from our team.",
+      disabled: false,
+    },
+    {
+      title: "About Us 🌐",
+      href: "/about",
+      description: "Learn more about our mission and values.",
+      disabled: false,
+    },
+  ];
+
   const [open, setOpen] = React.useState(false);
   function handleMobileMenu() {
     setOpen(!open);
@@ -134,6 +169,7 @@ export default function NavigationBar({
                         key={component.title}
                         title={component.title}
                         href={component.href}
+                        disabled={component.disabled}
                       >
                         {component.description}
                       </ListItem>
@@ -150,6 +186,7 @@ export default function NavigationBar({
                         key={component.title}
                         title={component.title}
                         href={component.href}
+                        disabled={component.disabled}
                       >
                         {component.description}
                       </ListItem>
@@ -173,6 +210,7 @@ export default function NavigationBar({
                         key={component.title}
                         title={component.title}
                         href={component.href}
+                        disabled={component.disabled}
                       >
                         {component.description}
                       </ListItem>
@@ -254,7 +292,7 @@ export default function NavigationBar({
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                {session.data != null ? (
+                {userSession != null ? (
                   <></>
                 ) : (
                   <>
@@ -287,7 +325,7 @@ export default function NavigationBar({
                 }`
               )}
             >
-              {session.data != null ? "Dashboard" : "Login"}
+              {userSession != null ? "Dashboard" : "Login"}
             </Button>
           </div>
         </div>
@@ -296,28 +334,35 @@ export default function NavigationBar({
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+type ListItemProps = React.ComponentPropsWithoutRef<"a"> & {
+  disabled?: boolean;
+};
+
+const ListItem = React.forwardRef<React.ElementRef<"a">, ListItemProps>(
+  ({ className, title, children, disabled, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <a
+            ref={ref}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              { "opacity-25 pointer-events-none": disabled },
+              className
+            )}
+            onClick={(e) => {
+              if (disabled) e.preventDefault();
+            }}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {children}
+            </p>
+          </a>
+        </NavigationMenuLink>
+      </li>
+    );
+  }
+);
 ListItem.displayName = "ListItem";
