@@ -1,9 +1,9 @@
 "use client"
 import GradientBackground from "@/components/GradientBackground";
 import NavigationBar from "@/components/NavigationBar";
-import { getSignedInUser } from "@/lib/auth/helper";
+import HeroHeader from "@/components/home/HeroHeader";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
+
 
 export default function Home() {
   const session =  useSession();
@@ -11,6 +11,10 @@ export default function Home() {
   return (
     <>
       <NavigationBar session={session}></NavigationBar>
+      <section className="w-full h-screen flex flex-col items-center justify-center">
+        <HeroHeader></HeroHeader>
+      </section>
+      <section className="w-full h-screen flex flex-col items-center justify-center"></section>
       <GradientBackground></GradientBackground>
     </>
   );

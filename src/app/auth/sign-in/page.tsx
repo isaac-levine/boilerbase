@@ -46,8 +46,9 @@ export default function SignIn() {
 
     return (
       <div className="flex flex-col w-full h-screen justify-center items-center select-none">
-        <Loader2 className="animate-spin" size={18} />
-        <p className="text-muted ">{"Redirecting to dashboard..."}</p>
+        <Loader2 className="animate-spin text-white" size={18} />
+        <p className="text-white ">{"Redirecting to dashboard..."}</p>
+        <GradientBackground></GradientBackground>
       </div>
     );
   }
