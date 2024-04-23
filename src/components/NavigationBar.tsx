@@ -120,7 +120,7 @@ export default function NavigationBar({
 
   return (
     <>
-      <div className="fixed w-full h-auto p-4 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20">
+      <div className="fixed w-full h-auto p-4 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20 z-50">
         <Link
           href={"/"}
           className="flex flex-row gap-2 items-center justify-start w-1/2 sm:w-1/3 "
@@ -163,7 +163,7 @@ export default function NavigationBar({
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Discover</NavigationMenuTrigger>
                 <NavigationMenuContent className="">
-                  <ul className="grid w-full gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  <ul className="grid w-full gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {discoverList.map((component) => (
                       <ListItem
                         key={component.title}
@@ -233,7 +233,7 @@ export default function NavigationBar({
 
           <div
             className={cn(
-              "absolute w-full h-[100svh] max-h-[100svh] inset-0 bg-slate-50/10 backdrop-blur-lg transition-all z-40 ease-in-out duration-300 flex justify-center items-center",
+              "absolute w-full h-[100svh] max-h-[100svh] inset-0 bg-slate-700 backdrop-blur-lg transition-all z-40 ease-in-out duration-300 flex justify-center items-center",
               `${open ? "flex sm:hidden" : "hidden sm:hidden"}`
             )}
           >
