@@ -12,7 +12,7 @@ export async function completeOnboarding(
   const session = await getServerSession(authOptions);
 
   //check if updatedRole match enum
-  if (updatedRole !== "USER" && updatedRole !== "SELLER") {
+  if (updatedRole !== "USER" && updatedRole !== "SELLER" && updatedRole !== "ADMIN") {
     return;
   }
 
