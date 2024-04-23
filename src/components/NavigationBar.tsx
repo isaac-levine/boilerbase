@@ -120,7 +120,7 @@ export default function NavigationBar({
 
   return (
     <>
-      <div className="w-full h-auto p-4 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20">
+      <div className="fixed w-full h-auto p-4 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20">
         <Link
           href={"/"}
           className="flex flex-row gap-2 items-center justify-start w-1/2 sm:w-1/3 "
