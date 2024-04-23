@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   ],
 };
 
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  initialScale: 1,
+  width: "device-width",
+  maximumScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -26,7 +34,7 @@ export default function RootLayout({
       <body
         className={cn(
           montserrat.className,
-          "bg-surface text-primary antialiased h-[100dvh] relative selection:text-surface selection:bg-primary"
+          "bg-surface text-primary antialiased h-[100svh] relative selection:text-surface selection:bg-primary w-full"
         )}
       >
         <AuthProvider>
