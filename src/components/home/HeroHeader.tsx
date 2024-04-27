@@ -62,7 +62,7 @@ export default function HeroHeader() {
   };
 
   return (
-    <div className="w-full h-[100svh] sm:h-auto pt-40">
+    <div className="w-full h-[100svh] sm:h-auto mobile-landscape:pt-40">
       <div className="w-full h-full  mix-blend-screen  flex items-center justify-center flex-col overflow-hidden gap-1 sm:gap-6">
         <motion.div
           className="App py-4 z-10"
@@ -74,7 +74,9 @@ export default function HeroHeader() {
           {" "}
           <span className="overflow-hidden inline-block px-4 scale-75 sm:scale-100">
             <motion.span
-              style={{ display: "inline-block" }}
+              style={{ display: "inline-block",
+                WebkitBackdropFilter: "blur(16px)",
+               }}
               variants={featured}
               className="border-slate-50/30 border-[1px] p-2 px-4 rounded-full bg-slate-50/10 backdrop-blur-lg bg-opacity-10 select-none"
             >
@@ -132,16 +134,21 @@ export default function HeroHeader() {
 
       <Spline
         scene="https://prod.spline.design/jiuexS9WmlWft2nG/scene.splinecode"
-        className="grayscale fixed inset-0 -z-40 scale-125 invert mix-blend-screen blur-2xl"
+        className="grayscale fixed inset-0 -z-40 scale-125 invert mix-blend-screen blur-2xl h-[100svh] max-h-[100svh]"
         style={{
           opacity: 0,
           animation: "fadeIn 2s",
           animationDelay: "1s",
           animationFillMode: "forwards",
         }}
-        onError={()=>{
-            return (<></>)
+        onError={() => {
+          return <></>;
         }}
+      />
+
+      <Spline
+        scene="https://prod.spline.design/QrOMVSF89gqxEPpa/scene.splinecode"
+        className="grayscale fixed inset-0 -z-40 scale-125 mix-blend-screen h-[100svh]  max-h-[100svh]"
       />
     </div>
   );

@@ -15,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Menu, X } from "lucide-react";
+import { motion, useCycle } from "framer-motion";
 
 export default function NavigationBar({
   session,
@@ -33,7 +34,7 @@ export default function NavigationBar({
     userSession = null;
   }
 
-  const hasAccess = (!["SELLER","ADMIN"].includes(userSession?.role));
+  const hasAccess = !["SELLER", "ADMIN"].includes(userSession?.role);
 
   const discoverList: {
     title: string;
@@ -107,10 +108,25 @@ export default function NavigationBar({
     },
   ];
 
-  const [open, setOpen] = React.useState(false);
-  function handleMobileMenu() {
-    setOpen(!open);
-  }
+  const [open, toggleOpen] = useCycle(false, true);
+  const containerRef = React.useRef(null);
+  const { width, height } = window.screen;
+  const sidebar = {
+    open: () => ({
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    }),
+    closed: {
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   const router = useRouter();
 
@@ -120,7 +136,12 @@ export default function NavigationBar({
 
   return (
     <>
-      <div className="fixed w-full h-auto p-4 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20 z-50">
+      <div
+        className="fixed w-full h-auto p-2 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20 z-50 filter"
+        style={{
+          WebkitBackdropFilter: "blur(16x)",
+        }}
+      >
         <Link
           href={"/"}
           className="flex flex-row gap-2 items-center justify-start w-1/2 sm:w-1/3 "
@@ -133,9 +154,9 @@ export default function NavigationBar({
             width={1200}
             height={1200}
             className={cn(
-              "rounded-sm w-8 aspect-square",
+              "rounded-sm w-8 aspect-square transition-opacity duration-500",
               `${dark ? "mix-blend-screen invert" : ""} ${
-                open ? "opacity-10 sm:opacity-100" : ""
+                open ? "opacity-0 sm:opacity-100" : "opacity-100"
               }`
             )}
           ></Image>
@@ -143,9 +164,9 @@ export default function NavigationBar({
           <span>
             <h1
               className={cn(
-                "font-extrabold tracking-tight text-lg",
-                `${dark ? "text-slate-50" : "text-gray-950"} ${
-                  open ? "opacity-10 sm:opacity-100" : ""
+                "font-extrabold tracking-tight text-lg duration-500",
+                `${dark ? "mix-blend-screen invert" : ""} ${
+                  open ? "opacity-0 sm:opacity-100" : "opacity-100"
                 }`
               )}
             >
@@ -221,95 +242,107 @@ export default function NavigationBar({
             </NavigationMenuList>
           </NavigationMenu>
 
-          <Button onClick={handleMobileMenu} className="z-50 block sm:hidden">
-            <Menu
-              className={cn("text-slate-50", `${!open ? "block" : "hidden"}`)}
-            ></Menu>
-
-            <X
-              className={cn("text-slate-50", `${open ? "block" : "hidden"}`)}
-            ></X>
-          </Button>
-
-          <div
-            className={cn(
-              "absolute w-full h-[100svh] max-h-[100svh] inset-0 bg-slate-700 backdrop-blur-lg transition-all z-40 ease-in-out duration-300 flex justify-center items-center",
-              `${open ? "flex sm:hidden" : "hidden sm:hidden"}`
-            )}
+          <motion.nav
+            initial={false}
+            animate={open ? "open" : "closed"}
+            className="block sm:hidden"
           >
-            <NavigationMenu
-              className="grayscale w-full max-w-full"
-              orientation="vertical"
+            <motion.div
+              variants={sidebar}
+              className={cn(
+                "absolute w-full h-[100vh] max-h-[100vh] inset-0 bg-slate-50/10 backdrop-blur-lg transition-all z-40 ease-in-out duration-300 flex justify-center items-center "
+              )}
+              style={{
+                WebkitBackdropFilter: "blur(16px)",
+              }}
             >
-              <NavigationMenuList className="flex flex-col">
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Discover</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-full gap-3 p-4 md:grid-cols-2 overflow-auto max-h-60">
-                      {discoverList.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Dashboard</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-full gap-3 p-4 md:grid-cols-2 overflow-auto max-h-60">
-                      {dashboardList.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+              <NavigationMenu
+                className=" grayscale w-full max-w-full translate-y-[-4rem]"
+                orientation="vertical"
+              >
+                <NavigationMenuList className="flex flex-col">
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Discover</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-full gap-3 p-4 md:grid-cols-2 overflow-auto max-h-60">
+                        {discoverList.map((component) => (
+                          <ListItem
+                            key={component.title}
+                            title={component.title}
+                            href={component.href}
+                          >
+                            {component.description}
+                          </ListItem>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Dashboard</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-full gap-3 p-4 md:grid-cols-2 overflow-auto max-h-60">
+                        {dashboardList.map((component) => (
+                          <ListItem
+                            key={component.title}
+                            title={component.title}
+                            href={component.href}
+                          >
+                            {component.description}
+                          </ListItem>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-full gap-3 p-4 md:grid-cols-2 overflow-auto max-h-60">
-                      {resourcesList.map((component) => (
-                        <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.href}
-                        >
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-full gap-3 p-4 md:grid-cols-2 overflow-auto max-h-60">
+                        {resourcesList.map((component) => (
+                          <ListItem
+                            key={component.title}
+                            title={component.title}
+                            href={component.href}
+                          >
+                            {component.description}
+                          </ListItem>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
 
-                {userSession != null ? (
-                  <></>
-                ) : (
-                  <>
-                    <NavigationMenuItem>
-                      <Button onClick={handleLogin}>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle}
-                        >
-                          Login
-                        </NavigationMenuLink>
-                      </Button>
-                    </NavigationMenuItem>
-                  </>
-                )}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
+                  {userSession != null ? (
+                    <></>
+                  ) : (
+                    <>
+                      <NavigationMenuItem>
+                        <Button onClick={handleLogin}>
+                          <NavigationMenuLink
+                            className={navigationMenuTriggerStyle}
+                          >
+                            Login
+                          </NavigationMenuLink>
+                        </Button>
+                      </NavigationMenuItem>
+                    </>
+                  )}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </motion.div>
+
+            <Button
+              onClick={() => toggleOpen()}
+              className="z-50 block sm:hidden p-0"
+            >
+              <Menu
+                className={cn("text-slate-50", `${!open ? "block" : "hidden"}`)}
+              ></Menu>
+
+              <X
+                className={cn("text-slate-50", `${open ? "block" : "hidden"}`)}
+              ></X>
+            </Button>
+          </motion.nav>
         </div>
 
         <div className="hidden sm:flex flex-row gap-4 justify-end w-1/3">
