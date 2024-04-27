@@ -66,7 +66,7 @@ const AnimatedCharacters = (props: any) => {
                       overflow: "hidden",
                       display: "inline-block",
                     }}
-                    className="font-semibold sm:font-normal text-slate-50 tracking-tight text-md sm:text-3xl md:text-4xl lg:text-5xl select-none"
+                    className="font-semibold sm:font-bold text-slate-50 tracking-tight text-md sm:text-3xl md:text-4xl lg:text-5xl select-none"
                     key={index}
                   >
                     <motion.span
