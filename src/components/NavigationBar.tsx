@@ -109,8 +109,6 @@ export default function NavigationBar({
   ];
 
   const [open, toggleOpen] = useCycle(false, true);
-  const containerRef = React.useRef(null);
-  const { width, height } = window.screen;
   const sidebar = {
     open: () => ({
       opacity: 1,
