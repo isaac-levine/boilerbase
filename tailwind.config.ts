@@ -32,7 +32,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       screens: {
-        'mobile-landscape': {'raw': '(orientation: landscape)'},
+        "mobile-landscape": { raw: "(orientation: landscape)" },
       },
     },
   },

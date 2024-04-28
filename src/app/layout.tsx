@@ -37,6 +37,11 @@ export default function RootLayout({
           "bg-surface text-primary antialiased h-[100svh] relative selection:text-surface selection:bg-primary w-full"
         )}
       >
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
         <AuthProvider>
           <NextTopLoader
             color="white"
