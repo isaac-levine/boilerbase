@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import AnimatedText from "./AnimatedText";
+import AnimatedText from "./components/AnimatedText";
 import Spline from "@splinetool/react-spline";
 import { MoveUpRight } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import "./styles.css";
+import dynamic from "next/dynamic";
 
 export default function HeroHeader() {
   const [replay, setReplay] = useState(true);
@@ -26,13 +27,6 @@ export default function HeroHeader() {
     },
   };
 
-  // Quick and dirt for the example
-  const handleReplay = () => {
-    setReplay(!replay);
-    setTimeout(() => {
-      setReplay(true);
-    }, 600);
-  };
   const featured = {
     hidden: {
       y: "200%",
@@ -62,8 +56,15 @@ export default function HeroHeader() {
   };
 
   return (
-    <div className="w-full h-[100svh] sm:h-auto pt-40">
-      <div className="w-full h-full  mix-blend-screen  flex items-center justify-center flex-col overflow-hidden gap-1 sm:gap-6">
+    <div
+      className={`w-full h-[100svh] sm:h-auto p-8  ${
+        typeof window !== "undefined" &&
+        /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+          ? "mobile-landscape:mt-40"
+          : ""
+      }`}
+    >
+      <div className="w-full h-full  mix-blend-screen  flex items-center justify-center flex-col overflow-hidden gap-1 sm:gap-6 ">
         <motion.div
           className="App py-4 z-10"
           initial="hidden"
@@ -72,11 +73,14 @@ export default function HeroHeader() {
           variants={container}
         >
           {" "}
-          <span className="overflow-hidden inline-block px-4 scale-75 sm:scale-100">
+          <span className="overflow-hidden inline-block scale-75 sm:scale-100">
             <motion.span
-              style={{ display: "inline-block" }}
+              style={{
+                display: "inline-block",
+                WebkitBackdropFilter: "blur(16px)",
+              }}
               variants={featured}
-              className="border-slate-50/30 border-[1px] p-2 px-4 rounded-full bg-slate-50/10 backdrop-blur-lg bg-opacity-10 select-none"
+              className="border-slate-50/30 border-[1px] p-2 rounded-full bg-slate-50/10 backdrop-blur-lg bg-opacity-10 select-none"
             >
               <Link
                 className="text-xs flex items-center"
@@ -93,7 +97,7 @@ export default function HeroHeader() {
         </motion.div>
 
         <motion.div
-          className="App w-full sm:w-auto py-4 z-10"
+          className="App w-full sm:w-auto pt-4 z-10"
           initial="hidden"
           // animate="visible"
           animate={replay ? "visible" : "hidden"}
@@ -126,22 +130,41 @@ export default function HeroHeader() {
                 compromising <span className="font-semibold">quality</span>.
               </span>
             </motion.span>
+            <motion.span
+              style={{ display: "inline-block" }}
+              variants={item}
+              className="p-2 px-4 select-none"
+            >
+              <Link href={"/discover"} className="group-hover">
+                <Button
+                  className="Capitalize p-4 py-6 hover:bg-white hover:text-black mix-blend-screen"
+                  variant={"outline"}
+                >
+                  view boilerplates
+                </Button>
+              </Link>
+            </motion.span>
           </span>
         </motion.div>
       </div>
 
       <Spline
         scene="https://prod.spline.design/jiuexS9WmlWft2nG/scene.splinecode"
-        className="grayscale fixed inset-0 -z-40 scale-125 invert mix-blend-screen blur-2xl"
+        className="grayscale fixed inset-0 -z-40 scale-125 invert mix-blend-screen blur-2xl h-[100svh] max-h-[100svh]"
         style={{
           opacity: 0,
           animation: "fadeIn 2s",
           animationDelay: "1s",
           animationFillMode: "forwards",
         }}
-        onError={()=>{
-            return (<></>)
+        onError={() => {
+          return <></>;
         }}
+      />
+
+      <Spline
+        scene="https://prod.spline.design/QrOMVSF89gqxEPpa/scene.splinecode"
+        className="grayscale fixed inset-0 -z-40 scale-125 mix-blend-screen h-[100svh]  max-h-[100svh]"
       />
     </div>
   );
