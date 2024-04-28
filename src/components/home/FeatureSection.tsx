@@ -14,7 +14,7 @@ export default function FeatureSection() {
   const [opacity, setOpacity] = useState(0);
   // const [backgroundOpacity, setBackgroundOpacity] = useState(0);
 
-  scrollYProgress.onChange((v) => {
+  scrollYProgress.on("change", (v) => {
     // setOpacity(Math.pow(v, 3));
 
     // set value exponentially, if it passes 1, let it stay 1
@@ -35,32 +35,39 @@ export default function FeatureSection() {
 function FeatureList() {
   return (
     <>
-      <div className="w-full flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-stretch">
-        <Card
-          title={"Wide Variety of Templates"}
-          description={
-            "Find the perfect template for any framework and use-case."
-          }
-          icon={<Layers />}
-          viewOffset={4}
-        ></Card>
+      <div className="flex flex-col w-full justify-center items-center gap-4 select-none">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-bold text-center text-white mb-8 max-w-md">
+            We make it easy to find the perfect template for your project.
+          </h2>
+        </div>
+        <div className="w-full flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-stretch">
+          <Card
+            title={"Wide Variety of Templates"}
+            description={
+              "Find the perfect template for any framework and use-case."
+            }
+            icon={<Layers />}
+            viewOffset={4}
+          ></Card>
 
-        <Card
-          title={"Quality Assured"}
-          description={
-            "All templates are vetted for quality, ensuring high-quality code."
-          }
-          icon={<CheckCircle />}
-          viewOffset={3}
-        ></Card>
-        <Card
-          title={"Easy Purchase & Sell Process"}
-          description={
-            "Our platform makes buying and selling templates a breeze."
-          }
-          icon={<ShoppingBasket />}
-          viewOffset={2}
-        ></Card>
+          <Card
+            title={"Quality Assured"}
+            description={
+              "All templates are vetted for quality, ensuring high-quality code."
+            }
+            icon={<CheckCircle />}
+            viewOffset={3.5}
+          ></Card>
+          <Card
+            title={"Easy Purchase & Sell Process"}
+            description={
+              "Our platform makes buying and selling templates a breeze."
+            }
+            icon={<ShoppingBasket />}
+            viewOffset={3}
+          ></Card>
+        </div>
       </div>
     </>
   );
@@ -92,7 +99,7 @@ function Card({
 
   return (
     <div
-      className="flex flex-col h-auto items-center justify-start gap-2 p-4 bg-slate-50/10 rounded-lg shadow-lg w-64 grayscale text-white overflow-clip"
+      className="select-none user-select-none flex flex-col h-auto items-center justify-start gap-2 p-4 bg-slate-50/5 border-slate-50/10 border-[1px] rounded-lg shadow-lg w-64 grayscale text-white overflow-clip"
       ref={ref}
     >
       <div

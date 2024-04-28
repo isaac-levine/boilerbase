@@ -135,7 +135,7 @@ export default function NavigationBar({
   return (
     <>
       <div
-        className="fixed w-full h-auto p-2 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-black/20 z-50 filter"
+        className="fixed w-full h-auto p-2 flex flex-row items-center justify-between gap-4 select-none user-select-none backdrop-blur-lg border-b-[1px] border-gray-50/10 bg-slate-950 sm:bg-black/20 z-50 filter"
         style={{
           WebkitBackdropFilter: "blur(16x)",
         }}
@@ -248,7 +248,7 @@ export default function NavigationBar({
             <motion.div
               variants={sidebar}
               className={cn(
-                "absolute w-full h-[100vh] max-h-[100vh] inset-0 bg-slate-50/10 backdrop-blur-lg transition-all z-40 ease-in-out duration-300 flex justify-center items-center "
+                "absolute w-full h-[100vh] max-h-[100vh] inset-0 bg-slate-950 sm:bg-slate-50/10 backdrop-blur-lg transition-all z-40 ease-in-out duration-300 flex justify-center items-center "
               )}
               style={{
                 WebkitBackdropFilter: "blur(16px)",
