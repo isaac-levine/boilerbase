@@ -12,10 +12,10 @@ export default function HeroHeader() {
   const [replay, setReplay] = useState(true);
   // Placeholder text data, as if from API
   const placeholderText = [
-    { type: "paragraph", text: "Your one-stop shop" },
+    { type: "paragraph", text: "Premier Marketplace" },
     {
       type: "paragraph",
-      text: "for boilerplates and templates",
+      text: "for Web App Boilerplates",
     },
   ];
 
@@ -87,8 +87,8 @@ export default function HeroHeader() {
                 href={"/discover/featured"}
               >
                 <span>
-                  <span className="font-semibold">Featured:</span> Curated
-                  boilerplates and templates for your next project
+                  <span className="font-semibold">Featured: </span> Top web app
+                  boilerplates for your next project
                 </span>{" "}
                 <MoveUpRight size={16} />
               </Link>
@@ -125,9 +125,10 @@ export default function HeroHeader() {
               className="p-2 px-4 select-none"
             >
               <span className="text-xs sm:text-md max-w-xs">
-                Kickstart your next project, with a boilerplate or template and{" "}
-                <span className="font-semibold">save time</span> without
-                compromising <span className="font-semibold">quality</span>.
+                Whether for a side project or SaaS startup,
+                <span className="font-semibold"> save time</span> building your
+                web app without compromising{" "}
+                <span className="font-semibold">quality</span>.
               </span>
             </motion.span>
             <motion.span
@@ -140,7 +141,7 @@ export default function HeroHeader() {
                   className="Capitalize p-4 py-6 hover:bg-white hover:text-black mix-blend-screen"
                   variant={"outline"}
                 >
-                  view boilerplates
+                  Browse Boilerplates
                 </Button>
               </Link>
             </motion.span>
