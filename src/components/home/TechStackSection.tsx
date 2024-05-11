@@ -9,7 +9,7 @@ export default function TechStackSection() {
         <div className="flex flex-col w-full justify-center items-center gap-4 select-none">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-center text-white mb-8 max-w-md">
-              Use whatever tech stack you're comfortable with.
+              Use whatever tech stack you&apos;re comfortable with.
             </h2>
           </div>
         </div>
