@@ -9,8 +9,8 @@ import { AuthProvider } from "@/components/providers/auth-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
-  title: "BoilerBase | Your one-stop shop for boilerplates and templates",
-  description: "Your one-stop shop for boilerplates and templates",
+  title: "BoilerBase | Premier Marketplace for Web App Boilerplates",
+  description: "Your one-stop shop for web app boilerplates and templates",
   icons: [
     "https://imagedelivery.net/PWe9rlYiKWdV4Gf-JnsgCw/faf4d104-cb3a-4669-e1f2-4b58f286fa00/2k",
   ],

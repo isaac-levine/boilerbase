@@ -38,14 +38,14 @@ function FeatureList() {
       <div className="flex flex-col w-full justify-center items-center gap-4 select-none">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-center text-white mb-8 max-w-md">
-            We make it easy to find the perfect template for your project.
+            We make it easy to find the perfect boilerplate for your project.
           </h2>
         </div>
         <div className="w-full flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-stretch">
           <Card
-            title={"Wide Variety of Templates"}
+            title={"Wide Variety of Boilerplates"}
             description={
-              "Find the perfect template for any framework and use-case."
+              "Find the perfect boilerplate for any framework and use-case."
             }
             icon={<Layers />}
             viewOffset={4}
@@ -54,7 +54,7 @@ function FeatureList() {
           <Card
             title={"Quality Assured"}
             description={
-              "All templates are vetted for quality, ensuring high-quality code."
+              "All boilerplates are vetted for quality, ensuring high-quality code."
             }
             icon={<CheckCircle />}
             viewOffset={3.5}
@@ -62,7 +62,7 @@ function FeatureList() {
           <Card
             title={"Easy Purchase & Sell Process"}
             description={
-              "Our platform makes buying and selling templates a breeze."
+              "Our platform makes buying and selling boilerplates a breeze."
             }
             icon={<ShoppingBasket />}
             viewOffset={3}
