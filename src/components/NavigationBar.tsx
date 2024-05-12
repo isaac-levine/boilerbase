@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Menu, X } from "lucide-react";
 import { motion, useCycle } from "framer-motion";
+import { signOut } from "next-auth/react";
 
 export default function NavigationBar({
   session,
@@ -308,22 +309,6 @@ export default function NavigationBar({
                       </ul>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
-
-                  {userSession != null ? (
-                    <></>
-                  ) : (
-                    <>
-                      <NavigationMenuItem>
-                        <Button onClick={handleLogin}>
-                          <NavigationMenuLink
-                            className={navigationMenuTriggerStyle}
-                          >
-                            Login
-                          </NavigationMenuLink>
-                        </Button>
-                      </NavigationMenuItem>
-                    </>
-                  )}
                 </NavigationMenuList>
               </NavigationMenu>
             </motion.div>
@@ -348,7 +333,7 @@ export default function NavigationBar({
             <Button
               onClick={handleLogin}
               className={cn(
-                "px-6 py-2 rounded-full capitalize text-sm",
+                "mx-1 px-6 py-2 rounded-full capitalize text-sm",
                 `${
                   dark
                     ? "text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500 border-[1px]"
@@ -356,8 +341,24 @@ export default function NavigationBar({
                 }`
               )}
             >
-              {userSession != null ? "Dashboard" : "Login"}
+              {userSession != null ? "Dashboard" : "Sign In"}
             </Button>
+            {userSession && (
+              <Link href="api/auth/signout">
+                <Button
+                  className={cn(
+                    "mx-1 px-6 py-2 rounded-full capitalize text-sm",
+                    `${
+                      dark
+                        ? "text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500 border-[1px]"
+                        : "text-gray-950  bg-gradient-to-r from-gray-50/0 to-gray-300/30 border-gray-500 border-[1px]"
+                    }`
+                  )}
+                >
+                  Sign Out
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
