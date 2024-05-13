@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "https://imagedelivery.net/PWe9rlYiKWdV4Gf-JnsgCw/faf4d104-cb3a-4669-e1f2-4b58f286fa00/2k",
   ],
 };
+import NavigationBar from "@/components/NavigationBar";
 
 export const viewport: Viewport = {
   themeColor: "#000000",
