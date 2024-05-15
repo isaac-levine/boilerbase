@@ -214,13 +214,6 @@ export default function NavigationBar({
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              {/* <NavigationMenuItem>
-                <Link href="/docs" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle}>
-                    Documentation
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem> */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -238,6 +231,15 @@ export default function NavigationBar({
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              {userSession && (
+                <NavigationMenuItem>
+                  <Link href="/sell-an-item" passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle}>
+                      Sell a Boilerplate
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              )}
             </NavigationMenuList>
           </NavigationMenu>
 
@@ -328,8 +330,23 @@ export default function NavigationBar({
           </motion.nav>
         </div>
 
+        {/* RIGHT SIDE STUFF */}
         <div className="hidden sm:flex flex-row gap-4 justify-end w-1/3">
-          <div>
+          {userSession ? (
+            <Button
+              onClick={() => signOut()}
+              className={cn(
+                "mx-1 px-6 py-2 rounded-full capitalize text-sm",
+                `${
+                  dark
+                    ? "text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500 border-[1px]"
+                    : "text-gray-950  bg-gradient-to-r from-gray-50/0 to-gray-300/30 border-gray-500 border-[1px]"
+                }`
+              )}
+            >
+              Sign Out
+            </Button>
+          ) : (
             <Button
               onClick={handleLogin}
               className={cn(
@@ -341,25 +358,9 @@ export default function NavigationBar({
                 }`
               )}
             >
-              {userSession != null ? "Dashboard" : "Sign In"}
+              Sign In
             </Button>
-            {userSession && (
-              <Link href="api/auth/signout">
-                <Button
-                  className={cn(
-                    "mx-1 px-6 py-2 rounded-full capitalize text-sm",
-                    `${
-                      dark
-                        ? "text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500 border-[1px]"
-                        : "text-gray-950  bg-gradient-to-r from-gray-50/0 to-gray-300/30 border-gray-500 border-[1px]"
-                    }`
-                  )}
-                >
-                  Sign Out
-                </Button>
-              </Link>
-            )}
-          </div>
+          )}
         </div>
       </div>
     </>
