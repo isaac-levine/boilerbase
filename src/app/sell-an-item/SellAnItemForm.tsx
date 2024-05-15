@@ -46,6 +46,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    alert("Sorry, only cool people can do this.");
   }
   return (
     <Form {...form}>
