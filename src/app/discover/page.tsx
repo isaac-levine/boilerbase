@@ -12,7 +12,9 @@ export default function Component() {
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-white">Discover</h1>
+        <h1 className="text-2xl font-bold text-white">
+          Discover the latest templates and boilerplates
+        </h1>
         <div className="flex items-center space-x-4">
           <div className="relative w-full max-w-md">
             <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />

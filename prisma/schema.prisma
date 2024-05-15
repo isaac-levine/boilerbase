@@ -48,18 +48,18 @@ enum Role {
 }
 
 model User {
-  id                   String     @id @default(cuid()) @map("_id")
-  name                 String?    @default("")
-  last_name            String?    @default("")
-  email                String?    @unique
-  created              DateTime   @default(now())
-  emailVerified        DateTime?
-  onboarded            Boolean?   @default(false)
-  phone_number         String?    @default("")
-  image                String?    @default("")
-  role                 Role       @default(USER)
-  accounts             Account[]
-  sessions             Session[]
+  id            String    @id @default(cuid()) @map("_id")
+  name          String?   @default("")
+  last_name     String?   @default("")
+  email         String?   @unique
+  created       DateTime  @default(now())
+  emailVerified DateTime?
+  onboarded     Boolean?  @default(false)
+  phone_number  String?   @default("")
+  image         String?   @default("")
+  role          Role      @default(USER)
+  accounts      Account[]
+  sessions      Session[]
 }
 
 model VerificationToken {
@@ -71,3 +71,12 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Listing {
+  id          String   @id @default(cuid()) @map("_id")
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  price       String
+}
