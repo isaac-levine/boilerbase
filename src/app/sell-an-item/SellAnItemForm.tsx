@@ -29,7 +29,7 @@ const formSchema = z.object({
     message: "Price must be a positive number.",
   }),
 });
-export default function SellAnItemForm({ dark = true }: { dark: boolean }) {
+export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
   const session = useSession();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
