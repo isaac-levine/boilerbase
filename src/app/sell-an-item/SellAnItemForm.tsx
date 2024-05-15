@@ -42,6 +42,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
+    values.price = Number(values.price);
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
@@ -89,7 +90,13 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
             <FormItem>
               <FormLabel>Price</FormLabel>
               <FormControl>
-                <Input type="number" {...field} />
+                <Input
+                  type="number"
+                  {...field}
+                  onChange={(e) => {
+                    form.setValue("price", parseFloat(e.target.value));
+                  }}
+                />
               </FormControl>
               <FormDescription>
                 How much does your boilerplate cost in USD?
