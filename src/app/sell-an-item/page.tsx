@@ -10,8 +10,11 @@ export default function Home() {
   return (
     <>
       <NavigationBar session={session}></NavigationBar>
-      <h1>Sell a Boilerplate</h1>
-      <div className="flex justify-center items-center min-h-screen">
+
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <h1 className="text-center text-2xl font-bold mb-12 text-white">
+          Sell your product in just 30 seconds.
+        </h1>
         <SellAnItemForm />
       </div>
     </>
