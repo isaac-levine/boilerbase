@@ -163,7 +163,7 @@ export default function NavigationBar({
           <span>
             <h1
               className={cn(
-                "font-extrabold tracking-tight text-lg duration-500",
+                "font-extrabold tracking-tight text-xl duration-500",
                 `${dark ? "mix-blend-screen invert" : ""} ${
                   open ? "opacity-0 sm:opacity-100" : "opacity-100"
                 }`
