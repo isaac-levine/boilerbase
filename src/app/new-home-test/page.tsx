@@ -4,33 +4,38 @@ import NavigationBar from "@/components/NavigationBar";
 import HeroHeader from "@/components/home/HeroHeader";
 import { useSession } from "next-auth/react";
 import { motion, useInView, useScroll } from "framer-motion";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import FeatureSection from "@/components/home/FeatureSection";
 import TechStackSection from "@/components/home/TechStackSection";
+import { HomePicker } from "@/components/home/HomePicker";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function NewHomeTest() {
   const session = useSession();
+  const router = useRouter();
   const [replay, setReplay] = useState(true);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
+  useEffect(() => {
+    if (session.status === "unauthenticated") {
+      router.push("/auth/sign-in");
+    }
+  }, [session.status, router]);
+
   return (
     <>
       <NavigationBar session={session}></NavigationBar>
-
       <section className="bg-gradient-to-t to-transparent from-slate-950/75 w-full min-h-screen h-auto flex flex-col items-center justify-center">
-        <HeroHeader></HeroHeader>
+        <h1 className="text-4xl text-white font-extrabold mb-4">
+          Welcome to BoilerBase.{" "}
+        </h1>
+        <p className="text-white font-semibold mb-4">
+          The only centralized marketplace for web app boilerplates and
+          templates.
+        </p>
+        <HomePicker />
       </section>
-
-      <section className="bg-slate-950/75 w-full h-auto flex flex-col items-center justify-center">
-        <FeatureSection></FeatureSection>
-      </section>
-
-      <section className="bg-slate-950/75 w-full h-auto flex flex-col items-center justify-center pb-20">
-        <TechStackSection></TechStackSection>
-      </section>
-
-      <GradientBackground></GradientBackground>
     </>
   );
 }

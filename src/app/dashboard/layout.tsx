@@ -21,13 +21,8 @@ export default async function DashboardLayout({
   return (
     <div className="flex flex-col w-full h-screen">
       <GradientBackground></GradientBackground>
-      <NavigationBar session={session}/>
-      <div className="w-full pt-2">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col pt-4 px-4 sm:px-20">{children}</div>
-          <div className="h-20 w-full" />
-        </div>
-      </div>
+      <NavigationBar session={session} />
+      {children}
     </div>
   );
 }
