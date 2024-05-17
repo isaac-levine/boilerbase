@@ -24,8 +24,8 @@ export default function NewHomeTest() {
   }, [session.status, router]);
 
   return (
-    <div>
-      <section className="bg-gradient-to-t to-transparent from-slate-950/75 w-full min-h-screen h-auto flex flex-col items-center justify-center">
+    <>
+      <section className="bg-gradient-to-t to-transparent from-slate-950/75 w-full min-h-screen flex flex-col items-center justify-center">
         <h1 className="text-4xl text-white font-extrabold mb-4">
           Welcome to BoilerBase.{" "}
         </h1>
@@ -33,8 +33,10 @@ export default function NewHomeTest() {
           The only centralized marketplace for web app boilerplates and
           templates.
         </p>
-        <HomePicker />
+        <div className="h-[500px]">
+          <HomePicker />
+        </div>
       </section>
-    </div>
+    </>
   );
 }

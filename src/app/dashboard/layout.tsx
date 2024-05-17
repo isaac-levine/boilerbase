@@ -19,8 +19,7 @@ export default async function DashboardLayout({
 }) {
   const session = await getSignedInUser();
   return (
-    <div className="flex flex-col w-full h-screen">
-      <GradientBackground></GradientBackground>
+    <div className="flex flex-col w-full">
       <NavigationBar session={session} />
       {children}
     </div>
