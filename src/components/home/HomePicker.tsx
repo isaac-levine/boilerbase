@@ -153,11 +153,14 @@ export function HomePicker({ dark = true }: { dark?: boolean }) {
           <CardContent className="space-y-2">
             <div className="space-y-1">
               <Label htmlFor="title">Project title</Label>
-              <Input id="title" />
+              <Input
+                id="title"
+                placeholder="Easy React + Stripe SaaS Boilerplate"
+              />
             </div>
             <div className="space-y-1">
               <Label htmlFor="price">Price (in USD)</Label>
-              <Input id="new" type="number" />
+              <Input id="new" type="number" placeholder="0" />
             </div>
           </CardContent>
           <CardFooter>
