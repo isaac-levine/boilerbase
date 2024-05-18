@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   ],
 };
 import NavigationBar from "@/components/NavigationBar";
-
+import { Footer } from "@/components/Footer";
 export const viewport: Viewport = {
   themeColor: "#000000",
   initialScale: 1,
@@ -60,6 +60,7 @@ export default function RootLayout({
           />
           {children}
         </AuthProvider>
+        {/* <Footer /> */}
         <Toaster />
       </body>
     </html>
