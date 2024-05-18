@@ -19,18 +19,18 @@ export default function Home() {
       <NavigationBar session={session}></NavigationBar>
 
       <section className="bg-gradient-to-t to-transparent from-slate-950/75 w-full min-h-screen h-auto flex flex-col items-center justify-center">
-        <HeroHeader></HeroHeader>
+        <HeroHeader />
       </section>
 
       <section className="bg-slate-950/75 w-full h-auto flex flex-col items-center justify-center">
-        <FeatureSection></FeatureSection>
+        <FeatureSection />
       </section>
 
       <section className="bg-slate-950/75 w-full h-auto flex flex-col items-center justify-center pb-20">
-        <TechStackSection></TechStackSection>
+        <TechStackSection />
       </section>
 
-      <GradientBackground></GradientBackground>
+      <GradientBackground />
     </>
   );
 }

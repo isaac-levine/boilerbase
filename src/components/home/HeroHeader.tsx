@@ -12,10 +12,10 @@ export default function HeroHeader() {
   const [replay, setReplay] = useState(true);
   // Placeholder text data, as if from API
   const placeholderText = [
-    { type: "paragraph", text: "Premier Marketplace" },
+    { type: "paragraph", text: "Accelerate development" },
     {
       type: "paragraph",
-      text: "for Web App Boilerplates",
+      text: "with Boilerbase.",
     },
   ];
 
@@ -66,7 +66,7 @@ export default function HeroHeader() {
     >
       <div className="w-full h-full  mix-blend-screen  flex items-center justify-center flex-col overflow-hidden gap-1 sm:gap-6 ">
         <motion.div
-          className="App py-4 z-10"
+          className="App py-4 z-10 hidden sm:block"
           initial="hidden"
           // animate="visible"
           animate={replay ? "visible" : "hidden"}
@@ -111,7 +111,7 @@ export default function HeroHeader() {
         </motion.div>
 
         <motion.div
-          className="App py-4 z-10"
+          className="App py-4 z-10 flex flex-col items-center justify-center w-full"
           initial="hidden"
           // animate="visible"
           animate={replay ? "visible" : "hidden"}
@@ -122,14 +122,9 @@ export default function HeroHeader() {
             <motion.span
               style={{ display: "inline-block" }}
               variants={item}
-              className="p-2 px-4 select-none"
+              className="p-2 px-4 select-none text-md"
             >
-              <span className="text-xs sm:text-md max-w-xs">
-                Whether for a side project or SaaS startup,
-                <span className="font-semibold"> save time</span> building your
-                web app without compromising{" "}
-                <span className="font-semibold">quality</span>.
-              </span>
+              The number one platform for web app boilerplates.
             </motion.span>
             <motion.span
               style={{ display: "inline-block" }}
