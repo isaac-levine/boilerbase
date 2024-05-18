@@ -60,7 +60,7 @@ export default function RootLayout({
           />
           {children}
         </AuthProvider>
-        {/* <Footer /> */}
+        <Footer />
         <Toaster />
       </body>
     </html>
