@@ -5,6 +5,8 @@ import NextTopLoader from "nextjs-toploader";
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
+const inter = Inter({ subsets: ["latin"] });
+
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
@@ -33,35 +35,30 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          montserrat.className,
-          "bg-surface text-primary antialiased h-[100svh] relative selection:text-surface selection:bg-primary w-full"
-        )}
+        className={cn("relative h-full font-sans antialiased", inter.className)}
       >
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-        />
-        <AuthProvider>
-          <NextTopLoader
-            color="white"
-            initialPosition={0.08}
-            crawlSpeed={200}
-            height={3}
-            crawl={true}
-            showSpinner={true}
-            easing="ease"
-            speed={200}
-            shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-            template='<div class="bar" role="bar"><div class="peg"></div></div> '
-            zIndex={1600}
-            showAtBottom={false}
-          />
-          {children}
-        </AuthProvider>
-        <Footer />
-        <Toaster />
+        <main className="relative flex flex-col min-h-screen">
+          <AuthProvider>
+            <NextTopLoader
+              color="white"
+              initialPosition={0.08}
+              crawlSpeed={200}
+              height={3}
+              crawl={true}
+              showSpinner={true}
+              easing="ease"
+              speed={200}
+              shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+              template='<div class="bar" role="bar"><div class="peg"></div></div> '
+              zIndex={1600}
+              showAtBottom={false}
+            />
+            <NavigationBar />
+            <div className="flex-grow flex-1">{children}</div>
+          </AuthProvider>
+          <Footer />
+          <Toaster />
+        </main>
       </body>
     </html>
   );

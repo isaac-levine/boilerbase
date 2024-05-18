@@ -6,8 +6,8 @@ const BoilerbaseIcon = () => {
       <Image
         src="/boilerbase-icon.png"
         alt="Boilerbase Icon"
-        width={30}
-        height={30}
+        width={35}
+        height={35}
       />
     </div>
   );

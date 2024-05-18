@@ -1,5 +1,4 @@
 "use client";
-import NavigationBar from "@/components/NavigationBar";
 import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
