@@ -73,10 +73,10 @@ model VerificationToken {
 
 model Listing {
   id          String   @id @default(cuid()) @map("_id")
-  userId      String
+  userId      String   // seller's userID
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   name        String
   description String
-  price       String
+  price       Float
 }
