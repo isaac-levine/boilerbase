@@ -1,28 +1,14 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+
 import Link from "next/link";
 import { Button } from "./ui/button";
 import * as React from "react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Menu, X } from "lucide-react";
-import { motion, useCycle } from "framer-motion";
-import { useSession } from "next-auth/react";
 import BoilerbaseIcon from "./BoilerbaseIcon";
 import { buttonVariants } from "./ui/button";
+import { useSession } from "next-auth/react";
 
 export default function NavigationBar() {
-  let userSession;
-  // const session = useSession();
+  const session = useSession();
 
   // if (session.data != null) {
   //   userSession = session.data.user;
@@ -47,7 +33,7 @@ export default function NavigationBar() {
         >
           Discover
         </Link>
-        {userSession && (
+        {session && (
           <Link
             className="hover:underline hover:underline-offset-4"
             href="/sell-an-item"
@@ -56,7 +42,7 @@ export default function NavigationBar() {
           </Link>
         )}
       </nav>
-      {userSession ? (
+      {session ? (
         <div className="flex items-center gap-2">
           <Link
             href="/api/auth/signout"
