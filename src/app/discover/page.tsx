@@ -47,7 +47,7 @@ export default function Component() {
             </p>
             <div className="flex items-center justify-between">
               <span className="text-primary font-semibold">$19.99</span>
-              <Button size="lg">Buy Now</Button>
+              <Button size="sm">Buy Now</Button>
             </div>
           </div>
         </div>

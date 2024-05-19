@@ -106,14 +106,9 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
           )}
         />
         <Button
-          className={cn(
-            "mx-1 px-6 py-2 rounded-full capitalize text-sm",
-            `${
-              dark
-                ? "text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500 border-[1px]"
-                : "text-gray-950  bg-gradient-to-r from-gray-50/0 to-gray-300/30 border-gray-500 border-[1px]"
-            }`
-          )}
+          className={
+            "mx-1 px-6 py-2 rounded-full capitalize text-sm text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500"
+          }
           type="submit"
         >
           Submit

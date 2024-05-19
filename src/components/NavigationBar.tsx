@@ -31,7 +31,7 @@ export default function NavigationBar() {
           className="hover:underline hover:underline-offset-4"
           href="/discover"
         >
-          Discover
+          Browse Boilerplates
         </Link>
         {session && (
           <Link
