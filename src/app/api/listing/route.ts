@@ -60,20 +60,3 @@ export async function GET(request: Request) {
     });
   }
 }
-
-// Get all listings without a limit
-export async function GET_ALL(request: Request) {
-  try {
-    const listings = await prisma.listing.findMany();
-    return new Response(JSON.stringify(listings), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    console.error("Error getting listings:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-}
