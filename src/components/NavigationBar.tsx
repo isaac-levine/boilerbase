@@ -5,9 +5,25 @@ import { Button } from "./ui/button";
 import * as React from "react";
 import BoilerbaseIcon from "./BoilerbaseIcon";
 import { buttonVariants } from "./ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useSession } from "next-auth/react";
+import { LogIn, LogOut, Menu } from "lucide-react";
+
+interface NavItems {
+  name: string;
+  href: string;
+  requiresAuth?: boolean | false;
+}
 
 export default function NavigationBar() {
+  const navRef = React.useRef(null);
   const session = useSession();
 
   // if (session.data != null) {
@@ -22,18 +38,70 @@ export default function NavigationBar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white shadow dark:bg-gray-950">
-      <Link className="flex items-center gap-2" href="/">
+      <Sheet>
+        <SheetTrigger className="sm:hidden items-center gap-2 flex w-1/3 sm:w-auto p-4">
+          {/* <Link className="flex items-center gap-2" href="/"> */}
+          {/* <BoilerbaseIcon /> */}
+          {/* <span className="font-semibold text-xl">Boilerbase</span> */}
+          {/* </Link> */}
+          <Menu size={16}></Menu>
+        </SheetTrigger>
+        <SheetContent side={"left"} className="w-full">
+          <SheetHeader>
+            <SheetTitle className="flex items-center justify-center">
+              <Link className="flex items-center gap-2" href="/">
+                <BoilerbaseIcon />
+                <span className="font-semibold text-xl">Boilerbase</span>
+              </Link>
+            </SheetTitle>
+            {/* <SheetDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </SheetDescription> */}
+
+            {/* use the navRef */}
+          </SheetHeader>
+          <nav
+            className="flex flex-col items-center gap-6 h-full justify-center text-lg font-semibold"
+            ref={navRef}
+          >
+            <Link
+              className="hover:underline hover:underline-offset-4"
+              href="/discover"
+            >
+              Browse Boilerplates
+            </Link>
+            {session.data && (
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/sell-an-item"
+              >
+                Sell a Boilerplate
+              </Link>
+            )}
+          </nav>
+        </SheetContent>
+      </Sheet>
+      <Link
+        className="flex items-center justify-center gap-2 w-1/3 sm:w-auto"
+        href="/"
+      >
         <BoilerbaseIcon />
-        <span className="font-semibold text-xl">Boilerbase</span>
+        <span className="sm:block font-semibold text-xl hidden">
+          Boilerbase
+        </span>
       </Link>
-      <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+      <nav
+        className="hidden md:flex items-center gap-6 text-sm font-medium"
+        ref={navRef}
+      >
         <Link
           className="hover:underline hover:underline-offset-4"
           href="/discover"
         >
           Browse Boilerplates
         </Link>
-        {session && (
+        {session.data?.user && (
           <Link
             className="hover:underline hover:underline-offset-4"
             href="/sell-an-item"
@@ -42,27 +110,29 @@ export default function NavigationBar() {
           </Link>
         )}
       </nav>
-      {session ? (
-        <div className="flex items-center gap-2">
+      {session.data?.user ? (
+        <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
           <Link
             href="/api/auth/signout"
             // onClick={() => signOut}
-            className={buttonVariants({
+            className={`${buttonVariants({
               variant: "outline",
-            })}
+            })} border-[0px] sm:border-[1px]`}
           >
-            Sign out
+            <span className="hidden sm:block">Sign out</span>
+            <LogOut className="block sm:hidden" size={16}></LogOut>
           </Link>
         </div>
       ) : (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-end gap-2  w-1/3 sm:w-auto">
           <Link
             href="/api/auth/signin"
-            className={buttonVariants({
+            className={`${buttonVariants({
               variant: "outline",
-            })}
+            })} border-[0px] sm:border-[1px]`}
           >
-            Sign in
+            <span className="hidden sm:block">Sign In</span>
+            <LogIn className="block sm:hidden" size={16}></LogIn>
           </Link>
         </div>
       )}

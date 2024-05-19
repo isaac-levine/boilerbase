@@ -3,11 +3,13 @@ import { Role } from "@prisma/client";
 import { randomUUID } from "crypto";
 import NextAuth, { AuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
+import GoogleProvider from "next-auth/providers/google";
 import { sendMagicLinkEmail } from "../email/mailer";
 import { prisma } from "../prisma";
 import nextAuth from "next-auth";
 const IS_BETA = false;
 export const authOptions = {
+
   session: {
     strategy: "database",
   },
@@ -88,8 +90,15 @@ export const authOptions = {
         return "magic_link_" + randomUUID();
       },
     }),
+    GoogleProvider({
+      clientId: `${process.env.GOOGLE_CLIENT}`,
+      clientSecret: `${process.env.GOOGLE_SECRET}`,
+      allowDangerousEmailAccountLinking: true,
+    }),
   ],
+  
   adapter: PrismaAdapter(prisma),
+  
 } as AuthOptions;
 
 export default NextAuth(authOptions);
