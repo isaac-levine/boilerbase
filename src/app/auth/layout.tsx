@@ -10,7 +10,7 @@ export default async function AuthLayout({
   return (
     <div className="w-full h-screen">
       <div className="">
-        <Link href="/" className="fixed top-3 left-5">
+        {/* <Link href="/" className="fixed top-3 left-5">
           <Button
             className="rounded-full bg-slate-500 text-white"
             variant={"default"}
@@ -18,7 +18,7 @@ export default async function AuthLayout({
           >
             <ChevronLeft size={16} />
           </Button>
-        </Link>
+        </Link> */}
         <div className="">{children}</div>
       </div>
     </div>
