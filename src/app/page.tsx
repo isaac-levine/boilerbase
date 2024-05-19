@@ -1,16 +1,9 @@
 "use client";
-import GradientBackground from "@/components/GradientBackground";
-import HeroHeader from "@/components/home/HeroHeader";
-import { useSession } from "next-auth/react";
-import { motion, useInView, useScroll } from "framer-motion";
 import React, { useRef, useState } from "react";
-import FeatureSection from "@/components/home/FeatureSection";
-import TechStackSection from "@/components/home/TechStackSection";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
-// import ProductReel from "@/components/ProductReel";
 
 const perks = [
   {

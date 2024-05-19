@@ -11,8 +11,6 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
-import BoilerBackground from "@/components/BoilerBackground";
-import GradientBackground from "@/components/GradientBackground";
 
 export default function SignIn() {
   const session = useSession();
@@ -48,7 +46,6 @@ export default function SignIn() {
       <div className="flex flex-col w-full h-screen justify-center items-center select-none">
         <Loader2 className="animate-spin text-white" size={18} />
         <p className="text-white ">{"Redirecting to dashboard..."}</p>
-        <GradientBackground></GradientBackground>
       </div>
     );
   }
@@ -89,9 +86,7 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted sm:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full">
-        <BoilerBackground />
-      </div>
+      <div className="hidden bg-muted sm:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full"></div>
     </div>
   );
 }

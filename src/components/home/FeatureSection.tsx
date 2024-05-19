@@ -1,7 +1,5 @@
 import { useScroll, motion } from "framer-motion";
 import React, { useRef, useState } from "react";
-import GradientBackground from "../GradientBackground";
-import Spline from "@splinetool/react-spline";
 import { CheckCircle, Layers, ShoppingBasket } from "lucide-react";
 
 export default function FeatureSection() {
@@ -27,7 +25,6 @@ export default function FeatureSection() {
       <div className="w-full h-auto flex items-end">
         <FeatureList />
       </div>
-      {/* <GradientBackground></GradientBackground> */}
     </section>
   );
 }

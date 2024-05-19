@@ -1,6 +1,5 @@
 "use client";
 
-import BoilerBackground from "@/components/BoilerBackground";
 import Spline from "@splinetool/react-spline";
 
 export default function Page() {
@@ -24,9 +23,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full">
-        <BoilerBackground />
-      </div>
+      <div className="hidden bg-muted lg:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full"></div>
     </div>
   );
 }
