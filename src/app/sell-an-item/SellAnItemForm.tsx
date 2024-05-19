@@ -62,7 +62,8 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
         const data = await response.json();
         console.log("Listing created:", data);
         // Reset form fields or display a success message
-        alert("Listing created! Title: " + data.title);
+        form.reset();
+        alert(data.title + " has been listed for $" + data.price + "!");
       } else {
         const errorData = await response.json();
         console.error("Error creating listing:", errorData);
