@@ -72,14 +72,16 @@ export default function SignIn() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-slate-50 shadow-sm">
-                Login
+              <Button type="submit" className="w-full bg-slate-50 shadow-sm text-slate-950">
+                Login With Email
               </Button>
             </form>
             <Button
               variant="outline"
               className="w-full bg-slate-50 shadow-sm"
-              disabled={true}
+              onClick={()=>{
+                signIn("google", {callbackUrl: "/"})
+              }}
             >
               <FcGoogle /> Login with Google
             </Button>

@@ -19,6 +19,10 @@ export const metadata: Metadata = {
 };
 import NavigationBar from "@/components/NavigationBar";
 import { Footer } from "@/components/Footer";
+import { useSession } from "next-auth/react";
+import { getSignedInUser } from "@/lib/auth/helper";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth/options";
 export const viewport: Viewport = {
   themeColor: "#000000",
   initialScale: 1,
@@ -27,11 +31,15 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  // const session = await getSignedInUser();
+  // const session = await getServerSession(authOptions)
+  // console.log(session)
   return (
     <html lang="en" suppressHydrationWarning>
       <body
