@@ -153,12 +153,7 @@ export function OnboardingForm({ user }: { user: User }) {
             )}
           />
 
-          <Button
-            loading={loading}
-            className="w-full "
-            type="submit"
-            variant={"secondary"}
-          >
+          <Button className="w-full" type="submit" variant={"secondary"}>
             Continue
           </Button>
         </form>

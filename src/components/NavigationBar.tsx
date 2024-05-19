@@ -22,17 +22,17 @@ import { buttonVariants } from "./ui/button";
 
 export default function NavigationBar() {
   let userSession;
-  const session = useSession();
+  // const session = useSession();
 
-  if (session.data != null) {
-    userSession = session.data.user;
-  } else if (session.user != null) {
-    userSession = session.user;
-  } else {
-    userSession = null;
-  }
+  // if (session.data != null) {
+  //   userSession = session.data.user;
+  // } else if (session.user != null) {
+  //   userSession = session.user;
+  // } else {
+  //   userSession = null;
+  // }
 
-  const hasAccess = !["SELLER", "ADMIN"].includes(userSession?.role);
+  // const hasAccess = !["SELLER", "ADMIN"].includes(userSession?.role);
 
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white shadow dark:bg-gray-950">
