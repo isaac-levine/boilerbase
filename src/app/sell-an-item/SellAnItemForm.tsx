@@ -35,7 +35,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
     defaultValues: {
       title: "",
       description: "",
-      price: 50,
+      price: 0,
     },
   });
 
@@ -62,8 +62,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
         const data = await response.json();
         console.log("Listing created:", data);
         // Reset form fields or display a success message
-        form.reset();
-        alert(data.title + " has been listed for $" + data.price + "!");
+        alert("Listing created! Title: " + data.title);
       } else {
         const errorData = await response.json();
         console.error("Error creating listing:", errorData);

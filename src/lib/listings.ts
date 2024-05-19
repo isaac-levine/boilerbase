@@ -1,27 +1,27 @@
-import { PrismaClient } from "@prisma/client";
+import { Listing } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// We are not using this library client function right now
+// Instead, we are just calling the API route directly from the frontend
+// Which is fine for now, but may want to extract that logic into a client library function (like this one below) later
 
-export async function createListing(data: {
-  userId: string;
-  title: string;
-  description: string;
-  price: number;
-}) {
-  const { userId, title, description, price } = data;
+export const addListing = async ({ listing }: { listing: any }) => {
+  try {
+    const response = await fetch("/api/listing", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(listing),
+    });
 
-  if (!userId || !title || !description || typeof price !== "number") {
-    throw new Error("Invalid input");
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Listing created:", data);
+    } else {
+      const errorData = await response.json();
+      console.error("Error creating listing:", errorData);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
   }
-
-  const listing = await prisma.listing.create({
-    data: {
-      userId,
-      title,
-      description,
-      price,
-    },
-  });
-
-  return listing;
-}
+};

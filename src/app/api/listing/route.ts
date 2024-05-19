@@ -36,3 +36,44 @@ export async function POST(request: Request) {
     });
   }
 }
+
+// Get limit number of listings
+export async function GET(request: Request) {
+  try {
+    const limit = parseInt(
+      new URL(request.url).searchParams.get("limit") || "10"
+    );
+    console.log("Getting listings with limit:", limit);
+    const listings = await prisma.listing.findMany({
+      take: limit,
+    });
+
+    return new Response(JSON.stringify(listings), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error getting listings:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
+
+// Get all listings without a limit
+export async function GET_ALL(request: Request) {
+  try {
+    const listings = await prisma.listing.findMany();
+    return new Response(JSON.stringify(listings), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error getting listings:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
