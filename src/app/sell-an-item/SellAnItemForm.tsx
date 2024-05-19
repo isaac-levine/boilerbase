@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -129,12 +129,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
             </FormItem>
           )}
         />
-        <Button
-          className={
-            "mx-1 px-6 py-2 rounded-full capitalize text-sm text-slate-50  bg-gradient-to-r from-slate-50/0 to-slate-300/30 border-slate-500"
-          }
-          type="submit"
-        >
+        <Button className={buttonVariants()} type="submit">
           Submit
         </Button>
       </form>
