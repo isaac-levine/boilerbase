@@ -76,7 +76,7 @@ model Listing {
   userId      String   // seller's userID
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  name        String
+  title        String
   description String
   price       Float
 }

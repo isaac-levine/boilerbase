@@ -39,13 +39,37 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  // Handle the values from the form submission
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     values.price = Number(values.price);
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-    alert("Sorry, only cool people can do this.");
+    const listing = {
+      userId: session?.data?.user.id,
+      title: values.title,
+      description: values.description,
+      price: values.price,
+    };
+
+    try {
+      const response = await fetch("/api/listing", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(listing),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Listing created:", data);
+        // Reset form fields or display a success message
+        alert("Listing created! Title: " + data.title);
+      } else {
+        const errorData = await response.json();
+        console.error("Error creating listing:", errorData);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   }
   return (
     <Form {...form}>
