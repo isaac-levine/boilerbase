@@ -50,7 +50,7 @@ export default function SignIn() {
     );
   }
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] h-screen select-none">
+    <div className="w-full lg:grid lg:min-h-[600px] h-screen select-none">
       <div className="flex items-center justify-center py-12 bg-gradient-to-b from-slate-50 to-slate-300 h-full px-12">
         <div className="mx-auto grid w-[350px] gap-6 ">
           <div className="grid gap-2 text-center">
@@ -72,21 +72,23 @@ export default function SignIn() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-slate-50 shadow-sm">
-                Login
+              <Button type="submit" className="w-full bg-slate-50 shadow-sm text-slate-950">
+                Login With Email
               </Button>
             </form>
             <Button
               variant="outline"
               className="w-full bg-slate-50 shadow-sm"
-              disabled={true}
+              onClick={()=>{
+                signIn("google", {callbackUrl: "/"})
+              }}
             >
               <FcGoogle /> Login with Google
             </Button>
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted sm:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full"></div>
+      {/* <div className="hidden bg-muted sm:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full"></div> */}
     </div>
   );
 }
