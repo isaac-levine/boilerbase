@@ -2,9 +2,24 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import SellAnItemForm from "./SellAnItemForm";
+import { Link } from "lucide-react";
+import { LogOut, LogIn } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   const session = useSession();
+
+  if (session?.data?.user.role !== "SELLER") {
+    return (
+      <>
+        <div className="flex flex-col justify-center items-center min-h-screen">
+          <h1 className="text-center text-2xl font-bold mb-12 text-black">
+            Sorry, you must register a seller account to sell items.
+          </h1>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
