@@ -39,7 +39,7 @@ export default function SignIn() {
   if (session.data && session.data?.user) {
     //redirect to /dashboard in 1 second
     setTimeout(() => {
-      router.push("/dashboard");
+      router.push("/");
     }, 1000);
 
     return (
@@ -72,15 +72,18 @@ export default function SignIn() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-slate-50 shadow-sm text-slate-950">
+              <Button
+                type="submit"
+                className="w-full bg-slate-50 shadow-sm text-slate-950"
+              >
                 Login With Email
               </Button>
             </form>
             <Button
               variant="outline"
               className="w-full bg-slate-50 shadow-sm"
-              onClick={()=>{
-                signIn("google", {callbackUrl: "/"})
+              onClick={() => {
+                signIn("google", { callbackUrl: "/" });
               }}
             >
               <FcGoogle /> Login with Google
