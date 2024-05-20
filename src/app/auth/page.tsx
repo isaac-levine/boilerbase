@@ -12,7 +12,7 @@ export default function Page() {
   useEffect(() => {
     if (session.status != "loading") {
       if (session.status == "authenticated") {
-        void router.push("/dashboard");
+        void router.push("/");
       } else {
         void router.push("/auth/sign-in");
       }
