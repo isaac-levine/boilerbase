@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import "./styles.css";
 import { Button } from "@/components/ui/button";
 import FilterButton from "./FilterButton";
+import { PulseLoader } from "react-spinners";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listing?limit=${limit}`, {
@@ -35,8 +36,8 @@ export default function Component() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12 my-12">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-black">
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-2xl font-bold text-black sm:block hidden">
           Discover the latest templates and boilerplates
         </h1>
         <div className="flex items-center space-x-4">
@@ -51,27 +52,18 @@ export default function Component() {
           <FilterButton />
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          listings.map((listing) => (
+      {loading ? (
+        <div className="flex justify-center items-center">
+          <PulseLoader loading={loading} size={10} color="#2563EB" />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {listings.map((listing) => (
             <div
               key={listing.id}
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4"
             >
-              <img
-                alt="Boilerplate Thumbnail"
-                className="w-full h-48 object-cover"
-                height={300}
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/300",
-                  objectFit: "cover",
-                }}
-                width={400}
-              />
-              <div className="p-4">
+              <div className="flex flex-col justify-between flex-grow p-4">
                 <h3 className="text-lg font-semibold mb-2">{listing.title}</h3>
                 <p className="text-gray-500 dark:text-gray-400 mb-4">
                   {listing.description}
@@ -80,13 +72,18 @@ export default function Component() {
                   <span className="text-primary font-semibold">
                     ${listing.price}
                   </span>
-                  <Button size="sm">Buy Now</Button>
+                  <Button
+                    className="ransition-transform transform hover:scale-105 cursor-pointer"
+                    size="sm"
+                  >
+                    Buy Now
+                  </Button>
                 </div>
               </div>
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
