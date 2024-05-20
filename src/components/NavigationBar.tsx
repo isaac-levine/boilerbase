@@ -25,6 +25,7 @@ interface NavItems {
 export default function NavigationBar() {
   const navRef = React.useRef(null);
   const session = useSession();
+  // console.log("role:" + session.data?.user.role);
 
   // if (session.data != null) {
   //   userSession = session.data.user;
@@ -34,8 +35,21 @@ export default function NavigationBar() {
   //   userSession = null;
   // }
 
-  // const hasAccess = !["SELLER", "ADMIN"].includes(userSession?.role);
+  const [userHasSellPerms, setUserHasSellPerms] = React.useState(false);
 
+  // permission check
+  React.useEffect(() => {
+    if (
+      session.data?.user.role === "SELLER" ||
+      session.data?.user.role === "ADMIN"
+    ) {
+      setUserHasSellPerms(true);
+    } else {
+      setUserHasSellPerms(false);
+    }
+  }, [session?.data?.user.role]);
+
+  // console.log("userHasSellPerms:" + userHasSellPerms);
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white shadow dark:bg-gray-950">
       <Sheet>
@@ -71,7 +85,7 @@ export default function NavigationBar() {
             >
               Browse Boilerplates
             </Link>
-            {session.data && (
+            {userHasSellPerms && (
               <Link
                 className="hover:underline hover:underline-offset-4"
                 href="/sell-an-item"
@@ -101,7 +115,7 @@ export default function NavigationBar() {
         >
           Browse Boilerplates
         </Link>
-        {session.data?.user && (
+        {userHasSellPerms && (
           <Link
             className="hover:underline hover:underline-offset-4"
             href="/sell-an-item"
