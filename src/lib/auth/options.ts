@@ -9,7 +9,6 @@ import { prisma } from "../prisma";
 import nextAuth from "next-auth";
 const IS_BETA = false;
 export const authOptions = {
-
   session: {
     strategy: "database",
   },
@@ -28,7 +27,6 @@ export const authOptions = {
         session.user.last_name = db.last_name ?? "";
         session.user.onboarded = db.onboarded ?? false;
         session.user.phone_number = db.phone_number ?? "";
-        session.user.role = db.role ?? Role.USER;
       }
 
       return session;
@@ -96,9 +94,8 @@ export const authOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
   ],
-  
+
   adapter: PrismaAdapter(prisma),
-  
 } as AuthOptions;
 
 export default NextAuth(authOptions);

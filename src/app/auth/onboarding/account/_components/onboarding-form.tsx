@@ -121,38 +121,6 @@ export function OnboardingForm({ user }: { user: User }) {
               </FormItem>
             )}
           />
-
-          <FormField
-            control={form.control}
-            name="role"
-            render={({ field }) => (
-              <FormItem className="pb-10">
-                <FormLabel>Role</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a role" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {user.role === "ADMIN" && (
-                      <SelectItem value="ADMIN">Admin</SelectItem>
-                    )}
-                    <SelectItem value="USER">User</SelectItem>
-                    <SelectItem value="SELLER">Seller</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-                <FormDescription>
-                  {"Your role will determine your permissions."}
-                </FormDescription>
-              </FormItem>
-            )}
-          />
-
           <Button className="w-full" type="submit" variant={"secondary"}>
             Continue
           </Button>

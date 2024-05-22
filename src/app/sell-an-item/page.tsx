@@ -2,22 +2,16 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import SellAnItemForm from "./SellAnItemForm";
-import { Link } from "lucide-react";
-import { LogOut, LogIn } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   const session = useSession();
 
-  if (
-    session?.data?.user.role !== "SELLER" &&
-    session?.data?.user.role !== "ADMIN"
-  ) {
+  if (session?.data?.user) {
     return (
       <>
         <div className="flex flex-col justify-center items-center min-h-screen">
           <h1 className="text-center text-2xl font-bold mb-12 text-black">
-            Sorry, only accounts registered as sellers can sell items.
+            Sorry, only registered users can add listings.
           </h1>
         </div>
       </>
@@ -28,7 +22,7 @@ export default function Home() {
     <>
       <div className="flex flex-col justify-center items-center min-h-screen">
         <h1 className="text-center text-2xl font-bold mb-12 text-black">
-          Sell your product in just 30 seconds.
+          Add your product in just 30 seconds.
         </h1>
         <SellAnItemForm />
       </div>
