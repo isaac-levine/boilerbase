@@ -1,6 +1,4 @@
 import * as React from "react";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,12 +18,12 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useWindowSize } from "usehooks-ts";
 
 export function QualityPromise() {
   const [open, setOpen] = React.useState(false);
-  const isDesktop = window.innerWidth >= 768;
+  const { width = 0, height = 0 } = useWindowSize();
+  const isDesktop = width >= 768;
 
   if (isDesktop) {
     return (
@@ -82,19 +80,3 @@ export function QualityPromise() {
     </Drawer>
   );
 }
-
-// function ProfileForm({ className }: React.ComponentProps<"form">) {
-//   return (
-//     <form className={cn("grid items-start gap-4", className)}>
-//       <div className="grid gap-2">
-//         <Label htmlFor="email">Email</Label>
-//         <Input type="email" id="email" defaultValue="shadcn@example.com" />
-//       </div>
-//       <div className="grid gap-2">
-//         <Label htmlFor="username">Username</Label>
-//         <Input id="username" defaultValue="@shadcn" />
-//       </div>
-//       <Button type="submit">Save changes</Button>
-//     </form>
-//   );
-// }
