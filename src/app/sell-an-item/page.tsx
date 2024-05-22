@@ -19,10 +19,12 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen">
-          <h1 className="text-center text-2xl font-bold mb-12 text-black">
-            Sorry, only registered users can add listings.
-          </h1>
+        <div className="my-12">
+          <div className="flex flex-col items-center justify-between mb-8">
+            <h1 className="text-2xl font-bold text-black sm:block hidden mb-12">
+              Sorry, only registered users can add listings.
+            </h1>
+          </div>
         </div>
       )}
     </MaxWidthWrapper>
