@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import FilterButton from "./FilterButton";
 import { PulseLoader } from "react-spinners";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Link from "next/link";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listing?limit=${limit}`, {
@@ -61,7 +62,8 @@ export default function Component() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {listings.map((listing) => (
-              <div
+              <Link
+                href={`/listing/${listing.id}`}
                 key={listing.id}
                 className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4"
               >
@@ -84,7 +86,7 @@ export default function Component() {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
