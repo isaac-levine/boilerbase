@@ -81,6 +81,8 @@ model Listing {
   description String
   price       Float
   likes       Like[]
+  tags        String[]
+  imageUrl    String?
 }
 
 model Like {
