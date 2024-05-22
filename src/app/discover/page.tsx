@@ -6,6 +6,7 @@ import "./styles.css";
 import { Button } from "@/components/ui/button";
 import FilterButton from "./FilterButton";
 import { PulseLoader } from "react-spinners";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listing?limit=${limit}`, {
@@ -35,56 +36,60 @@ export default function Component() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12 my-12">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-black sm:block hidden">
-          Discover the latest templates and boilerplates
-        </h1>
-        <div className="flex items-center space-x-4">
-          <div className="relative w-full max-w-md">
-            <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
-            <Input
-              className="pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-              placeholder="Search boilerplates..."
-              type="text"
-            />
+    <MaxWidthWrapper>
+      <div className="my-12">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-2xl font-bold text-black sm:block hidden">
+            Discover the latest templates and boilerplates
+          </h1>
+          <div className="flex items-center space-x-4">
+            <div className="relative w-full max-w-md">
+              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
+              <Input
+                className="pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Search boilerplates..."
+                type="text"
+              />
+            </div>
+            <FilterButton />
           </div>
-          <FilterButton />
         </div>
-      </div>
-      {loading ? (
-        <div className="flex justify-center items-center">
-          <PulseLoader loading={loading} size={10} color="#2563EB" />
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {listings.map((listing) => (
-            <div
-              key={listing.id}
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4"
-            >
-              <div className="flex flex-col justify-between flex-grow p-4">
-                <h3 className="text-lg font-semibold mb-2">{listing.title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 mb-4">
-                  {listing.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-primary font-semibold">
-                    ${listing.price}
-                  </span>
-                  <Button
-                    className="ransition-transform transform hover:scale-105 cursor-pointer"
-                    size="sm"
-                  >
-                    Buy Now
-                  </Button>
+        {loading ? (
+          <div className="flex justify-center items-center">
+            <PulseLoader loading={loading} size={10} color="#2563EB" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {listings.map((listing) => (
+              <div
+                key={listing.id}
+                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4"
+              >
+                <div className="flex flex-col justify-between flex-grow p-4">
+                  <h3 className="text-lg font-semibold mb-2">
+                    {listing.title}
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 mb-4">
+                    {listing.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-primary font-semibold">
+                      ${listing.price}
+                    </span>
+                    <Button
+                      className="ransition-transform transform hover:scale-105 cursor-pointer"
+                      size="sm"
+                    >
+                      Buy Now
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </MaxWidthWrapper>
   );
 }
 
