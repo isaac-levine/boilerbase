@@ -11,8 +11,9 @@ export default function Home() {
       <>
         <div className="flex flex-col justify-center items-center min-h-screen">
           <h1 className="text-center text-2xl font-bold mb-12 text-black">
-            Sorry, only registered users can add listings.
+            Add your product in just 30 seconds.
           </h1>
+          <SellAnItemForm />
         </div>
       </>
     );
@@ -22,9 +23,8 @@ export default function Home() {
     <>
       <div className="flex flex-col justify-center items-center min-h-screen">
         <h1 className="text-center text-2xl font-bold mb-12 text-black">
-          Add your product in just 30 seconds.
+          Sorry, only registered users can add listings.
         </h1>
-        <SellAnItemForm />
       </div>
     </>
   );
