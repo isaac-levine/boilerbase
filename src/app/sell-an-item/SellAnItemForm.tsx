@@ -50,7 +50,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
     };
 
     try {
-      const response = await fetch("/api/listing", {
+      const response = await fetch("/api/listings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

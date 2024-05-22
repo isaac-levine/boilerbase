@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+// Add a new listing
 export async function POST(request: Request) {
   try {
     const body = await request.json();

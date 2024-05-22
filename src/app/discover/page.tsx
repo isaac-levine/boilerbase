@@ -10,7 +10,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
 
 const getListings = async (limit: number) => {
-  const response = await fetch(`/api/listing?limit=${limit}`, {
+  const response = await fetch(`/api/listings?limit=${limit}`, {
     method: "GET",
   });
   const data = await response.json();
@@ -78,12 +78,13 @@ export default function Component() {
                     <span className="text-primary font-semibold">
                       ${listing.price}
                     </span>
-                    <Button
+                    {/* <Button
                       className="ransition-transform transform hover:scale-105 cursor-pointer"
                       size="sm"
                     >
                       Buy Now
-                    </Button>
+                    </Button> */}
+                    {/* HEART ICON SHOULD GO HERE */}
                   </div>
                 </div>
               </Link>
