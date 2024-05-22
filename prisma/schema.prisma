@@ -82,6 +82,7 @@ model Listing {
   price       Float
   likes       Like[]
   tags        String[]
+  reviews     String[]
   imageUrl    String?
 }
 
