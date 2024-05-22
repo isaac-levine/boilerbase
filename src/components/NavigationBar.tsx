@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { User } from "lucide-react";
 import * as React from "react";
 import BoilerbaseIcon from "./BoilerbaseIcon";
 import { buttonVariants } from "./ui/button";
@@ -35,21 +35,6 @@ export default function NavigationBar() {
   //   userSession = null;
   // }
 
-  const [userHasSellPerms, setUserHasSellPerms] = React.useState(false);
-
-  // permission check
-  React.useEffect(() => {
-    if (
-      session.data?.user.role === "SELLER" ||
-      session.data?.user.role === "ADMIN"
-    ) {
-      setUserHasSellPerms(true);
-    } else {
-      setUserHasSellPerms(false);
-    }
-  }, [session?.data?.user.role]);
-
-  // console.log("userHasSellPerms:" + userHasSellPerms);
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white shadow dark:bg-gray-950">
       <Sheet>
@@ -85,7 +70,7 @@ export default function NavigationBar() {
             >
               Browse Boilerplates
             </Link>
-            {userHasSellPerms && (
+            {session?.data?.user && (
               <Link
                 className="hover:underline hover:underline-offset-4"
                 href="/sell-an-item"
@@ -115,7 +100,7 @@ export default function NavigationBar() {
         >
           Browse Boilerplates
         </Link>
-        {userHasSellPerms && (
+        {session?.data?.user && (
           <Link
             className="hover:underline hover:underline-offset-4"
             href="/sell-an-item"
@@ -135,6 +120,14 @@ export default function NavigationBar() {
           >
             <span className="hidden sm:block">Sign out</span>
             <LogOut className="block sm:hidden" size={16}></LogOut>
+          </Link>
+          <Link
+            href="/settings"
+            className={`${buttonVariants({
+              variant: "outline",
+            })} border-[0px] sm:border-[1px]`}
+          >
+            <User size={20} />
           </Link>
         </div>
       ) : (
