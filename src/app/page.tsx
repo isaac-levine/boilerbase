@@ -4,6 +4,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
+import { QualityPromise } from "@/components/home/QualityPromise";
 
 const perks = [
   {
@@ -35,7 +36,7 @@ export default function Home() {
             Your go-to marketplace for web app{" "}
             <span className="text-blue-600">boilerplates</span>.
           </h1>
-          <p className="mt-6 text-lg max-w-prose text-muted-foreground">
+          <p className="hidden sm:block mt-6 text-lg max-w-prose text-muted-foreground">
             Whether it&apos;s an enterprise SaaS app, or a personal blog, we got
             you covered.
           </p>
@@ -43,7 +44,7 @@ export default function Home() {
             <Link href="/discover" className={buttonVariants()}>
               Browse Trending
             </Link>
-            <Button variant="ghost">Our quality promise &rarr;</Button>
+            <QualityPromise />
           </div>
         </div>
       </MaxWidthWrapper>

@@ -41,25 +41,25 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 
-let roles = [
-  { label: "User", value: "USER" },
-  { label: "Seller", value: "SELLER" },
-];
+// let roles = [
+//   { label: "User", value: "USER" },
+//   { label: "Seller", value: "SELLER" },
+// ];
 
 const onboardingSchema = z.object({
   name: z.string().min(2).max(64),
   last_name: z.string().min(2).max(64),
-  role: z
-    .string({
-      required_error: "Please select a role.",
-    })
-    .default("USER"),
+  // role: z
+  //   .string({
+  //     required_error: "Please select a role.",
+  //   })
+  //   .default("USER"),
 });
 
 export function OnboardingForm({ user }: { user: User }) {
-  if (user.role === "ADMIN") {
-    roles.push({ label: "Admin", value: "ADMIN" });
-  }
+  // if (user.role === "ADMIN") {
+  //   roles.push({ label: "Admin", value: "ADMIN" });
+  // }
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -70,13 +70,13 @@ export function OnboardingForm({ user }: { user: User }) {
     defaultValues: {
       name: "" + user.name,
       last_name: "" + user.last_name,
-      role: user.role,
+      // role: user.role,
     },
   });
 
   async function onSubmit(values: z.infer<typeof onboardingSchema>) {
     setLoading(true);
-    await completeOnboarding(values.name, values.last_name, values.role);
+    await completeOnboarding(values.name, values.last_name);
     toast({
       title: "Updated",
       description: "You have successfully changed your personal information",
