@@ -41,11 +41,11 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum Role {
-  ADMIN
-  USER
-  SELLER
-}
+// enum Role {
+//   ADMIN
+//   USER
+//   SELLER
+// }
 
 model User {
   id            String    @id @default(cuid()) @map("_id")
@@ -57,9 +57,10 @@ model User {
   onboarded     Boolean?  @default(false)
   phone_number  String?   @default("")
   image         String?   @default("")
-  role          Role      @default(USER)
+  // role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
+  likes         Like[]
 }
 
 model VerificationToken {
@@ -73,10 +74,20 @@ model VerificationToken {
 
 model Listing {
   id          String   @id @default(cuid()) @map("_id")
-  userId      String   // seller's userID
+  userId      String // seller's userID
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  title        String
+  title       String
   description String
   price       Float
+  likes       Like[]
+}
+
+model Like {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id])
 }
