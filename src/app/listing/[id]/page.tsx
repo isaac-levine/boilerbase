@@ -13,6 +13,9 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 interface Listing {
   id: string;
@@ -92,67 +95,74 @@ export default function Component() {
 
   return (
     <MaxWidthWrapper>
-      <div className="max-w-2xl mx-auto py-10">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-4xl font-bold mb-4">
-              {listing?.title}
-            </CardTitle>
-            <CardDescription className="text-lg font-semibold mb-4">
-              Price: ${listing?.price.toFixed(2)}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {listing?.imageUrl && (
-              <Image
-                src={listing.imageUrl}
-                alt={listing.title}
-                width={500}
-                height={300}
-                className="rounded mb-4"
-              />
-            )}
-            <p className="text-xl mb-4">{listing?.description}</p>
-            <p className="text-sm text-gray-600">
-              Created: <span>{format(listing?.createdAt || "", "PPP")}</span>
-            </p>
-            <p className="text-sm text-gray-600">
-              Last Updated:{" "}
-              <span>{format(listing?.updatedAt || "", "PPP")}</span>
-            </p>
-            <div className="mb-4 mt-4">
-              <h2 className="text-2xl font-semibold mb-2">Tags:</h2>
-              {listing?.tags.length || 0 > 0 ? (
-                <div className="flex flex-wrap">
-                  {listing?.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <p>No tags yet.</p>
+      <div className="py-10">
+        <Button variant="ghost">
+          <Link href="/discover">
+            <ArrowLeft size={30} />
+          </Link>
+        </Button>
+        <div className="max-w-2xl mx-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-4xl font-bold mb-4">
+                {listing?.title}
+              </CardTitle>
+              <CardDescription className="text-lg font-semibold mb-4">
+                Price: ${listing?.price.toFixed(2)}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {listing?.imageUrl && (
+                <Image
+                  src={listing.imageUrl}
+                  alt={listing.title}
+                  width={500}
+                  height={300}
+                  className="rounded mb-4"
+                />
               )}
-            </div>
-            <div className="mb-4">
-              <h2 className="text-2xl font-semibold mb-2">Reviews:</h2>
-              {listing?.reviews.length || 0 > 0 ? (
-                <ul className="list-disc pl-5">
-                  {listing?.reviews.map((review, index) => (
-                    <li key={index} className="mb-2">
-                      {review}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No reviews yet.</p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+              <p className="text-xl mb-4">{listing?.description}</p>
+              <p className="text-sm text-gray-600">
+                Created: <span>{format(listing?.createdAt || "", "PPP")}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Last Updated:{" "}
+                <span>{format(listing?.updatedAt || "", "PPP")}</span>
+              </p>
+              <div className="mb-4 mt-4">
+                <h2 className="text-2xl font-semibold mb-2">Tags:</h2>
+                {listing?.tags.length || 0 > 0 ? (
+                  <div className="flex flex-wrap">
+                    {listing?.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <p>No tags yet.</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-semibold mb-2">Reviews:</h2>
+                {listing?.reviews.length || 0 > 0 ? (
+                  <ul className="list-disc pl-5">
+                    {listing?.reviews.map((review, index) => (
+                      <li key={index} className="mb-2">
+                        {review}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No reviews yet.</p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </MaxWidthWrapper>
   );
