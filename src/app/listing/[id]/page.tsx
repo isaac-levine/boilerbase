@@ -13,12 +13,32 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import Image from "next/image";
-import { Calendar as CalendarIcon } from "lucide-react";
+
+interface Listing {
+  id: string;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  description: string;
+  price: number;
+  likes: Like[];
+  tags: string[];
+  reviews: string[];
+  imageUrl: string | null;
+}
+
+interface Like {
+  id: string;
+  createdAt: string;
+  userId: string;
+  listingId: string;
+}
 
 export default function Component() {
   const pathname = usePathname();
   const id = pathname.split("/").pop(); // Extract the listing ID from the URL
-  const [listing, setListing] = useState(null);
+  const [listing, setListing] = useState<Listing | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,7 +51,7 @@ export default function Component() {
         }
         const data = await response.json();
         setListing(data);
-      } catch (err) {
+      } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
@@ -76,14 +96,14 @@ export default function Component() {
         <Card>
           <CardHeader>
             <CardTitle className="text-4xl font-bold mb-4">
-              {listing.title}
+              {listing?.title}
             </CardTitle>
             <CardDescription className="text-lg font-semibold mb-4">
-              Price: ${listing.price.toFixed(2)}
+              Price: ${listing?.price.toFixed(2)}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {listing.imageUrl && (
+            {listing?.imageUrl && (
               <Image
                 src={listing.imageUrl}
                 alt={listing.title}
@@ -92,18 +112,19 @@ export default function Component() {
                 className="rounded mb-4"
               />
             )}
-            <p className="text-xl mb-4">{listing.description}</p>
+            <p className="text-xl mb-4">{listing?.description}</p>
             <p className="text-sm text-gray-600">
-              Created: <span>{format(listing.createdAt, "PPP")}</span>
+              Created: <span>{format(listing?.createdAt || "", "PPP")}</span>
             </p>
             <p className="text-sm text-gray-600">
-              Last Updated: <span>{format(listing.updatedAt, "PPP")}</span>
+              Last Updated:{" "}
+              <span>{format(listing?.updatedAt || "", "PPP")}</span>
             </p>
             <div className="mb-4 mt-4">
               <h2 className="text-2xl font-semibold mb-2">Tags:</h2>
-              {listing.tags.length > 0 ? (
+              {listing?.tags.length || 0 > 0 ? (
                 <div className="flex flex-wrap">
-                  {listing.tags.map((tag, index) => (
+                  {listing?.tags.map((tag, index) => (
                     <span
                       key={index}
                       className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
@@ -118,9 +139,9 @@ export default function Component() {
             </div>
             <div className="mb-4">
               <h2 className="text-2xl font-semibold mb-2">Reviews:</h2>
-              {listing.reviews.length > 0 ? (
+              {listing?.reviews.length || 0 > 0 ? (
                 <ul className="list-disc pl-5">
-                  {listing.reviews.map((review, index) => (
+                  {listing?.reviews.map((review, index) => (
                     <li key={index} className="mb-2">
                       {review}
                     </li>
