@@ -5,9 +5,16 @@ const prisma = new PrismaClient();
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { userId, title, description, price } = body;
+    const { userId, title, description, price, tags } = body;
 
-    if (!userId || !title || !description || typeof price !== "number") {
+    if (
+      !userId ||
+      !title ||
+      !description ||
+      typeof price !== "number" ||
+      !Array.isArray(tags) ||
+      tags.length === 0
+    ) {
       return new Response(JSON.stringify({ error: "Invalid input" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
@@ -20,6 +27,7 @@ export async function POST(request: Request) {
         title,
         description,
         price,
+        tags,
       },
     });
 

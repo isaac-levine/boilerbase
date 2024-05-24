@@ -17,7 +17,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
-interface Listing {
+export interface Listing {
   id: string;
   userId: string;
   createdAt: string;
@@ -31,7 +31,7 @@ interface Listing {
   imageUrl: string | null;
 }
 
-interface Like {
+export interface Like {
   id: string;
   createdAt: string;
   userId: string;

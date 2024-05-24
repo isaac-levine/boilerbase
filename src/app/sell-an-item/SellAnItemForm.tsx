@@ -3,6 +3,15 @@ import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { cn } from "@/lib/utils";
 
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -15,7 +24,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -27,6 +35,9 @@ const formSchema = z.object({
   price: z.number().min(0, {
     message: "Price must be a positive number.",
   }),
+  techStack: z.string().nonempty({
+    message: "Tech stack is required.",
+  }),
 });
 export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
   const session = useSession();
@@ -36,6 +47,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
       title: "",
       description: "",
       price: 0,
+      techStack: "",
     },
   });
 
@@ -47,6 +59,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
       title: values.title,
       description: values.description,
       price: values.price,
+      tags: [values.techStack],
     };
 
     try {
@@ -124,6 +137,35 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
               </FormControl>
               <FormDescription>
                 How much does your boilerplate cost in USD?
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="techStack"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tech Stack</FormLabel>
+              <FormControl>
+                <Select
+                  value={field.value}
+                  onValueChange={(value) => form.setValue("techStack", value)}
+                >
+                  <SelectTrigger>
+                    <span>{field.value || "Select a tech stack"}</span>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="React">React</SelectItem>
+                    <SelectItem value="Vue">Vue</SelectItem>
+                    <SelectItem value="Angular">Angular</SelectItem>
+                    <SelectItem value="Svelte">Svelte</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormDescription>
+                Choose the primary tech stack for your boilerplate.
               </FormDescription>
               <FormMessage />
             </FormItem>
