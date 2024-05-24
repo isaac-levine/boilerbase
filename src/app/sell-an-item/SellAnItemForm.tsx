@@ -12,8 +12,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { cn } from "@/lib/utils";
-
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
@@ -75,7 +73,10 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
         const data = await response.json();
         console.log("Listing created:", data);
         // Reset form fields or display a success message
-        alert("Listing created! Title: " + data.title);
+        form.reset();
+        alert(
+          "Thank you for submitting your listing information! Our team will review it and, if approved, it will be published soon."
+        );
       } else {
         const errorData = await response.json();
         console.error("Error creating listing:", errorData);
