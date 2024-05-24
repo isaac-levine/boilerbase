@@ -84,6 +84,7 @@ model Listing {
   tags        String[]
   reviews     String[]
   imageUrl    String?
+  approved    Boolean  @default(false)
 }
 
 model Like {

@@ -55,6 +55,9 @@ export async function GET(request: Request) {
     console.log("Getting listings with limit:", limit);
     const listings = await prisma.listing.findMany({
       take: limit,
+      where: {
+        approved: true,
+      },
     });
 
     return new Response(JSON.stringify(listings), {
