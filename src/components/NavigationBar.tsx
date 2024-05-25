@@ -65,6 +65,14 @@ export default function NavigationBar() {
             <SheetClose asChild>
               <Link
                 className="hover:underline hover:underline-offset-4"
+                href="/"
+              >
+                Home
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
                 href="/discover"
               >
                 Browse Boilerplates
