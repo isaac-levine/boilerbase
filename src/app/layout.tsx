@@ -57,7 +57,7 @@ export default async function RootLayout({
           >
             <main className="relative flex flex-col min-h-screen">
               <NextTopLoader
-                color="white"
+                color="#2563eb"
                 initialPosition={0.08}
                 crawlSpeed={200}
                 height={3}
@@ -65,7 +65,7 @@ export default async function RootLayout({
                 showSpinner={true}
                 easing="ease"
                 speed={200}
-                shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+                shadow="0 0 10px #2563eb,0 0 5px #2563eb"
                 template='<div class="bar" role="bar"><div class="peg"></div></div> '
                 zIndex={1600}
                 showAtBottom={false}
