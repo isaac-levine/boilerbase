@@ -18,7 +18,6 @@ const getListings = async (limit: number) => {
 };
 
 export default function Component() {
-
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -66,7 +65,7 @@ export default function Component() {
               <Link
                 href={`/listing/${listing.id}`}
                 key={listing.id}
-                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4"
+                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
               >
                 <div className="flex flex-col justify-between flex-grow p-4">
                   <h3 className="text-lg font-semibold mb-2">
