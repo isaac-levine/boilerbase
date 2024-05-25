@@ -4,7 +4,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 
 export const Footer = () => {
   return (
-    <footer className="bg-white flex-grow-0 border-t border-gray-200">
+    <footer className="bg-white/10 backdrop-blur-md flex-grow-0 border-t border-gray-200">
       <MaxWidthWrapper>
         <div className="container max-w-7xl flex justify-between gap-2 md:gap-6 flex-row items-start py-8">
           <div className="flex items-center justify-center m-auto ml-0 gap-2 ">

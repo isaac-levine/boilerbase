@@ -36,7 +36,7 @@ export default function NavigationBar() {
   // }
 
   return (
-    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white shadow dark:bg-gray-950">
+    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white/10 shadow dark:bg-gray-950 sticky inset-0 backdrop-blur-md">
       <Sheet>
         <SheetTrigger className="sm:hidden items-center gap-2 flex w-1/3 sm:w-auto p-4">
           {/* <Link className="flex items-center gap-2" href="/"> */}
@@ -45,7 +45,7 @@ export default function NavigationBar() {
           {/* </Link> */}
           <Menu size={16}></Menu>
         </SheetTrigger>
-        <SheetContent side={"left"} className="w-full">
+        <SheetContent side={"left"} className="w-full bg-white backdrop-blur-md border-none">
           <SheetHeader>
             <SheetTitle className="flex items-center justify-center">
               <Link className="flex items-center gap-2" href="/">
