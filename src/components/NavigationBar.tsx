@@ -7,6 +7,7 @@ import BoilerbaseIcon from "./BoilerbaseIcon";
 import { Button, buttonVariants } from "./ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -49,51 +50,50 @@ export default function NavigationBar() {
         <SheetContent side={"left"} className="w-full border-none">
           <SheetHeader>
             <SheetTitle className="flex items-center justify-center">
-              <Link className="flex items-center gap-2" href="/">
-                <BoilerbaseIcon />
-                <span className="font-semibold text-xl">Boilerbase</span>
-              </Link>
+              <SheetClose asChild>
+                <Link className="flex items-center gap-2" href="/">
+                  <BoilerbaseIcon />
+                  <span className="font-semibold text-xl">Boilerbase</span>
+                </Link>
+              </SheetClose>
             </SheetTitle>
-            {/* <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription> */}
-
-            {/* use the navRef */}
           </SheetHeader>
           <nav
             className="flex flex-col items-center gap-6 h-full justify-center text-lg font-semibold"
             ref={navRef}
           >
-            <Link
-              className="hover:underline hover:underline-offset-4"
-              href="/discover"
-            >
-              Browse Boilerplates
-            </Link>
-            {session?.data?.user && (
+            <SheetClose asChild>
               <Link
                 className="hover:underline hover:underline-offset-4"
-                href="/sell-an-item"
+                href="/"
               >
-                Sell a Boilerplate
+                Home
               </Link>
-            )}
+            </SheetClose>
+            <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/discover"
+              >
+                Browse Boilerplates
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              {session?.data?.user && (
+                <Link
+                  className="hover:underline hover:underline-offset-4"
+                  href="/sell-an-item"
+                >
+                  Sell a Boilerplate
+                </Link>
+              )}
+            </SheetClose>
 
-            {/* <Button
-              variant={"ghost"}
-              className="outline-none hover:bg-transparent focus:bg-none"
-              onClick={() => {
-                setDarkmode(!darkmode);
-                document.documentElement.classList.toggle("dark");
-              }}
-            >
-              {darkmode ? <Moon /> : <Sun />}
-            </Button> */}
             <DarkModeToggle></DarkModeToggle>
           </nav>
         </SheetContent>
       </Sheet>
+
       <Link
         className="flex items-center justify-center gap-2 w-1/3 sm:w-auto"
         href="/"
@@ -124,18 +124,7 @@ export default function NavigationBar() {
       </nav>
       {session.data?.user ? (
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
-          {/* <Button
-            variant={"ghost"}
-            className="outline-none hover:bg-transparent focus:bg-none hidden sm:block"
-            onClick={() => {
-              setDarkmode(!darkmode);
-              document.documentElement.classList.toggle("dark");
-            }}
-          >
-            {darkmode ? <Moon /> : <Sun />}
-          </Button> */}
           <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
-
           <Link
             href="/api/auth/signout"
             // onClick={() => signOut}
@@ -157,16 +146,6 @@ export default function NavigationBar() {
         </div>
       ) : (
         <div className="flex items-center justify-end gap-2  w-1/3 sm:w-auto">
-          {/* <Button
-            variant={"ghost"}
-            className="outline-none hover:bg-transparent focus:bg-none"
-            onClick={() => {
-              setDarkmode(!darkmode);
-              document.documentElement.classList.toggle("dark");
-            }}
-          >
-            {darkmode ? <Moon /> : <Sun />}
-          </Button> */}
           <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
 
           <Link
