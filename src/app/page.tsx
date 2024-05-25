@@ -34,7 +34,7 @@ export default function Home() {
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
             The most transparent source for web app{" "}
-            <span className="text-blue-600">boilerplates</span>.
+            <span className="text-primary">boilerplates</span>.
           </h1>
           <p className="hidden sm:block mt-6 text-lg max-w-prose text-muted-foreground">
             Whether it&apos;s an enterprise SaaS app, or a personal blog, we got
