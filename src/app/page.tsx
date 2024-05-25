@@ -137,7 +137,7 @@ export default function Home() {
         </MaxWidthWrapper>
       </section>
 
-      <section className="border-t">
+      <section className="border-t mb-16">
         <MaxWidthWrapper className="py-16">
           <div className="container space-y-12 px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
