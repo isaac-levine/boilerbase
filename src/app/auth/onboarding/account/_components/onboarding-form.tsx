@@ -87,7 +87,7 @@ export function OnboardingForm({ user }: { user: User }) {
   }
 
   return (
-    <div className="flex flex-col m-auto select-none ">
+    <div className="flex flex-col m-auto select-none text-foreground ">
       <div className="flex flex-col pb-8">
         <p className=" text-lg font-medium text-left">
           {"Tell us about yourself"}
@@ -121,7 +121,7 @@ export function OnboardingForm({ user }: { user: User }) {
               </FormItem>
             )}
           />
-          <Button className="w-full" type="submit" variant={"secondary"}>
+          <Button className="w-full bg-foreground text-background" type="submit" variant={"ghost"}>
             Continue
           </Button>
         </form>

@@ -32,7 +32,7 @@ export default function Home() {
     <>
       <MaxWidthWrapper>
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
             The most transparent source for web app{" "}
             <span className="text-blue-600">boilerplates</span>.
           </h1>
@@ -41,7 +41,7 @@ export default function Home() {
             you covered.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="/discover" className={buttonVariants()}>
+            <Link href="/discover" className={`${buttonVariants()} dark:text-foreground`}>
               Browse Trending
             </Link>
             <QualityPromise />
@@ -49,7 +49,7 @@ export default function Home() {
         </div>
       </MaxWidthWrapper>
 
-      <section className="border-t border-gray-200 bg-gray-50">
+      <section className="border-t border-foreground/10 bg-foreground/10">
         <MaxWidthWrapper className="py-20">
           <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
             {perks.map((perk) => (
@@ -64,7 +64,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
-                  <h3 className="text-base font-medium text-gray-900">
+                  <h3 className="text-base font-medium text-foreground">
                     {perk.name}
                   </h3>
                   <p className="mt-3 text-sm text-muted-foreground">

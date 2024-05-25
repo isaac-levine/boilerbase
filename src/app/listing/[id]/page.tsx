@@ -122,10 +122,10 @@ export default function Component() {
                 />
               )}
               <p className="text-xl mb-4">{listing?.description}</p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Created: <span>{format(listing?.createdAt || "", "PPP")}</span>
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Last Updated:{" "}
                 <span>{format(listing?.updatedAt || "", "PPP")}</span>
               </p>
@@ -136,7 +136,7 @@ export default function Component() {
                     {listing?.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                        className="bg-foreground/30 rounded-full px-3 py-1 text-sm font-semibold text-foreground mr-2 mb-2"
                       >
                         #{tag}
                       </span>

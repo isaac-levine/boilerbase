@@ -8,6 +8,7 @@ import FilterButton from "./FilterButton";
 import { PulseLoader } from "react-spinners";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listings?limit=${limit}`, {
@@ -18,6 +19,11 @@ const getListings = async (limit: number) => {
 };
 
 export default function Component() {
+  const params = useSearchParams();
+
+  console.log(params.getAll("tags"))
+
+
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +46,7 @@ export default function Component() {
     <MaxWidthWrapper>
       <div className="my-12">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-black sm:block hidden">
+          <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
             Discover the latest templates and boilerplates
           </h1>
           <div className="flex items-center space-x-4">

@@ -8,6 +8,7 @@ const BoilerbaseIcon = () => {
         alt="Boilerbase Icon"
         width={35}
         height={35}
+        className="dark:invert"
       />
     </div>
   );
