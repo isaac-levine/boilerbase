@@ -12,7 +12,7 @@ export default function Home() {
       {session?.data?.user ? (
         <div className="my-12">
           <div className="flex flex-col items-center justify-between mb-8">
-            <h1 className="text-2xl font-bold text-black sm:block hidden mb-12">
+            <h1 className="text-2xl font-bold text-foreground sm:block hidden mb-12">
               Add your product in just 30 seconds.
             </h1>
             <SellAnItemForm />
@@ -21,7 +21,7 @@ export default function Home() {
       ) : (
         <div className="my-12">
           <div className="flex flex-col items-center justify-between mb-8">
-            <h1 className="text-2xl font-bold text-black sm:block hidden mb-12">
+            <h1 className="text-2xl font-bold text-foreground sm:block hidden mb-12">
               Sorry, only registered users can add listings.
             </h1>
           </div>

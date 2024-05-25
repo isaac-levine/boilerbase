@@ -51,7 +51,7 @@ export default function SignIn() {
   }
   return (
     <div className="w-full lg:grid lg:min-h-[600px] h-screen select-none">
-      <div className="flex items-center justify-center py-12 bg-gradient-to-b from-slate-50 to-slate-300 h-full px-12">
+      <div className="flex items-center justify-center py-12 bg-gradient-to-b from-background to-foreground/20 h-full px-12">
         <div className="mx-auto grid w-[350px] gap-6 ">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
@@ -74,14 +74,15 @@ export default function SignIn() {
               </div>
               <Button
                 type="submit"
-                className="w-full bg-slate-50 shadow-sm text-slate-950"
+                variant={"outline"}
+                className="w-full dark:bg-foreground shadow-sm dark:text-background border-foreground/10"
               >
                 Login With Email
               </Button>
             </form>
             <Button
               variant="outline"
-              className="w-full bg-slate-50 shadow-sm"
+              className="w-full dark:bg-foreground shadow-sm dark:text-background gap-2 border-foreground/10"
               onClick={() => {
                 signIn("google", { callbackUrl: "/" });
               }}

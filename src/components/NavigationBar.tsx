@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { User } from "lucide-react";
+import { Eclipse, Moon, Sun, SunMoon, User } from "lucide-react";
 import * as React from "react";
 import BoilerbaseIcon from "./BoilerbaseIcon";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import {
   Sheet,
   SheetContent,
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu } from "lucide-react";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 interface NavItems {
   name: string;
@@ -36,7 +37,7 @@ export default function NavigationBar() {
   // }
 
   return (
-    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white shadow dark:bg-gray-950">
+    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-background dark:bg-foreground/5 shadow sticky inset-0 backdrop-blur-md border-b border-foreground/10">
       <Sheet>
         <SheetTrigger className="sm:hidden items-center gap-2 flex w-1/3 sm:w-auto p-4">
           {/* <Link className="flex items-center gap-2" href="/"> */}
@@ -45,7 +46,7 @@ export default function NavigationBar() {
           {/* </Link> */}
           <Menu size={16}></Menu>
         </SheetTrigger>
-        <SheetContent side={"left"} className="w-full">
+        <SheetContent side={"left"} className="w-full border-none">
           <SheetHeader>
             <SheetTitle className="flex items-center justify-center">
               <Link className="flex items-center gap-2" href="/">
@@ -78,6 +79,18 @@ export default function NavigationBar() {
                 Sell a Boilerplate
               </Link>
             )}
+
+            {/* <Button
+              variant={"ghost"}
+              className="outline-none hover:bg-transparent focus:bg-none"
+              onClick={() => {
+                setDarkmode(!darkmode);
+                document.documentElement.classList.toggle("dark");
+              }}
+            >
+              {darkmode ? <Moon /> : <Sun />}
+            </Button> */}
+            <DarkModeToggle></DarkModeToggle>
           </nav>
         </SheetContent>
       </Sheet>
@@ -111,12 +124,24 @@ export default function NavigationBar() {
       </nav>
       {session.data?.user ? (
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
+          {/* <Button
+            variant={"ghost"}
+            className="outline-none hover:bg-transparent focus:bg-none hidden sm:block"
+            onClick={() => {
+              setDarkmode(!darkmode);
+              document.documentElement.classList.toggle("dark");
+            }}
+          >
+            {darkmode ? <Moon /> : <Sun />}
+          </Button> */}
+          <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
+
           <Link
             href="/api/auth/signout"
             // onClick={() => signOut}
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px]`}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
           >
             <span className="hidden sm:block">Sign out</span>
             <LogOut className="block sm:hidden" size={16}></LogOut>
@@ -125,18 +150,30 @@ export default function NavigationBar() {
             href="/settings"
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px]`}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
           >
             <User size={20} />
           </Link>
         </div>
       ) : (
         <div className="flex items-center justify-end gap-2  w-1/3 sm:w-auto">
+          {/* <Button
+            variant={"ghost"}
+            className="outline-none hover:bg-transparent focus:bg-none"
+            onClick={() => {
+              setDarkmode(!darkmode);
+              document.documentElement.classList.toggle("dark");
+            }}
+          >
+            {darkmode ? <Moon /> : <Sun />}
+          </Button> */}
+          <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
+
           <Link
             href="/api/auth/signin"
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px]`}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
           >
             <span className="hidden sm:block">Sign In</span>
             <LogIn className="block sm:hidden" size={16}></LogIn>

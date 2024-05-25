@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Input } from "@/components/ui/input";
 import "./styles.css";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ const getListings = async (limit: number) => {
 };
 
 export default function Component() {
+
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +41,7 @@ export default function Component() {
     <MaxWidthWrapper>
       <div className="my-12">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-black sm:block hidden">
+          <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
             Discover the latest templates and boilerplates
           </h1>
           <div className="flex items-center space-x-4">

@@ -95,19 +95,19 @@ export default function Component() {
 
   return (
     <MaxWidthWrapper>
-      <div className="py-10">
-        <Button variant="ghost">
+      <div className="py-4 sm:py-10">
+        {/* <Button variant="ghost">
           <Link href="/discover">
             <ArrowLeft size={30} />
           </Link>
-        </Button>
-        <div className="max-w-2xl mx-auto">
+        </Button> */}
+        <div className="max-w-2xl mx-auto shadow-md">
           <Card>
             <CardHeader>
-              <CardTitle className="text-4xl font-bold mb-4">
+              <CardTitle className="text-2xl sm:text-4xl font-bold mb-4">
                 {listing?.title}
               </CardTitle>
-              <CardDescription className="text-lg font-semibold mb-4">
+              <CardDescription className="text-md sm:text-lg font-semibold mb-4">
                 Price: ${listing?.price.toFixed(2)}
               </CardDescription>
             </CardHeader>
@@ -121,11 +121,11 @@ export default function Component() {
                   className="rounded mb-4"
                 />
               )}
-              <p className="text-xl mb-4">{listing?.description}</p>
-              <p className="text-sm text-gray-600">
+              <p className="text-md sm:text-xl mb-4">{listing?.description}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Created: <span>{format(listing?.createdAt || "", "PPP")}</span>
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Last Updated:{" "}
                 <span>{format(listing?.updatedAt || "", "PPP")}</span>
               </p>
@@ -136,7 +136,7 @@ export default function Component() {
                     {listing?.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                        className="border-foreground/20 border-[1px] dark:bg-foreground/30 rounded-full px-3 py-1 text-sm font-semibold text-foreground mr-2 mb-2"
                       >
                         #{tag}
                       </span>
