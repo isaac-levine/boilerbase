@@ -3,9 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [darkmode, setDarkmode] = useState(
-    localStorage.getItem("darkmode") === "false" ? false : true
-  );
+  const [darkmode, setDarkmode] = useState(false);
 
   useEffect(() => {
     const savedDarkmode = localStorage.getItem("darkmode");
@@ -24,5 +22,5 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, [darkmode]);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 }

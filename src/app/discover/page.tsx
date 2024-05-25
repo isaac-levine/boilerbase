@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Input } from "@/components/ui/input";
 import "./styles.css";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,6 @@ import FilterButton from "./FilterButton";
 import { PulseLoader } from "react-spinners";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listings?limit=${limit}`, {
@@ -19,10 +18,6 @@ const getListings = async (limit: number) => {
 };
 
 export default function Component() {
-  const params = useSearchParams();
-
-  console.log(params.getAll("tags"))
-
 
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
