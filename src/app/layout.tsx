@@ -41,14 +41,19 @@ export default async function RootLayout({
   // const session = await getServerSession(authOptions)
   // console.log(session)
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
-      <ThemeProvider>
-        <AuthProvider>
-          <body
-            className={cn(
-              "relative h-full font-sans antialiased",
-              inter.className
-            )}
+    <html lang="en" suppressHydrationWarning>
+      <AuthProvider>
+        <body
+          className={cn(
+            "relative h-full font-sans antialiased",
+            inter.className
+          )}
+        >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
           >
             <main className="relative flex flex-col min-h-screen">
               <NextTopLoader
@@ -70,9 +75,9 @@ export default async function RootLayout({
               <Footer />
             </main>
             <Toaster />
-          </body>
-        </AuthProvider>
-      </ThemeProvider>
+          </ThemeProvider>
+        </body>
+      </AuthProvider>
     </html>
   );
 }

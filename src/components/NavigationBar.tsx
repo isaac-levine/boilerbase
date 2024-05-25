@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu } from "lucide-react";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 interface NavItems {
   name: string;
@@ -23,25 +24,6 @@ interface NavItems {
 }
 
 export default function NavigationBar() {
-  const [darkmode, setDarkmode] = React.useState(false);
-
-  React.useEffect(() => {
-    const savedDarkmode = localStorage.getItem("darkmode");
-    if (savedDarkmode) {
-      setDarkmode(savedDarkmode === "true");
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  React.useEffect(() => {
-    localStorage.setItem("darkmode", darkmode ? "true" : "false");
-    if (darkmode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkmode]);
-
   const navRef = React.useRef(null);
   const session = useSession();
   // console.log("role:" + session.data?.user.role);
@@ -98,7 +80,7 @@ export default function NavigationBar() {
               </Link>
             )}
 
-            <Button
+            {/* <Button
               variant={"ghost"}
               className="outline-none hover:bg-transparent focus:bg-none"
               onClick={() => {
@@ -107,7 +89,8 @@ export default function NavigationBar() {
               }}
             >
               {darkmode ? <Moon /> : <Sun />}
-            </Button>
+            </Button> */}
+            <DarkModeToggle></DarkModeToggle>
           </nav>
         </SheetContent>
       </Sheet>
@@ -141,7 +124,7 @@ export default function NavigationBar() {
       </nav>
       {session.data?.user ? (
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
-          <Button
+          {/* <Button
             variant={"ghost"}
             className="outline-none hover:bg-transparent focus:bg-none hidden sm:block"
             onClick={() => {
@@ -150,7 +133,9 @@ export default function NavigationBar() {
             }}
           >
             {darkmode ? <Moon /> : <Sun />}
-          </Button>
+          </Button> */}
+          <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
+
           <Link
             href="/api/auth/signout"
             // onClick={() => signOut}
@@ -172,7 +157,7 @@ export default function NavigationBar() {
         </div>
       ) : (
         <div className="flex items-center justify-end gap-2  w-1/3 sm:w-auto">
-          <Button
+          {/* <Button
             variant={"ghost"}
             className="outline-none hover:bg-transparent focus:bg-none"
             onClick={() => {
@@ -181,7 +166,8 @@ export default function NavigationBar() {
             }}
           >
             {darkmode ? <Moon /> : <Sun />}
-          </Button>
+          </Button> */}
+          <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
 
           <Link
             href="/api/auth/signin"
