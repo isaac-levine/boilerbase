@@ -23,9 +23,7 @@ interface NavItems {
 }
 
 export default function NavigationBar() {
-  const [darkmode, setDarkmode] = React.useState(
-    false
-  );
+  const [darkmode, setDarkmode] = React.useState(false);
 
   React.useEffect(() => {
     const savedDarkmode = localStorage.getItem("darkmode");
@@ -99,6 +97,17 @@ export default function NavigationBar() {
                 Sell a Boilerplate
               </Link>
             )}
+
+            <Button
+              variant={"ghost"}
+              className="outline-none hover:bg-transparent focus:bg-none"
+              onClick={() => {
+                setDarkmode(!darkmode);
+                document.documentElement.classList.toggle("dark");
+              }}
+            >
+              {darkmode ? <Moon /> : <Sun />}
+            </Button>
           </nav>
         </SheetContent>
       </Sheet>
@@ -134,7 +143,7 @@ export default function NavigationBar() {
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
           <Button
             variant={"ghost"}
-            className="outline-none hover:bg-transparent focus:bg-none"
+            className="outline-none hover:bg-transparent focus:bg-none hidden sm:block"
             onClick={() => {
               setDarkmode(!darkmode);
               document.documentElement.classList.toggle("dark");
