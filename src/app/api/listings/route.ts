@@ -60,6 +60,9 @@ export async function GET(request: Request) {
       where: {
         approved: true,
       },
+      include: {
+        likes: true,
+      },
     });
 
     return new Response(JSON.stringify(listings), {
