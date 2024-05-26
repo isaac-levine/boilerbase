@@ -48,7 +48,7 @@ export default function Component() {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const response = await fetch(`/api/listing/${id}`);
+        const response = await fetch(`/api/listings/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch listing data");
         }

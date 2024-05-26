@@ -1,5 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+// app/listings/route.ts
+
+import { prisma } from "@/lib/prisma"; // Adjust the import path as needed
+import { Like, Review } from "@prisma/client";
 
 // Add a new listing
 export async function POST(request: Request) {
@@ -46,7 +48,7 @@ export async function POST(request: Request) {
   }
 }
 
-// Get limit number of listings
+// Get a limited number of listings
 export async function GET(request: Request) {
   try {
     const limit = parseInt(

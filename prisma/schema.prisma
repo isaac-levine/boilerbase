@@ -61,6 +61,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   likes         Like[]
+  Review        Review[]
 }
 
 model VerificationToken {
@@ -82,7 +83,7 @@ model Listing {
   price       Float
   likes       Like[]
   tags        String[]
-  reviews     String[]
+  reviews     Review[]
   imageUrl    String?
   approved    Boolean  @default(false)
 }
@@ -90,6 +91,16 @@ model Listing {
 model Like {
   id        String   @id @default(cuid()) @map("_id")
   createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id])
+}
+
+model Review {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  content   String
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   listingId String
