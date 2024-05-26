@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, FormEventHandler } from "react";
 import { Input } from "@/components/ui/input";
 import "./styles.css";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,28 @@ const getListings = async (limit: number) => {
 export default function Component() {
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
+
+  const handleSearch = async (event: any) => {
+    event.preventDefault();
+    setLoading(true);
+    // if (query.trim() === "") return;
+
+    try {
+      const response = await fetch(
+        `/api/listings/search?q=${encodeURIComponent(query)}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setListings(data);
+      } else {
+        console.error("Search request failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -46,11 +68,14 @@ export default function Component() {
           <div className="flex items-center space-x-4">
             <div className="relative w-full max-w-md">
               <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
-              <Input
-                className="pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="Search boilerplates..."
-                type="text"
-              />
+              <form onSubmit={handleSearch}>
+                <Input
+                  className="pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Search boilerplates..."
+                  onChange={(e) => setQuery(e.target.value)}
+                  type="text"
+                />
+              </form>
             </div>
             <FilterButton />
           </div>

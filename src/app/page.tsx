@@ -5,14 +5,8 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
 import { QualityPromise } from "@/components/home/QualityPromise";
-import {
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  Card,
-} from "@/components/ui/card";
+import { PulseLoader } from "react-spinners";
+
 import { Input } from "@/components/ui/input";
 import { StarIcon } from "lucide-react";
 
@@ -27,6 +21,26 @@ const getListings = async (limit: number) => {
 export default function Home() {
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
+
+  const handleSearch = async (event: any) => {
+    event.preventDefault();
+    // if (query.trim() === "") return;
+
+    try {
+      const response = await fetch(
+        `/api/listings/search?q=${encodeURIComponent(query)}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setListings(data);
+      } else {
+        console.error("Search request failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -152,44 +166,55 @@ export default function Home() {
                 </p> */}
               </div>
             </div>
-            <div className="mx-auto flex w-full max-w-md items-center justify-center space-x-2">
+            <form
+              onSubmit={handleSearch}
+              className="mx-auto flex w-full max-w-md items-center justify-center space-x-2"
+            >
               <Input
-                className="flex-1"
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                }}
                 placeholder="Search boilerplates..."
                 type="search"
               />
-              <Button>Search</Button>
-            </div>
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {listings.map((listing) => (
-                <Link
-                  href={`/listings/${listing.id}`}
-                  key={listing.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
-                >
-                  <div className="flex flex-col justify-between flex-grow p-4">
-                    <h3 className="text-lg font-semibold mb-2">
-                      {listing.title}
-                    </h3>
-                    <p className="text-gray-500 dark:text-gray-400 mb-4">
-                      {listing.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-primary font-semibold">
-                        ${listing.price}
-                      </span>
-                      {/* <Button
+              <Button type="submit">Search</Button>
+            </form>
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <PulseLoader loading={loading} size={10} color="#2563EB" />
+              </div>
+            ) : (
+              <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {listings.map((listing) => (
+                  <Link
+                    href={`/listings/${listing.id}`}
+                    key={listing.id}
+                    className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
+                  >
+                    <div className="flex flex-col justify-between flex-grow p-4">
+                      <h3 className="text-lg font-semibold mb-2">
+                        {listing.title}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400 mb-4">
+                        {listing.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-primary font-semibold">
+                          ${listing.price}
+                        </span>
+                        {/* <Button
                       className="ransition-transform transform hover:scale-105 cursor-pointer"
                       size="sm"
                     >
                       Buy Now
                     </Button> */}
-                      {/* HEART ICON SHOULD GO HERE */}
+                        {/* HEART ICON SHOULD GO HERE */}
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </MaxWidthWrapper>
       </section>
