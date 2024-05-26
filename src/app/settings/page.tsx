@@ -40,7 +40,7 @@ export default function Component() {
     // );
 
     const update = await fetch("/api/users", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -74,13 +74,13 @@ export default function Component() {
   };
 
   return (
-    <MaxWidthWrapper >
+    <MaxWidthWrapper>
       <div className="mx-auto max-w-[600px] space-y-6 py-10 container">
         <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold">Account Settings</h1>
-          <p className="text-gray-500 dark:text-gray-400">
+          <h1 className="text-3xl font-bold">Mange Your Account Settings</h1>
+          {/* <p className="text-gray-500 dark:text-gray-400">
             Manage your account details.
-          </p>
+          </p> */}
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
