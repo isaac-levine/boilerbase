@@ -4,46 +4,92 @@ import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
+// Add new user
 export async function POST(req: any) {
-const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-if (!session) {
+  if (!session) {
     return NextResponse.json({
-    message: "Unauthorized",
-    success: false,
+      message: "Unauthorized",
+      success: false,
     });
-}
+  }
 
-const { email, firstName, lastName } = await req.json();
-const name = firstName;
-const last_name = lastName;
+  const { email, firstName, lastName } = await req.json();
+  const name = firstName;
+  const last_name = lastName;
 
-console.log("Updating user settings:", {
+  console.log("Updating user settings:", {
     email,
     firstName,
     lastName,
-});
+  });
 
-const result = await prisma.user.update({
+  const result = await prisma.user.update({
     where: {
-    id: session.user.id,
+      id: session.user.id,
     },
     data: {
-    email,
-    name,
-    last_name,
+      email,
+      name,
+      last_name,
     },
-});
+  });
 
-if (result) {
+  if (result) {
     return NextResponse.json({
-    message: "Success",
-    success: true,
+      message: "Success",
+      success: true,
     });
-}
+  }
 
-return NextResponse.json({
+  return NextResponse.json({
     message: "Failed to update user settings",
     success: false,
-});
+  });
+}
+
+// Update user settings
+export async function PUT(req: any) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return NextResponse.json({
+      message: "Unauthorized",
+      success: false,
+    });
+  }
+
+  const { email, firstName, lastName } = await req.json();
+  const name = firstName;
+  const last_name = lastName;
+
+  console.log("Updating user settings:", {
+    email,
+    firstName,
+    lastName,
+  });
+
+  const result = await prisma.user.update({
+    where: {
+      id: session.user.id,
+    },
+    data: {
+      email,
+      name,
+      last_name,
+    },
+  });
+
+  if (result) {
+    return NextResponse.json({
+      message: "Success",
+      success: true,
+    });
+  }
+
+  return NextResponse.json({
+    message: "Failed to update user settings",
+    success: false,
+  });
 }
