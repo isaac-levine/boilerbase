@@ -40,12 +40,12 @@ export default function NavigationBar() {
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-background dark:bg-foreground/5 shadow sticky inset-0 backdrop-blur-md border-b border-foreground/10">
       <Sheet>
-        <SheetTrigger className="sm:hidden items-center gap-2 flex w-1/3 sm:w-auto p-4">
+        <SheetTrigger className="sm:hidden items-start justify-start w-1/3">
           {/* <Link className="flex items-center gap-2" href="/"> */}
           {/* <BoilerbaseIcon /> */}
           {/* <span className="font-semibold text-xl">Boilerbase</span> */}
           {/* </Link> */}
-          <Menu size={16}></Menu>
+          <Menu size={34}></Menu>
         </SheetTrigger>
         <SheetContent side={"left"} className="w-full border-none">
           <SheetHeader>
