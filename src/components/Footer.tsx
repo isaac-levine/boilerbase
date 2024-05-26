@@ -21,13 +21,13 @@ export const Footer = () => {
             <Link href="/" passHref>
               <span className="hover:underline cursor-pointer">Home</span>
             </Link>
-            <Link href="#" passHref>
+            <Link href="/about" passHref>
               <span className="hover:underline cursor-pointer">About</span>
             </Link>
-            <Link href="#" passHref>
+            <Link href="/about/contact" passHref>
               <span className="hover:underline cursor-pointer">Contact</span>
             </Link>
-            <Link href="#" passHref>
+            <Link href="/about/privacy" passHref>
               <span className="hover:underline cursor-pointer flex flex-row gap-1">
                 Privacy Policy
               </span>
