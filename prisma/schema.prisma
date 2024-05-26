@@ -86,6 +86,7 @@ model Listing {
   reviews     Review[]
   imageUrl    String?
   approved    Boolean  @default(false)
+  previewLink String?
 }
 
 model Like {
