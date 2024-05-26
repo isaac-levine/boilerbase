@@ -36,8 +36,9 @@ const formSchema = z.object({
   techStack: z.string().nonempty({
     message: "Tech stack is required.",
   }),
+  previewLink: z.string().url().optional(),
 });
-export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
+export default function SellAnItemForm() {
   const session = useSession();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,6 +47,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
       description: "",
       price: 0,
       techStack: "",
+      previewLink: "",
     },
   });
 
@@ -58,6 +60,7 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
       description: values.description,
       price: values.price,
       tags: [values.techStack],
+      previewLink: values.previewLink,
     };
 
     try {
@@ -168,6 +171,21 @@ export default function SellAnItemForm({ dark = true }: { dark?: boolean }) {
               <FormDescription>
                 Choose the primary tech stack for your boilerplate.
               </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="previewLink"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Preview Link <span className="font-extralight">(Optional)</span>
+              </FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
