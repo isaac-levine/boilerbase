@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { toast } from "@/components/ui/use-toast";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
@@ -77,9 +77,11 @@ export default function SellAnItemForm() {
         console.log("Listing created:", data);
         // Reset form fields or display a success message
         form.reset();
-        alert(
-          "Thank you for submitting your listing information! Our team will review it and, if approved, it will be published soon."
-        );
+        toast({
+          title: "Thank you!",
+          description:
+            "We will review your listing and publish it within the next few days.",
+        });
       } else {
         const errorData = await response.json();
         console.error("Error creating listing:", errorData);
