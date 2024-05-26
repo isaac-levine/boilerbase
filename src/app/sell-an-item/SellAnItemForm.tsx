@@ -36,7 +36,6 @@ const formSchema = z.object({
   techStack: z.string().nonempty({
     message: "Tech stack is required.",
   }),
-  previewLink: z.string().url().optional(),
 });
 export default function SellAnItemForm() {
   const session = useSession();
