@@ -55,7 +55,7 @@ export default function Component() {
 
     if (result.success) {
       toast({
-        title: "Successfully updated your account",
+        title: "All Set!",
         description: "Your account details have been updated successfully",
       });
     } else {
