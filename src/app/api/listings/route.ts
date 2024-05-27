@@ -48,14 +48,16 @@ export async function POST(request: Request) {
   }
 }
 
-// Get a limited number of listings
+// Get a limited number of listings, optionally filtered by tag
 export async function GET(request: Request) {
   try {
-    const limit = parseInt(
-      new URL(request.url).searchParams.get("limit") || "10"
-    );
-    console.log("Getting listings with limit:", limit);
-    const listings = await prisma.listing.findMany({
+    const url = new URL(request.url);
+    const limit = parseInt(url.searchParams.get("limit") || "10");
+    const tag = url.searchParams.get("tag") || "";
+
+    console.log("Getting listings with limit:", limit, "and tag:", tag);
+
+    const query: any = {
       take: limit,
       where: {
         approved: true,
@@ -63,11 +65,21 @@ export async function GET(request: Request) {
       include: {
         likes: true,
       },
-    });
+    };
+
+    if (tag) {
+      query.where.tags = {
+        has: tag,
+      };
+    }
+
+    const listings = await prisma.listing.findMany(query);
 
     return new Response(JSON.stringify(listings), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   } catch (error) {
     console.error("Error getting listings:", error);
