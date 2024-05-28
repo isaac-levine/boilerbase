@@ -51,6 +51,8 @@ export default function SignIn() {
   }
   return (
     <div className="w-full lg:grid lg:min-h-[600px] h-screen select-none">
+      <title>Sign In | BoilerBase</title>
+
       <div className="flex items-center justify-center py-12 bg-gradient-to-b from-background to-foreground/20 h-full px-12">
         <div className="mx-auto grid w-[350px] gap-6 ">
           <div className="grid gap-2 text-center">

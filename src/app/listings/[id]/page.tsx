@@ -93,8 +93,11 @@ export default function Component() {
     );
   }
 
+
+
   return (
     <MaxWidthWrapper>
+      <title>{`${listing?.title} | BoilerBase`}</title>
       <div className="py-4 sm:py-10">
         {/* <Button variant="ghost">
           <Link href="/discover">
