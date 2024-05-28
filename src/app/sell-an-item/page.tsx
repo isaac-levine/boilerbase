@@ -9,6 +9,8 @@ export default function Home() {
 
   return (
     <MaxWidthWrapper>
+      <title>Sell An item | BoilerBase</title>
+
       {session?.data?.user ? (
         <div className="my-12">
           <div className="flex flex-col items-center justify-between mb-8">

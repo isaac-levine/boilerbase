@@ -73,7 +73,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link
               href="/discover"
-              className={`${buttonVariants()} dark:text-foreground`}
+              className={`${buttonVariants()}`}
             >
               Browse Trending
             </Link>

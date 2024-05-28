@@ -75,6 +75,8 @@ export default function Component() {
 
   return (
     <MaxWidthWrapper>
+      <title>Settings | BoilerBase</title>
+
       <div className="mx-auto max-w-[600px] space-y-6 py-10 container">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Mange Your Account Settings</h1>
