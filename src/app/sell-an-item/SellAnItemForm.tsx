@@ -186,6 +186,9 @@ export default function SellAnItemForm() {
               <FormControl>
                 <Input {...field} />
               </FormControl>
+              <FormDescription>
+                Please include https:// or http:// in the URL.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
