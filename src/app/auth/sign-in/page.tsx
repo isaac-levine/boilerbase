@@ -70,7 +70,7 @@ export default function SignIn() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="m@example.com"
+                  placeholder="joe@boilerbase.com"
                   required
                 />
               </div>
