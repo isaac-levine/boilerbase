@@ -79,14 +79,12 @@ export default function NavigationBar() {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              {session?.data?.user && (
-                <Link
-                  className="hover:underline hover:underline-offset-4"
-                  href="/sell-an-item"
-                >
-                  Sell a Boilerplate
-                </Link>
-              )}
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/sell-an-item"
+              >
+                Sell a Boilerplate
+              </Link>
             </SheetClose>
 
             <DarkModeToggle></DarkModeToggle>
@@ -113,14 +111,12 @@ export default function NavigationBar() {
         >
           Browse Boilerplates
         </Link>
-        {session?.data?.user && (
-          <Link
-            className="hover:underline hover:underline-offset-4"
-            href="/sell-an-item"
-          >
-            Sell a Boilerplate
-          </Link>
-        )}
+        <Link
+          className="hover:underline hover:underline-offset-4"
+          href="/sell-an-item"
+        >
+          Sell a Boilerplate
+        </Link>
       </nav>
       {session.data?.user ? (
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
