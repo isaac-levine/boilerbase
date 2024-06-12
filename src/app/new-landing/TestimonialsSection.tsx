@@ -39,9 +39,9 @@ const TestimonialsSection = () => {
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400">
-                "Boilerbase has been a game-changer for my team. The\n pre-built
-                boilerplate code has helped us launch our app\n much faster than
-                we could have on our own."
+                &quot;Boilerbase has been a game-changer for my team. The\n
+                pre-built boilerplate code has helped us launch our app\n much
+                faster than we could have on our own.&quot;
               </p>
             </div>
             <div className="grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
@@ -63,9 +63,9 @@ const TestimonialsSection = () => {
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400">
-                "Boilerbase has saved us countless hours of setup and\n
+                &quot;Boilerbase has saved us countless hours of setup and\n
                 configuration. The customizable templates have allowed us\n to
-                quickly build and deploy our app."
+                quickly build and deploy our app.&quot;
               </p>
             </div>
           </div>
