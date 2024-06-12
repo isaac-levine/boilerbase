@@ -121,9 +121,7 @@ export function OnboardingForm({ user }: { user: User }) {
               </FormItem>
             )}
           />
-          <Button className="w-full bg-foreground text-background" type="submit" variant={"ghost"}>
-            Continue
-          </Button>
+          <Button>Continue</Button>
         </form>
       </Form>
     </div>
