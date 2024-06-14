@@ -38,11 +38,11 @@ const plans = [
     description: "Tailored for large teams and complex projects.",
     features: [
       { text: "6 personalized app boilerplates", offered: true },
-      { text: "Community support", offered: true },
-      { text: "Basic customization", offered: true },
+      { text: "Exclusive founder community", offered: true },
+      { text: "Logo design for your company", offered: true },
       { text: "24/7 support", offered: true },
       { text: "SaaS growth course", offered: true },
-      // { text: "Regular lessons and live calls", offered: true },
+      // { text: "Regular lessons and live calls", offered: false },
     ],
   },
 ];
