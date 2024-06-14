@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { features } from "process";
+import { Check, X } from "lucide-react";
 
 const plans = [
   {
@@ -7,9 +9,9 @@ const plans = [
     pricePeriod: "/month",
     description: "Perfect for individual developers or small teams.",
     features: [
-      "5 boilerplate templates",
-      "Community support",
-      "Basic customization",
+      { text: "5 boilerplate templates", offered: true },
+      { text: "Community support", offered: true },
+      { text: "Basic customization", offered: false },
     ],
   },
   {
@@ -18,9 +20,9 @@ const plans = [
     pricePeriod: "/month",
     description: "Ideal for growing teams and small businesses.",
     features: [
-      "15 boilerplate templates",
-      "Priority support",
-      "Advanced customization",
+      { text: "5 boilerplate templates", offered: true },
+      { text: "Community support", offered: true },
+      { text: "Basic customization", offered: true },
     ],
   },
   {
@@ -28,16 +30,17 @@ const plans = [
     price: "$99",
     pricePeriod: "/month",
     description: "Tailored for large teams and complex projects.",
-    features: ["Unlimited boilerplate templates", "Dedicated support"],
+    features: [
+      { text: "5 boilerplate templates", offered: true },
+      { text: "Community support", offered: true },
+      { text: "Basic customization", offered: true },
+    ],
   },
 ];
 
 const PricingSection = () => {
   return (
-    <section
-      id="pricing"
-      className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-    >
+    <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
@@ -52,12 +55,12 @@ const PricingSection = () => {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+        <div className="mx-auto grid max-w-5xl items-center gap-6 py-8 lg:grid-cols-3 lg:gap-12">
           {plans.map((plan) => (
             <div
               key={plan.title}
               className={`grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950 ${
-                plan.title === "Founder" ? "scale-110" : ""
+                plan.title === "Founder" ? "" : ""
               } mx-12 my-2 lg:mx-0`}
             >
               <div className="space-y-2">
@@ -74,9 +77,13 @@ const PricingSection = () => {
               </div>
               <ul className="space-y-2 text-gray-500 dark:text-gray-400">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center">
-                    <CheckIcon className="mr-2 h-4 w-4 text-green-500" />
-                    {feature}
+                  <li key={feature.text} className="flex items-center">
+                    {feature.offered ? (
+                      <Check className="mr-2 h-4 w-4 text-green-500" />
+                    ) : (
+                      <X className="mr-2 h-4 w-4 text-gray-300" />
+                    )}
+                    {feature.text}
                   </li>
                 ))}
               </ul>
@@ -90,50 +97,3 @@ const PricingSection = () => {
 };
 
 export default PricingSection;
-
-function CheckIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  );
-}
-
-function HeaterIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M11 8c2-3-2-3 0-6" />
-      <path d="M15.5 8c2-3-2-3 0-6" />
-      <path d="M6 10h.01" />
-      <path d="M6 14h.01" />
-      <path d="M10 16v-4" />
-      <path d="M14 16v-4" />
-      <path d="M18 16v-4" />
-      <path d="M20 6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3" />
-      <path d="M5 20v2" />
-      <path d="M19 20v2" />
-    </svg>
-  );
-}

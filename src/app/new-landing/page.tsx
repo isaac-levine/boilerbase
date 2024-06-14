@@ -5,20 +5,20 @@ import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import TestimonialsSection from "./TestimonialsSection";
 import PricingSection from "./PricingSection";
+import CompaniesSection from "./CompaniesSection";
+import TechStackSection from "./TechStackSection";
+import FrequentlyAskedQuestionsSection from "./FrequentlyAskedQuestionsSection";
 
 export default function Component() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <main className="flex-1">
-        <HeroSection
-          title="Boilerplate code for your next app"
-          description="Boilerbase provides pre-built boilerplate code to help you kickstart your app development. Save time and focus on building your product."
-          cta="Get Boilerplate"
-          imgSrc="/placeholder.svg"
-          imgAlt="Hero"
-        />
+        <HeroSection />
+        {/* <CompaniesSection /> */}
+        <TechStackSection />
         <FeaturesSection />
         <TestimonialsSection />
+        <FrequentlyAskedQuestionsSection />
         <PricingSection />
       </main>
     </div>
