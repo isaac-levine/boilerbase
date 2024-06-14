@@ -10,7 +10,7 @@ export const Footer = () => {
           <div className="flex items-center justify-center m-auto ml-0 gap-2 ">
             <Link href="#" passHref>
               <div className="flex items-center gap-2 cursor-pointer">
-                <BoilerbaseIcon />
+                <BoilerbaseIcon size={35} />
                 <span className="text-lg font-semibold hidden sm:block">
                   Boilerbase
                 </span>

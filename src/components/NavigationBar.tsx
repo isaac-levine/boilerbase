@@ -52,7 +52,7 @@ export default function NavigationBar() {
             <SheetTitle className="flex items-center justify-center">
               <SheetClose asChild>
                 <Link className="flex items-center gap-2" href="/">
-                  <BoilerbaseIcon />
+                  <BoilerbaseIcon size={35} />
                   <span className="font-semibold text-xl">Boilerbase</span>
                 </Link>
               </SheetClose>
@@ -96,7 +96,7 @@ export default function NavigationBar() {
         className="flex items-center justify-center gap-2 w-1/3 sm:w-auto"
         href="/"
       >
-        <BoilerbaseIcon />
+        <BoilerbaseIcon size={35} />
         <span className="sm:block font-semibold text-xl hidden">
           Boilerbase
         </span>
