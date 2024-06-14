@@ -8,6 +8,7 @@ import PricingSection from "./PricingSection";
 import CompaniesSection from "./CompaniesSection";
 import TechStackSection from "./TechStackSection";
 import FrequentlyAskedQuestionsSection from "./FrequentlyAskedQuestionsSection";
+import MoreThanJustABoilerplateSection from "./MoreThanJustABoilerplateSection";
 
 export default function Component() {
   return (
@@ -16,6 +17,7 @@ export default function Component() {
         <HeroSection />
         {/* <CompaniesSection /> */}
         <TechStackSection />
+        <MoreThanJustABoilerplateSection />
         <FeaturesSection />
         <TestimonialsSection />
         <FrequentlyAskedQuestionsSection />
