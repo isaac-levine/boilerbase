@@ -34,7 +34,7 @@ export default function FrequentlyAskedQuestionsSection() {
       <div className="container px-4 md:px-6">
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
               Frequently Asked Questions
             </h2>
             {/* <p className="mt-4 text-gray-500 md:text-xl/relaxed dark:text-gray-400">
