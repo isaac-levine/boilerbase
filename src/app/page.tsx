@@ -71,10 +71,7 @@ export default function Home() {
             that empowers developers with the best tools.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link
-              href="/discover"
-              className={`${buttonVariants()}`}
-            >
+            <Link href="/discover" className={`${buttonVariants()}`}>
               Browse Trending
             </Link>
             <QualityPromise />
@@ -111,7 +108,7 @@ export default function Home() {
           <div className="container space-y-12 px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold sm:text-4xl">
                   Ensuring Quality and Transparency
                 </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 hidden sm:block">
