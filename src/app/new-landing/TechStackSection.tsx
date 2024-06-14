@@ -15,6 +15,7 @@ import {
   OauthOriginal,
   SupabaseOriginal,
 } from "devicons-react";
+import { MotionContext } from "framer-motion";
 
 const HeroSection = () => {
   // Get the current hour
@@ -29,8 +30,9 @@ const HeroSection = () => {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Ship your SaaS app {timeOfDay}.
+              <h2 className="text-3xl font-bold sm:text-5xl">
+                Ship your SaaS MVP{" "}
+                <span className="text-primary">{timeOfDay}</span>.
               </h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Simply answer a few questions and receive your boilerplate code
@@ -38,19 +40,20 @@ const HeroSection = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-row space-x-4 ">
-            <MongodbOriginal size="128" />
-            <PostgresqlOriginal size="128" />
-            <NextjsOriginal size="128" />
-            <PrismaOriginal size="128" />
-            <TrpcOriginal size="128" />
-            <TypescriptPlain size="128" />
-            <BootstrapOriginal size="128" />
-            <NodejsOriginalWordmark size="128" />
-            <JavascriptOriginal size="128" />
-            <FirebaseOriginal size="128" />
-            {/* <OauthOriginal size="128" /> */}
-            <SupabaseOriginal size="128" />
+
+          <div className="flex flex-row space-x-4">
+            <MongodbOriginal size="150" />
+            <PostgresqlOriginal size="150" />
+            <NextjsOriginal size="150" />
+            <PrismaOriginal size="150" />
+            <TrpcOriginal size="150" />
+            <TypescriptPlain size="150" />
+            <BootstrapOriginal size="150" />
+            <NodejsOriginalWordmark size="150" />
+            <JavascriptOriginal size="150" />
+            <FirebaseOriginal size="150" />
+            {/* <OauthOriginal size="150" /> */}
+            <SupabaseOriginal size="150" />
           </div>
         </div>
       </MaxWidthWrapper>
