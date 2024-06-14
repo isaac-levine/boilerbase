@@ -1,131 +1,79 @@
-"use client";
+import {
+  createCustomerIfNull,
+  createFounderCheckoutLink,
+  createHackerCheckoutLink,
+  createProCheckoutLink,
+  generateCustomerPortalLink,
+  hasSubscription,
+} from "@/lib/stripe";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { FormEvent, useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { toast } from "@/components/ui/use-toast";
+import Link from "next/link";
+import { authOptions } from "@/lib/auth/options";
+import { prisma } from "@/lib/prisma";
 
-export default function Component() {
-  const session = useSession();
-  const user = session?.data?.user;
+export default async function Component() {
+  const session = await getServerSession(authOptions);
+  let user = null;
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const customerId = (await createCustomerIfNull()) || "";
 
-  useEffect(() => {
-    setFirstName(user?.name ?? "");
-    setLastName(user?.last_name ?? "");
-    setEmail(user?.email ?? "");
-  }, [user?.name, user?.last_name, user?.email]);
-
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    // console.log(
-    //   "Form submitted. Email: ",
-    //   email,
-    //   "Name: ",
-    //   firstName,
-    //   "Last Name: ",
-    //   lastName
-    // );
-
-    const update = await fetch("/api/users", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        firstName,
-        lastName,
-      }),
+  // pull in the user from the database based on the current user's email
+  if (session?.user?.email) {
+    user = await prisma.user.findFirst({
+      where: { email: session.user.email },
     });
+  }
 
-    const result = await update.json();
+  const manage_link = (await generateCustomerPortalLink(customerId)) || "";
 
-    if (result.success) {
-      toast({
-        title: "All Set!",
-        description: "Your account details have been updated successfully",
-      });
-    } else {
-      toast({
-        title: "Failed to update your account",
-        description: "Please try again later",
-        variant: "destructive",
-      });
-    }
-
-    // post the form data to the api
-
-    // handle success response status
-
-    // handle failure response status
-  };
+  const hasSub = await hasSubscription();
+  const hacker_checkout_link =
+    (await createHackerCheckoutLink(customerId)) || "";
+  const founder_checkout_link =
+    (await createFounderCheckoutLink(customerId)) || "";
+  const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
 
   return (
     <MaxWidthWrapper>
-      <title>Settings | BoilerBase</title>
-
-      <div className="mx-auto max-w-[600px] space-y-6 py-10 container">
-        <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold">Mange Your Account Settings</h1>
-          {/* <p className="text-gray-500 dark:text-gray-400">
-            Manage your account details.
+      {user ? (
+        <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56 px-6 lg:px-8 sm:text-center">
+          {/* <p className="text-xl font-medium text-center mt-2">
+            {session?.user?.name}&apos;s dashboard
           </p> */}
+          <Link href={manage_link}>Manage Billing</Link>
+          {hasSub ? (
+            <div className="w-3/4 rounded-md border-gray-400 border shadow-sm ml-1 h-screen">
+              <h2 className="text-center font-semibold">Subsrcribed</h2>
+            </div>
+          ) : (
+            // if the user is not a pro user, show this message
+            user && (
+              <div>
+                <h2 className="mt-2 text-4xl font-bold text-navy sm:text-5xl">
+                  {user.name} is not subscribed.
+                </h2>
+                <div className="flex flex-col gap-4 mt-5">
+                  <Link href={hacker_checkout_link}>Upgrade to Hacker</Link>
+                  <Link href={founder_checkout_link}>Upgrade to Founder</Link>
+                  <Link href={pro_checkout_link}>Upgrade to Pro</Link>
+                </div>
+              </div>
+            )
+          )}
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="firstName">First Name</Label>
-              <Input
-                id="firstName"
-                required
-                value={firstName}
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                }}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lastName">Last Name</Label>
-              <Input
-                id="lastName"
-                required
-                value={lastName}
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              required
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
-          <Button className="w-full dark:text-foreground" type="submit">
-            Save Changes
-          </Button>
-        </form>
-      </div>
+      ) : (
+        <div className="flex items-center justify-center h-full mb-3">
+          <p className="mx-4 text-2xl font-medium mt-4 flex items-center justify-center">
+            Sorry, you must be signed in to view account settings.
+          </p>
+        </div>
+      )}
     </MaxWidthWrapper>
   );
 }

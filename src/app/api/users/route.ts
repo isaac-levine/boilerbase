@@ -1,11 +1,13 @@
 import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
+import { createCustomerIfNull } from "@/lib/stripe";
 import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 // Add new user
 export async function POST(req: any) {
+  console.log("Adding new user: ", req.body);
   const session = await getServerSession(authOptions);
 
   if (!session) {

@@ -1,60 +1,80 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { features } from "process";
 import { Check, X } from "lucide-react";
+import {
+  createCustomerIfNull,
+  createFounderCheckoutLink,
+  createHackerCheckoutLink,
+  createProCheckoutLink,
+  generateCustomerPortalLink,
+  hasSubscription,
+} from "@/lib/stripe";
+import Link from "next/link";
 
-const plans = [
-  {
-    title: "Hacker",
-    price: "$30",
-    pricePeriod: "/month",
-    description: "Perfect for shipping your side project quickly.",
-    features: [
-      { text: "Tailored code boilerplate", offered: true },
-      { text: "Basic support", offered: true },
-      { text: "Exclusive founder community", offered: false },
-      { text: "Logo design for your company", offered: false },
-      { text: "Feature marketplace access", offered: false },
-      { text: "Beta testing marketplace access", offered: false },
-      { text: "Early feature access", offered: false },
-      { text: "SaaS growth course access", offered: false },
-    ],
-  },
-  {
-    title: "Founder",
-    price: "$45",
-    pricePeriod: "/month",
-    description: "Ideal for building a fully-featured SaaS app.",
-    features: [
-      { text: "Tailored code boilerplate", offered: true },
-      { text: "Priority support", offered: true },
-      { text: "Exclusive founder community", offered: true },
-      { text: "Logo design for your company", offered: true },
-      { text: "Feature marketplace access", offered: true },
-      { text: "Beta testing marketplace access", offered: true },
-      { text: "Early feature access", offered: false },
-      { text: "SaaS growth course access", offered: false },
-    ],
-  },
-  {
-    title: "Pro",
-    price: "$99",
-    pricePeriod: "/month",
-    description:
-      "Tailored for teams who are serious about growth and profitability.",
-    features: [
-      { text: "Tailored code boilerplate", offered: true },
-      { text: "Priority support", offered: true },
-      { text: "Exclusive founder community", offered: true },
-      { text: "Logo design for your company", offered: true },
-      { text: "Feature marketplace access", offered: true },
-      { text: "Beta testing marketplace access", offered: true },
-      { text: "Early feature access", offered: true },
-      { text: "SaaS growth course access", offered: true },
-    ],
-  },
-];
+const PricingSection = async () => {
+  const customerId = (await createCustomerIfNull()) || "";
+  const hasSub = await hasSubscription();
+  const hacker_checkout_link =
+    (await createHackerCheckoutLink(customerId)) || "";
+  const founder_checkout_link =
+    (await createFounderCheckoutLink(customerId)) || "";
+  const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
 
-const PricingSection = () => {
+  const plans = [
+    {
+      title: "Hacker",
+      price: "$30",
+      pricePeriod: "/month",
+      description: "Perfect for shipping your side project quickly.",
+      features: [
+        { text: "Tailored code boilerplate", offered: true },
+        { text: "Basic support", offered: true },
+        { text: "Exclusive founder community", offered: false },
+        { text: "Logo design for your company", offered: false },
+        { text: "Feature marketplace access", offered: false },
+        { text: "Beta testing marketplace access", offered: false },
+        { text: "Early feature access", offered: false },
+        { text: "SaaS growth course access", offered: false },
+      ],
+      checkout_link: hacker_checkout_link,
+    },
+    {
+      title: "Founder",
+      price: "$45",
+      pricePeriod: "/month",
+      description: "Ideal for building a fully-featured SaaS app.",
+      features: [
+        { text: "Tailored code boilerplate", offered: true },
+        { text: "Priority support", offered: true },
+        { text: "Exclusive founder community", offered: true },
+        { text: "Logo design for your company", offered: true },
+        { text: "Feature marketplace access", offered: true },
+        { text: "Beta testing marketplace access", offered: true },
+        { text: "Early feature access", offered: false },
+        { text: "SaaS growth course access", offered: false },
+      ],
+      checkout_link: founder_checkout_link,
+    },
+    {
+      title: "Pro",
+      price: "$99",
+      pricePeriod: "/month",
+      description:
+        "Tailored for teams who are serious about growth and profitability.",
+      features: [
+        { text: "Tailored code boilerplate", offered: true },
+        { text: "Priority support", offered: true },
+        { text: "Exclusive founder community", offered: true },
+        { text: "Logo design for your company", offered: true },
+        { text: "Feature marketplace access", offered: true },
+        { text: "Beta testing marketplace access", offered: true },
+        { text: "Early feature access", offered: true },
+        { text: "SaaS growth course access", offered: true },
+      ],
+      checkout_link: pro_checkout_link,
+    },
+  ];
+
   return (
     <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
@@ -108,7 +128,9 @@ const PricingSection = () => {
                   </li>
                 ))}
               </ul>
-              <Button className="w-full">Get Started</Button>
+              <Link href={plan.checkout_link} className={buttonVariants()}>
+                Get Started
+              </Link>
             </div>
           ))}
         </div>
