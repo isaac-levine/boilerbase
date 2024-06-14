@@ -1,6 +1,6 @@
 import React from "react";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
 import { ChevronRight } from "lucide-react";
 
@@ -21,10 +21,15 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row mx-auto lg:mx-0">
-              <Button variant="default" className="flex flex-row gap-2">
+              <Button
+                variant="default"
+                className={`${buttonVariants({
+                  variant: "default",
+                })} rounded-lg shadow-lg border-t  transition-transform duration-300 hover:scale-105`}
+              >
                 Get Started {"  "}
-                <BoilerbaseIconBlocks size={24} />
-                {/* <ChevronRight size={24} /> */}
+                {/* <BoilerbaseIconBlocks size={24} /> */}
+                <ChevronRight size={24} />
               </Button>
             </div>
           </div>
