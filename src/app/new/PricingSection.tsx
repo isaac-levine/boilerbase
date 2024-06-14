@@ -128,7 +128,12 @@ const PricingSection = async () => {
                   </li>
                 ))}
               </ul>
-              <Link href={plan.checkout_link} className={buttonVariants()}>
+              <Link
+                href={plan.checkout_link}
+                className={`${buttonVariants({
+                  variant: "default",
+                })}  rounded-lg shadow-lg border-t p-8 transition-transform duration-300 hover:scale-105`}
+              >
                 Get Started
               </Link>
             </div>

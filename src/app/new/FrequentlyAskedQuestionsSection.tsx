@@ -44,7 +44,7 @@ export default function FrequentlyAskedQuestionsSection() {
           <div className="space-y-4 mx-auto py-8">
             {faq.map((item, index) => (
               <Collapsible key={index}>
-                <CollapsibleTrigger className="flex w-full items-center justify-between rounded-md bg-gray-100 px-6 py-4 text-left font-medium transition-colors hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <CollapsibleTrigger className="flex w-full items-center justify-between px-6 py-4 text-left font-medium transition-colors hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 = dark:hover:bg-gray-700  gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-200 hover:scale-105">
                   {item.question}
                   <ChevronDownIcon className="h-5 w-5 transition-transform [&[data-state=open]]:rotate-180" />
                 </CollapsibleTrigger>

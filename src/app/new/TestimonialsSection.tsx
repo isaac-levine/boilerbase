@@ -20,7 +20,7 @@ const TestimonialsSection = () => {
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-            <div className="grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="grid gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-300 hover:scale-105">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800">
                   <img
@@ -44,7 +44,7 @@ const TestimonialsSection = () => {
                 faster than we could have on our own.&quot;
               </p>
             </div>
-            <div className="grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+            <div className="grid gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-300 hover:scale-105">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800">
                   <img

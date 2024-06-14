@@ -96,7 +96,7 @@ export default function NavigationBar() {
         className="flex items-center justify-center gap-2 w-1/3 sm:w-auto"
         href="/"
       >
-        <BoilerbaseIcon size={35} />
+        <BoilerbaseIcon size={32} />
         <span className="sm:block font-semibold text-xl hidden">
           Boilerbase
         </span>
