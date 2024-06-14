@@ -1,13 +1,17 @@
 import Image from "next/image";
 
-const BoilerbaseIcon = () => {
+interface BoilerbaseIconProps {
+  size: number;
+}
+
+const BoilerbaseIcon: React.FC<BoilerbaseIconProps> = ({ size }) => {
   return (
     <div>
       <Image
         src="/boilerbase-icon.png"
         alt="Boilerbase Icon"
-        width={35}
-        height={35}
+        width={size}
+        height={size}
         className="dark:invert"
       />
     </div>
