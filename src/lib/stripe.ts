@@ -16,8 +16,12 @@ export async function hasSubscription() {
       where: { email: session.user?.email },
     });
 
+    if (!user?.stripe_customer_id) {
+      return false;
+    }
+
     const subscriptions = await stripe.subscriptions.list({
-      customer: String((user as any)?.stripe_customer_id),
+      customer: String(user.stripe_customer_id),
     });
 
     return subscriptions.data.length > 0;
