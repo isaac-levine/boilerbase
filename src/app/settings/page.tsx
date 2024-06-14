@@ -22,6 +22,7 @@ export default async function Component() {
   let user = null;
 
   const customerId = (await createCustomerIfNull()) || "";
+  console.log("customerId", customerId);
 
   // pull in the user from the database based on the current user's email
   if (session?.user?.email) {
@@ -29,6 +30,7 @@ export default async function Component() {
       where: { email: session.user.email },
     });
   }
+  console.log("user: ", user);
 
   const manage_link = (await generateCustomerPortalLink(customerId)) || "";
 
@@ -38,6 +40,12 @@ export default async function Component() {
   const founder_checkout_link =
     (await createFounderCheckoutLink(customerId)) || "";
   const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
+
+  console.log("hasSub: ", hasSub);
+  console.log("manage_link: ", manage_link);
+  console.log("hacker_checkout_link: ", hacker_checkout_link);
+  console.log("founder_checkout_link: ", founder_checkout_link);
+  console.log("pro_checkout_link: ", pro_checkout_link);
 
   return (
     <MaxWidthWrapper>
