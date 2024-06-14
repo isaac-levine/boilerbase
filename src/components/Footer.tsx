@@ -24,7 +24,7 @@ export const Footer = () => {
             <Link href="/about" passHref>
               <span className="hover:underline cursor-pointer">About</span>
             </Link>
-            <Link href="/about/contact" passHref>
+            <Link href="mailto:isaacmlevine4@gmail.com" passHref>
               <span className="hover:underline cursor-pointer">Contact</span>
             </Link>
             <Link href="/about/privacy" passHref>
