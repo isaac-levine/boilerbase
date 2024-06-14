@@ -5,24 +5,30 @@ import { Check, X } from "lucide-react";
 const plans = [
   {
     title: "Hacker",
-    price: "$0",
+    price: "$30",
     pricePeriod: "/month",
     description: "Perfect for individual developers or small teams.",
     features: [
-      { text: "5 boilerplate templates", offered: true },
-      { text: "Community support", offered: true },
-      { text: "Basic customization", offered: false },
+      { text: "1 personalized app boilerplates", offered: true },
+      { text: "Exclusive founder community", offered: false },
+      { text: "Logo design for your company", offered: false },
+      { text: "24/7 support", offered: false },
+      { text: "SaaS growth course", offered: false },
+      // { text: "Regular lessons and live calls", offered: false },
     ],
   },
   {
     title: "Founder",
-    price: "$19",
+    price: "$45",
     pricePeriod: "/month",
     description: "Ideal for growing teams and small businesses.",
     features: [
-      { text: "5 boilerplate templates", offered: true },
-      { text: "Community support", offered: true },
-      { text: "Basic customization", offered: true },
+      { text: "3 personalized app boilerplates", offered: true },
+      { text: "Exclusive founder community", offered: true },
+      { text: "Logo design for your company", offered: true },
+      { text: "24/7 support", offered: true },
+      { text: "SaaS growth course", offered: false },
+      // { text: "Regular lessons and live calls", offered: false },
     ],
   },
   {
@@ -31,9 +37,12 @@ const plans = [
     pricePeriod: "/month",
     description: "Tailored for large teams and complex projects.",
     features: [
-      { text: "5 boilerplate templates", offered: true },
+      { text: "6 boilerplate templates", offered: true },
       { text: "Community support", offered: true },
       { text: "Basic customization", offered: true },
+      { text: "24/7 support", offered: true },
+      { text: "SaaS growth course", offered: true },
+      // { text: "Regular lessons and live calls", offered: true },
     ],
   },
 ];
@@ -44,12 +53,10 @@ const PricingSection = () => {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-950">
+            {/* <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
               Pricing
-            </div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              Affordable plans for every need
-            </h2>
+            </div> */}
+            <h2 className="text-3xl font-bold sm:text-5xl">Pricing</h2>
             <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               Choose the plan that best fits your project and budget.
             </p>
@@ -63,6 +70,13 @@ const PricingSection = () => {
                 plan.title === "Founder" ? "" : ""
               } mx-12 my-2 lg:mx-0`}
             >
+              {plan.title === "Founder" ? (
+                <div className="text-sm font-bold text-blue-500 dark:text-blue-400 uppercase  opacity-100">
+                  Most Popular
+                </div>
+              ) : (
+                ""
+              )}
               <div className="space-y-2">
                 <div className="text-2xl font-bold">{plan.title}</div>
                 <div className="text-4xl font-bold">
