@@ -27,6 +27,9 @@ export async function hasSubscription() {
 }
 
 export async function createHackerCheckoutLink(customer: string) {
+  if (!customer) {
+    return;
+  }
   const checkout = await stripe.checkout.sessions.create({
     success_url: process.env.NEXTAUTH_URL + "/dashboard",
     cancel_url: process.env.NEXTAUTH_URL + "/dashboard",
@@ -44,6 +47,9 @@ export async function createHackerCheckoutLink(customer: string) {
 }
 
 export async function createFounderCheckoutLink(customer: string) {
+  if (!customer) {
+    return;
+  }
   const checkout = await stripe.checkout.sessions.create({
     success_url: process.env.NEXTAUTH_URL + "/dashboard",
     cancel_url: process.env.NEXTAUTH_URL + "/dashboard",
@@ -61,6 +67,9 @@ export async function createFounderCheckoutLink(customer: string) {
 }
 
 export async function createProCheckoutLink(customer: string) {
+  if (!customer) {
+    return;
+  }
   const checkout = await stripe.checkout.sessions.create({
     success_url: process.env.NEXTAUTH_URL + "/dashboard",
     cancel_url: process.env.NEXTAUTH_URL + "/dashboard",
@@ -78,6 +87,9 @@ export async function createProCheckoutLink(customer: string) {
 }
 
 export async function generateCustomerPortalLink(customerId: string) {
+  if (!customerId) {
+    return;
+  }
   console.log("generating custom portal link for customer", customerId);
   try {
     const portalSession = await stripe.billingPortal.sessions.create({
