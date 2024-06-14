@@ -14,7 +14,7 @@ const BoilerbaseIconBlocks: React.FC<BoilerbaseIconBlocksProps> = ({
         alt="Boilerbase Icon"
         width={size}
         height={size}
-        className="invert dark:invert-0"
+        className="invert dark:invert-0 hidden lg:block"
       />
     </div>
   );
