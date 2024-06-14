@@ -37,7 +37,7 @@ const plans = [
     pricePeriod: "/month",
     description: "Tailored for large teams and complex projects.",
     features: [
-      { text: "6 boilerplate templates", offered: true },
+      { text: "6 personalized app boilerplates", offered: true },
       { text: "Community support", offered: true },
       { text: "Basic customization", offered: true },
       { text: "24/7 support", offered: true },
