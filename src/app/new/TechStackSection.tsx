@@ -21,9 +21,16 @@ const HeroSection = () => {
   // Get the current hour
   let currentHour = new Date().getHours();
 
-  // Determine if it's night or morning
-  let timeOfDay =
-    currentHour >= 18 || currentHour < 6 ? "tonight" : "this morning";
+  // Determine if it's night, morning, or afternoon
+  let timeOfDay;
+  if (currentHour >= 4 && currentHour < 12) {
+    timeOfDay = "this morning";
+  } else if (currentHour >= 12 && currentHour < 16) {
+    timeOfDay = "this afternoon";
+  } else {
+    timeOfDay = "tonight";
+  }
+
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
       <MaxWidthWrapper>
