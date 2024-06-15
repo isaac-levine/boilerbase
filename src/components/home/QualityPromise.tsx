@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,7 +30,7 @@ export function QualityPromise() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="secondary">Our quality promise &rarr;</Button>
+          <Button variant="secondary">Our quality promise</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[525px]">
           <DialogHeader>

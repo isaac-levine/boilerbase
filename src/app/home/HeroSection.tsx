@@ -6,6 +6,7 @@ import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { QualityPromise } from "@/components/home/QualityPromise";
 
 const HeroSection = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const HeroSection = () => {
                 {/* <BoilerbaseIconBlocks size={24} /> */}
                 <ChevronRight size={24} />
               </Button>
+              <QualityPromise />
             </div>
           </div>
           {/* <img
