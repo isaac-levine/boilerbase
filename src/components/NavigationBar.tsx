@@ -86,8 +86,15 @@ export default function NavigationBar() {
                 Sell a Boilerplate
               </Link>
             </SheetClose>
-
-            <DarkModeToggle></DarkModeToggle>
+            <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/dashboard"
+              >
+                Dashboard
+              </Link>
+            </SheetClose>
+            <DarkModeToggle />
           </nav>
         </SheetContent>
       </Sheet>
@@ -116,6 +123,12 @@ export default function NavigationBar() {
           href="/sell-an-item"
         >
           Sell a Boilerplate
+        </Link>
+        <Link
+          className="hover:underline hover:underline-offset-4"
+          href="/dashboard"
+        >
+          Dashboard
         </Link>
       </nav>
       {session.data?.user ? (

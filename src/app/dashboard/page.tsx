@@ -9,10 +9,40 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth/options";
 
-export default function Component() {
+export default async function Component() {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen ">
+        <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+          <div className="space-y-4 text-center">
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
+              Sorry, you must register to view your dashboard.
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              To get started, please join our community.
+            </p>
+            <Link
+              href="/api/auth/signin"
+              className="inline-flex items-center justify-center w-full px-6 py-3 text-lg font-medium text-white bg-primary rounded-md hover:bg-primary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
+              prefetch={false}
+            >
+              Join Now
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+  }
+
   return (
     <div className="flex min-h-screen">
+      <title>Dashboard • BoilerBase</title>
       <div className="bg-gray-900 text-white w-64 p-6 space-y-6">
         <Link
           href="#"
