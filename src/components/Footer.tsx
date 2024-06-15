@@ -24,7 +24,7 @@ export const Footer = () => {
             <Link href="/about" passHref>
               <span className="hover:underline cursor-pointer">About</span>
             </Link>
-            <Link href="mailto:isaacmlevine4@gmail.com" passHref>
+            <Link href="mailto:help@boilerbase.io" passHref>
               <span className="hover:underline cursor-pointer">Contact</span>
             </Link>
             <Link href="https://boilerbase.featurebase.app" passHref>
