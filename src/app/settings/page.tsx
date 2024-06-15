@@ -18,6 +18,7 @@ import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
 import BillingCard from "./BillingCard";
 import AccountSettingsForm from "./AccountSettingsForm";
+import { DarkModeSwitch } from "@/components/DarkModeSwitch";
 
 export default async function Component() {
   const session = await getServerSession(authOptions);

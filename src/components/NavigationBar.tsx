@@ -94,8 +94,23 @@ export default function NavigationBar() {
                 Post a Feature
               </Link>
             </SheetClose>
-
             <DarkModeToggle />
+            {/* <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/settings"
+              >
+                Settings
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/api/auth/signout"
+              >
+                Sign Out
+              </Link>
+            </SheetClose> */}
           </nav>
         </SheetContent>
       </Sheet>
@@ -136,22 +151,23 @@ export default function NavigationBar() {
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
           <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
           <Link
+            href="/settings"
+            className={`${buttonVariants({
+              variant: "outline",
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex flex-row gap-2`}
+          >
+            <span className="hidden sm:block">Settings</span>
+            <Settings className="block sm:hidden" size={16}></Settings>
+          </Link>
+          <Link
             href="/api/auth/signout"
             // onClick={() => signOut}
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 `}
           >
             <span className="hidden sm:block">Sign out</span>
             <LogOut className="block sm:hidden" size={16}></LogOut>
-          </Link>
-          <Link
-            href="/settings"
-            className={`${buttonVariants({
-              variant: "outline",
-            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
-          >
-            <Settings size={20} />
           </Link>
         </div>
       ) : (

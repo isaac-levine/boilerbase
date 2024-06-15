@@ -56,7 +56,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-row space-x-4">
+          <div className="flex-row space-x-4 hidden sm:flex">
             <MongodbOriginal size="150" />
             <PostgresqlOriginal size="150" />
             <NextjsOriginal size="150" />
