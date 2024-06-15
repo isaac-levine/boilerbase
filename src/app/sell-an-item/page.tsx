@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <MaxWidthWrapper>
-      <title>Sell An item | BoilerBase</title>
+      <title>Sell An item • BoilerBase</title>
 
       {session?.data?.user ? (
         <div className="my-12">
