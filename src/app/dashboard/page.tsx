@@ -15,10 +15,12 @@ import { authOptions } from "@/lib/auth/options";
 export default async function Component() {
   const session = await getServerSession(authOptions);
 
+  // If user is not signed in, prompt them to sign in to view the dashboard
   if (!session?.user) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen ">
-        <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+      <div className="flex flex-col items-center h-screen ">
+        <title>Dashboard • BoilerBase</title>
+        <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800 mt-12 mx-8">
           <div className="space-y-4 text-center">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
               Sorry, you must register to view your dashboard.
@@ -37,9 +39,9 @@ export default async function Component() {
         </div>
       </div>
     );
-  } else {
   }
 
+  // User is signed in, so we can display the dashboard
   return (
     <div className="flex min-h-screen">
       <title>Dashboard • BoilerBase</title>

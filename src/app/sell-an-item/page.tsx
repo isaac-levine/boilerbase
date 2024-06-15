@@ -22,8 +22,8 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center h-screen ">
-          <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="flex flex-col items-center h-screen ">
+          <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800  mt-12 mx-8">
             <div className="space-y-4 text-center">
               <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
                 Sorry, only registered users can post listings.
