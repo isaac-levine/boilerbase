@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,17 +20,24 @@ import { MotionContext } from "framer-motion";
 
 const HeroSection = () => {
   // Get the current hour
-  let currentHour = new Date().getHours();
+  const [timeOfDay, setTimeOfDay] = useState("today");
 
-  // Determine if it's night, morning, or afternoon
-  let timeOfDay;
-  if (currentHour >= 4 && currentHour < 12) {
-    timeOfDay = "this morning";
-  } else if (currentHour >= 12 && currentHour < 16) {
-    timeOfDay = "this afternoon";
-  } else {
-    timeOfDay = "tonight";
-  }
+  useEffect(() => {
+    // Get the current hour using the client's local time
+    const currentHour = new Date().getHours();
+
+    // Determine if it's night, morning, or afternoon
+    let timeMessage;
+    if (currentHour >= 4 && currentHour < 12) {
+      timeMessage = "this morning";
+    } else if (currentHour >= 12 && currentHour < 16) {
+      timeMessage = "this afternoon";
+    } else {
+      timeMessage = "tonight";
+    }
+
+    setTimeOfDay(timeMessage);
+  }, []);
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
