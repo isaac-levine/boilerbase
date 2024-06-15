@@ -27,6 +27,9 @@ export const Footer = () => {
             <Link href="mailto:isaacmlevine4@gmail.com" passHref>
               <span className="hover:underline cursor-pointer">Contact</span>
             </Link>
+            <Link href="https://boilerbase.featurebase.app" passHref>
+              <span className="hover:underline cursor-pointer">Feedback</span>
+            </Link>
             <Link href="/about/privacy" passHref>
               <span className="hover:underline cursor-pointer flex flex-row gap-1">
                 Privacy Policy
