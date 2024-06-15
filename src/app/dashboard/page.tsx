@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/options";
+import { buttonVariants } from "@/components/ui/button";
 
 export default async function Component() {
   const session = await getServerSession(authOptions);
@@ -97,11 +98,14 @@ export default async function Component() {
                 <CardTitle>Total Revenue</CardTitle>
                 <DollarSignIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">$45,231.89</div>
+              <CardContent className="flex items-center justify-between">
+                {/* <div className="text-3xl font-bold">$45,231.89</div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   +20.1% from last month
-                </p>
+                </p> */}
+                <Link className={buttonVariants()} href="/form">
+                  Get Boilerplate
+                </Link>
               </CardContent>
             </Card>
             <Card>

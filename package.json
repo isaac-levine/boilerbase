@@ -28,6 +28,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@react-email/components": "^0.0.16",
     "@splinetool/react-spline": "^2.2.6",
+    "@typeform/embed-react": "^3.17.0",
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
