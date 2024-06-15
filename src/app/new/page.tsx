@@ -13,6 +13,7 @@ import MoreThanJustABoilerplateSection from "./MoreThanJustABoilerplateSection";
 export default function Component() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
+      <title>Home • Boilerbase</title>
       <main className="flex-1">
         <HeroSection />
         {/* <CompaniesSection /> */}

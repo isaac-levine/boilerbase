@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eclipse, Moon, Sun, SunMoon, User } from "lucide-react";
+import { Eclipse, Moon, Sun, SunMoon, Settings } from "lucide-react";
 import * as React from "react";
 import BoilerbaseIcon from "./BoilerbaseIcon";
 import { Button, buttonVariants } from "./ui/button";
@@ -137,7 +137,7 @@ export default function NavigationBar() {
               variant: "outline",
             })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
           >
-            <User size={20} />
+            <Settings size={20} />
           </Link>
         </div>
       ) : (
