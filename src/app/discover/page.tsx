@@ -64,7 +64,7 @@ export default function Component() {
       <div className="my-12">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
-            Discover the latest templates and boilerplates
+            Discover features to be completed for money
           </h1>
           <div className="flex items-center space-x-4">
             <div className="relative w-full max-w-md">

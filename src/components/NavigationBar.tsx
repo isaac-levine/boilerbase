@@ -73,27 +73,28 @@ export default function NavigationBar() {
             <SheetClose asChild>
               <Link
                 className="hover:underline hover:underline-offset-4"
-                href="/discover"
-              >
-                Browse Boilerplates
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
-                href="/sell-an-item"
-              >
-                Sell a Boilerplate
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
                 href="/dashboard"
               >
                 Dashboard
               </Link>
             </SheetClose>
+            <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/discover"
+              >
+                Feature Marketplace
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link
+                className="hover:underline hover:underline-offset-4"
+                href="/post-a-feature"
+              >
+                Post a Feature
+              </Link>
+            </SheetClose>
+
             <DarkModeToggle />
           </nav>
         </SheetContent>
@@ -114,21 +115,21 @@ export default function NavigationBar() {
       >
         <Link
           className="hover:underline hover:underline-offset-4"
-          href="/discover"
-        >
-          Browse Boilerplates
-        </Link>
-        <Link
-          className="hover:underline hover:underline-offset-4"
-          href="/sell-an-item"
-        >
-          Sell a Boilerplate
-        </Link>
-        <Link
-          className="hover:underline hover:underline-offset-4"
           href="/dashboard"
         >
           Dashboard
+        </Link>
+        <Link
+          className="hover:underline hover:underline-offset-4"
+          href="/discover"
+        >
+          Feature Marketplace
+        </Link>
+        <Link
+          className="hover:underline hover:underline-offset-4"
+          href="/post-a-feature"
+        >
+          Post a Feature
         </Link>
       </nav>
       {session.data?.user ? (
