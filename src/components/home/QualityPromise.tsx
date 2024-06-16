@@ -36,14 +36,31 @@ export function QualityPromise() {
           <DialogHeader>
             <DialogTitle className="mb-3">Our Promise to You</DialogTitle>
             <DialogDescription>
-              Boilerbase is committed to providing you with the best quality web
-              app boilerplates on the market. We guarantee that every asset on
-              our platform is verified by our team to ensure our highest quality
-              standards. Each boilerplate featured on the site has been through
-              a rigorous review process to ensure that it meets our quality
-              criteria. We are constantly working to improve our platform and
-              provide you with the best possible experience. If you have any
-              questions or concerns, please don&apos;t hesitate to contact us.
+              Boilerbase was founded with the goal of enabling founders to ship
+              their software products as fast as possible. We believe that the
+              best way to do this is by providing high-quality, custom-tailored
+              boilerplates that will allow you to hit the ground running and
+              focus on what makes your idea special. Our team is dedicated to
+              ensuring that every boilerplate on our platform meets our high
+              standards of quality and usability. We are constantly working to
+              improve our platform and provide you with the best possible
+              experience. If you have any feature requests or suggestions on how
+              we can be better, please submit feedback{" "}
+              <a
+                className="font-bold underline text-blue-500 dark:text-blue-400"
+                href="https://boilerbase.featurebase.app/"
+              >
+                here
+              </a>
+              . For any other questions or concerns, please don&apos;t hesitate
+              to contact us at{" "}
+              <a
+                href="mailto:help@boilerbase.io"
+                className="font-bold text-blue-500 dark:text-blue-400"
+              >
+                help@boilerbase.io
+              </a>
+              .
             </DialogDescription>
           </DialogHeader>
           {/* <ProfileForm /> */}
