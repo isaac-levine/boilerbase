@@ -45,6 +45,7 @@ export async function createHackerCheckoutLink(customer: string) {
       },
     ],
     mode: "subscription",
+    allow_promotion_codes: true,
   });
 
   return checkout.url;
@@ -65,6 +66,7 @@ export async function createFounderCheckoutLink(customer: string) {
       },
     ],
     mode: "subscription",
+    allow_promotion_codes: true,
   });
 
   return checkout.url;
@@ -85,6 +87,7 @@ export async function createProCheckoutLink(customer: string) {
       },
     ],
     mode: "subscription",
+    allow_promotion_codes: true,
   });
 
   return checkout.url;
