@@ -17,8 +17,15 @@ import {
   createProCheckoutLink,
   generateCustomerPortalLink,
   hasSubscription,
+  getSubscriptionLevel,
 } from "@/lib/stripe";
 import Link from "next/link";
+
+// Subscription levels -- returned from getSubscriptionLevel in stripe.ts
+const FOUNDER = "Boilerbase Founder";
+const HACKER = "Boilerbase Hacker";
+const PRO = "Boilerbase Pro";
+const FREE = "free";
 
 export default async function BillingCard() {
   const session = await getServerSession(authOptions);
@@ -33,7 +40,7 @@ export default async function BillingCard() {
       where: { email: session.user.email },
     });
   }
-  console.log("user: ", user);
+  // console.log("user: ", user);
 
   const manage_link = (await generateCustomerPortalLink(customerId)) || "";
 
@@ -44,16 +51,20 @@ export default async function BillingCard() {
     (await createFounderCheckoutLink(customerId)) || "";
   const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
 
+  // Get this user's subscription level
+  const subscriptionLevel = await getSubscriptionLevel();
+  console.log("Subscription Level: ", subscriptionLevel);
+
   console.log("hasSub: ", hasSub);
-  console.log("manage_link: ", manage_link);
-  console.log("hacker_checkout_link: ", hacker_checkout_link);
-  console.log("founder_checkout_link: ", founder_checkout_link);
-  console.log("pro_checkout_link: ", pro_checkout_link);
+  // console.log("manage_link: ", manage_link);
+  // console.log("hacker_checkout_link: ", hacker_checkout_link);
+  // console.log("founder_checkout_link: ", founder_checkout_link);
+  // console.log("pro_checkout_link: ", pro_checkout_link);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Billing & Payment Settings</CardTitle>
+        <CardTitle>Manage your Subscription</CardTitle>
         {/* <CardDescription>
           Manage your subscription and payment methods.
         </CardDescription> */}
@@ -61,18 +72,25 @@ export default async function BillingCard() {
       <CardContent>
         <div className="grid gap-4">
           <div className="flex items-center justify-between">
-            <div>
-              {/* <p className="font-medium">Current Plan</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Starter Plan
-              </p> */}
+            <div className="flex flex-row items-center gap-2">
+              <p className="font-medium">Current Plan: </p>
+
+              <p
+                className={`${
+                  [FOUNDER, HACKER, PRO].includes(subscriptionLevel)
+                    ? "text-green-300"
+                    : "text-gray-500"
+                } font-semibold`}
+              >
+                {subscriptionLevel}
+              </p>
             </div>
             <Link href={manage_link} className={buttonVariants()}>
               Manage Billing
             </Link>
           </div>
           <Separator />
-          <div className="grid gap-2">
+          {/* <div className="grid gap-2">
             <p className="font-medium">Available Plans</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Card className="p-4 flex flex-col gap-4">
@@ -109,7 +127,7 @@ export default async function BillingCard() {
                 </Link>
               </Card>
             </div>
-          </div>
+          </div> */}
         </div>
       </CardContent>
     </Card>

@@ -1,11 +1,4 @@
-import {
-  createCustomerIfNull,
-  createFounderCheckoutLink,
-  createHackerCheckoutLink,
-  createProCheckoutLink,
-  generateCustomerPortalLink,
-  hasSubscription,
-} from "@/lib/stripe";
+import { createCustomerIfNull } from "@/lib/stripe";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -18,7 +11,6 @@ import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
 import BillingCard from "./BillingCard";
 import AccountSettingsForm from "./AccountSettingsForm";
-import { DarkModeSwitch } from "@/components/DarkModeSwitch";
 
 export default async function Component() {
   const session = await getServerSession(authOptions);

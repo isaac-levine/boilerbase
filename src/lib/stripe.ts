@@ -30,13 +30,42 @@ export async function hasSubscription() {
   return false;
 }
 
+// Get the subscription level of the current user (free, hacker, founder, pro)
+export async function getSubscriptionLevel() {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    const user = await prisma.user.findFirst({
+      where: { email: session.user?.email },
+    });
+
+    if (!user?.stripe_customer_id) {
+      return "free";
+    }
+
+    const subscriptions = await stripe.subscriptions.list({
+      customer: String(user.stripe_customer_id),
+    });
+
+    if (subscriptions.data.length > 0) {
+      const productID = subscriptions.data[0].items.data[0].price.product;
+
+      // Fetch the product details using the product ID
+      const product = await stripe.products.retrieve(productID + "");
+      return product.name;
+    }
+  }
+
+  return "free";
+}
+
 export async function createHackerCheckoutLink(customer: string) {
   if (!customer) {
     return;
   }
   const checkout = await stripe.checkout.sessions.create({
     success_url: process.env.NEXTAUTH_URL + "/dashboard",
-    cancel_url: process.env.NEXTAUTH_URL + "/dashboard",
+    cancel_url: process.env.NEXTAUTH_URL + "",
     customer: customer,
     line_items: [
       {
@@ -57,7 +86,7 @@ export async function createFounderCheckoutLink(customer: string) {
   }
   const checkout = await stripe.checkout.sessions.create({
     success_url: process.env.NEXTAUTH_URL + "/dashboard",
-    cancel_url: process.env.NEXTAUTH_URL + "/dashboard",
+    cancel_url: process.env.NEXTAUTH_URL + "",
     customer: customer,
     line_items: [
       {
@@ -78,7 +107,7 @@ export async function createProCheckoutLink(customer: string) {
   }
   const checkout = await stripe.checkout.sessions.create({
     success_url: process.env.NEXTAUTH_URL + "/dashboard",
-    cancel_url: process.env.NEXTAUTH_URL + "/dashboard",
+    cancel_url: process.env.NEXTAUTH_URL + "",
     customer: customer,
     line_items: [
       {
@@ -101,7 +130,7 @@ export async function generateCustomerPortalLink(customerId: string) {
   try {
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      return_url: process.env.NEXTAUTH_URL + "/dashboard",
+      return_url: process.env.NEXTAUTH_URL + "/settings",
     });
 
     console.log();
@@ -113,6 +142,7 @@ export async function generateCustomerPortalLink(customerId: string) {
   }
 }
 
+// Create a new Stripe customer if one doesn't already exist for this user
 export async function createCustomerIfNull() {
   try {
     const session = await getServerSession(authOptions);
