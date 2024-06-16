@@ -111,19 +111,29 @@ export async function generateCustomerPortalLink(customerId: string) {
 }
 
 export async function createCustomerIfNull() {
-  const session = await getServerSession(authOptions);
-  console.log("creating stripe_customer_id for user", session?.user?.email);
-  if (session) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user?.email) {
+      console.error("Session not found or user email is missing");
+      return;
+    }
+    console.log("Creating stripe_customer_id for user", session.user.email);
     const user = await prisma.user.findFirst({
-      where: { email: session.user?.email },
+      where: { email: session.user.email },
     });
 
+    if (!user) {
+      console.error("User not found with email:", session.user.email);
+      return;
+    }
+
+    // User doesn't already have a stripe_customer_id, so create one
     if (!user?.stripe_customer_id) {
       const customer = await stripe.customers.create({
         email: String(user?.email),
       });
       console.log(
-        "created Stripe customer",
+        "created stripe customer",
         customer.id,
         "for user",
         user?.email
@@ -131,14 +141,22 @@ export async function createCustomerIfNull() {
 
       await prisma.user.update({
         where: {
-          id: user?.id,
+          id: user.id,
         },
         data: {
           stripe_customer_id: customer.id,
         },
       });
       console.log("updated user with stripe_customer_id", customer.id);
+    } else {
+      console.log(
+        "User already has a stripe_customer_id:",
+        user.stripe_customer_id
+      );
     }
     return user?.stripe_customer_id;
+  } catch (error) {
+    console.error("Failed to create or update Stripe customer:", error);
+    throw error;
   }
 }
