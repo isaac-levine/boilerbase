@@ -46,7 +46,7 @@ export default async function Component() {
   return (
     <div className="flex min-h-screen">
       <title>Dashboard • BoilerBase</title>
-      <div className="bg-gray-900 text-white w-64 p-6 space-y-6">
+      <div className="bg-gray-900 text-white w-64 p-6 space-y-6 hidden sm:block">
         <Link
           href="#"
           className="flex items-center gap-2 font-bold text-lg"
