@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { OnboardingForm } from "./_components/onboarding-form";
+import { createCustomerIfNull } from "@/lib/stripe";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -12,6 +13,8 @@ export default async function Page() {
   if (!user) {
     return redirect("/auth/sign-in");
   }
+
+  createCustomerIfNull();
 
   return (
     <main className="w-full">
