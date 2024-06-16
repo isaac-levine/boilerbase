@@ -10,6 +10,8 @@ import {
   hasSubscription,
 } from "@/lib/stripe";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import GetStartedButton from "@/components/home/components/GetStartedButton";
 
 const PricingSection = async () => {
   const customerId = (await createCustomerIfNull()) || "";
@@ -19,6 +21,9 @@ const PricingSection = async () => {
   const founder_checkout_link =
     (await createFounderCheckoutLink(customerId)) || "";
   const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
+
+  const session = await getServerSession();
+  const user = session?.user;
 
   const plans = [
     {
@@ -128,14 +133,15 @@ const PricingSection = async () => {
                   </li>
                 ))}
               </ul>
-              <Link
-                href={plan.checkout_link}
+              {/* <Link
+                href={user ? plan.checkout_link : "/auth/sign-in"}
                 className={`${buttonVariants({
                   variant: "default",
                 })} rounded-lg shadow-lg border-t p-8 transition-transform duration-300 hover:scale-105`}
               >
                 Get Started
-              </Link>
+              </Link> */}
+              <GetStartedButton checkoutLink={plan.checkout_link} />
             </div>
           ))}
         </div>
