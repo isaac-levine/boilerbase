@@ -34,7 +34,9 @@ export function QualityPromise() {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[525px]">
           <DialogHeader>
-            <DialogTitle className="mb-3">Our Promise to You</DialogTitle>
+            <DialogTitle className="mb-3">
+              By developers, for developers.
+            </DialogTitle>
             <DialogDescription>
               Boilerbase was founded with the goal of enabling founders to ship
               their software products as fast as possible. We believe that the
