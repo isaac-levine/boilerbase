@@ -181,7 +181,7 @@ export default function NavigationBar() {
             })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10`}
           >
             <span className="hidden sm:block">Sign In</span>
-            <LogIn className="block sm:hidden" size={16}></LogIn>
+            <LogIn className="block sm:hidden" size={16} />
           </Link>
         </div>
       )}
