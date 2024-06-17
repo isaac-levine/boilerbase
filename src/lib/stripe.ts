@@ -40,7 +40,7 @@ export async function getSubscriptionLevel() {
     });
 
     if (!user?.stripe_customer_id) {
-      return "free";
+      return "Free";
     }
 
     const subscriptions = await stripe.subscriptions.list({
@@ -56,7 +56,7 @@ export async function getSubscriptionLevel() {
     }
   }
 
-  return "free";
+  return "Free";
 }
 
 export async function createHackerCheckoutLink(customer: string) {

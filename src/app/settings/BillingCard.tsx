@@ -25,7 +25,7 @@ import Link from "next/link";
 const FOUNDER = "Boilerbase Founder";
 const HACKER = "Boilerbase Hacker";
 const PRO = "Boilerbase Pro";
-const FREE = "free";
+const FREE = "Free";
 
 export default async function BillingCard() {
   const session = await getServerSession(authOptions);

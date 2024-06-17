@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Eclipse, Moon, Sun, SunMoon, Settings } from "lucide-react";
+import { Settings } from "lucide-react";
 import * as React from "react";
 import BoilerbaseIcon from "./BoilerbaseIcon";
 import { Button, buttonVariants } from "./ui/button";
@@ -15,7 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useSession } from "next-auth/react";
-import { LogIn, LogOut, Menu } from "lucide-react";
+import { LogIn, LogOut, Menu, Gauge } from "lucide-react";
 import { DarkModeToggle } from "./DarkModeToggle";
 
 interface NavItems {
@@ -39,6 +39,10 @@ export default function NavigationBar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-background dark:bg-foreground/5 shadow sticky inset-0 backdrop-blur-md border-b border-foreground/10">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></meta>
       <Sheet>
         <SheetTrigger className="sm:hidden items-start justify-start w-1/3">
           {/* <Link className="flex items-center gap-2" href="/"> */}
@@ -78,10 +82,10 @@ export default function NavigationBar() {
                 Dashboard
               </Link>
             </SheetClose>
-            <SheetClose asChild>
+            {/* <SheetClose asChild>
               <Link
                 className="hover:underline hover:underline-offset-4"
-                href="/discover"
+                href="/dashboard/feature-marketplace"
               >
                 Feature Marketplace
               </Link>
@@ -89,13 +93,13 @@ export default function NavigationBar() {
             <SheetClose asChild>
               <Link
                 className="hover:underline hover:underline-offset-4"
-                href="/post-a-feature"
+                href="/dashboard/post-a-feature"
               >
                 Post a Feature
               </Link>
-            </SheetClose>
+            </SheetClose> */}
             <DarkModeToggle />
-            {/* <SheetClose asChild>
+            <SheetClose asChild>
               <Link
                 className="hover:underline hover:underline-offset-4"
                 href="/settings"
@@ -110,7 +114,7 @@ export default function NavigationBar() {
               >
                 Sign Out
               </Link>
-            </SheetClose> */}
+            </SheetClose>
           </nav>
         </SheetContent>
       </Sheet>
@@ -128,28 +132,37 @@ export default function NavigationBar() {
         className="hidden md:flex items-center gap-6 text-sm font-medium"
         ref={navRef}
       >
-        <Link
-          className="hover:underline hover:underline-offset-4"
+        {/* <Link
+          className="hover:underline hover:underline-offset-4 font-semibold"
           href="/dashboard"
         >
           Dashboard
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           className="hover:underline hover:underline-offset-4"
-          href="/discover"
+          href="/dashboard/feature-marketplace"
         >
           Feature Marketplace
         </Link>
         <Link
           className="hover:underline hover:underline-offset-4"
-          href="/post-a-feature"
+          href="/dashboard/post-a-feature"
         >
           Post a Feature
-        </Link>
+        </Link> */}
       </nav>
       {session.data?.user ? (
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
           <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
+          <Link
+            href="/dashboard"
+            className={`${buttonVariants({
+              variant: "outline",
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex flex-row gap-2`}
+          >
+            <span className="hidden sm:block">Dashboard</span>
+            <Gauge className="block sm:hidden" size={16}></Gauge>
+          </Link>
           <Link
             href="/settings"
             className={`${buttonVariants({

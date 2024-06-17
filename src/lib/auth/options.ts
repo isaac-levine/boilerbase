@@ -6,7 +6,7 @@ import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import { sendMagicLinkEmail } from "../email/mailer";
 import { prisma } from "../prisma";
-import nextAuth from "next-auth";
+import { User } from "@prisma/client";
 const IS_BETA = false;
 export const authOptions = {
   session: {
@@ -21,13 +21,16 @@ export const authOptions = {
   },
   callbacks: {
     async session({ session, token, user }) {
-      const db = await prisma.user.findFirst({ where: { id: user.id } });
-      if (db) {
-        session.user.id = db.id;
-        session.user.first_name = db.name ?? "";
-        session.user.last_name = db.last_name ?? "";
-        session.user.onboarded = db.onboarded ?? false;
-        session.user.phone_number = db.phone_number ?? "";
+      const dbUser = await prisma.user.findFirst({ where: { id: user.id } });
+      if (dbUser) {
+        // Ensure session.user exists
+        if (!session.user) session.user = {} as User;
+
+        // Assign properties to session.user according to the user in the database
+        session.user.id = dbUser.id;
+        session.user.name = dbUser.name ?? "";
+        session.user.last_name = dbUser.last_name ?? "";
+        session.user.onboarded = dbUser.onboarded ?? false;
       }
 
       return session;

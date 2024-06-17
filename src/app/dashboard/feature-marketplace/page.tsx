@@ -60,7 +60,7 @@ export default function Component() {
 
   return (
     <MaxWidthWrapper>
-      <title>Discover • BoilerBase</title>
+      <title>Feature Marketplace • BoilerBase</title>
       <div className="my-12">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">

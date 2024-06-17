@@ -71,7 +71,10 @@ export default function Home() {
             that empowers developers with the best tools.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="/discover" className={`${buttonVariants()}`}>
+            <Link
+              href="/dashboard/feature-marketplace"
+              className={`${buttonVariants()}`}
+            >
               Browse Trending
             </Link>
             <QualityPromise />

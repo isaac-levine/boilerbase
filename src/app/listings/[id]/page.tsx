@@ -97,11 +97,6 @@ export default function Component() {
     <MaxWidthWrapper>
       <title>{`${listing?.title} • BoilerBase`}</title>
       <div className="py-4 sm:py-10">
-        {/* <Button variant="ghost">
-          <Link href="/discover">
-            <ArrowLeft size={30} />
-          </Link>
-        </Button> */}
         <div className="max-w-2xl mx-auto shadow-md">
           <Card>
             <CardHeader>
