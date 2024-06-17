@@ -54,6 +54,13 @@ export default function SellAnItemForm() {
   // Handle the values from the form submission
   async function onSubmit(values: z.infer<typeof formSchema>) {
     values.price = Number(values.price);
+
+    if (!session?.data?.user?.id) {
+      console.error("Something wrong with session or user object");
+      return;
+    }
+
+    // Create a new listing object
     const listing = {
       userId: session?.data?.user.id,
       title: values.title,

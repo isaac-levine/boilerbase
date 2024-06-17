@@ -4,10 +4,10 @@ import { authOptions } from "./options";
 
 export async function getSignedInUser() {
   const session = await getServerSession(authOptions);
-  
-  console.log(session)
-  
-  if (!session) {
+
+  console.log(session);
+
+  if (!session || !session.user) {
     redirect("/auth/sign-in");
   }
 

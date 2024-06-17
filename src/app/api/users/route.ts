@@ -10,7 +10,7 @@ export async function POST(req: any) {
   console.log("Adding new user: ", req.body);
   const session = await getServerSession(authOptions);
 
-  if (!session) {
+  if (!session || !session.user) {
     return NextResponse.json({
       message: "Unauthorized",
       success: false,
@@ -55,7 +55,7 @@ export async function POST(req: any) {
 export async function PUT(req: any) {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
+  if (!session || !session.user) {
     return NextResponse.json({
       message: "Unauthorized",
       success: false,
