@@ -48,22 +48,29 @@ model Session {
 // }
 
 model User {
-  id                 String    @id @default(cuid()) @map("_id")
-  name               String?   @default("")
-  last_name          String?   @default("")
-  email              String?   @unique
-  created            DateTime  @default(now())
-  emailVerified      DateTime?
-  onboarded          Boolean?  @default(false)
-  phone_number       String?   @default("")
-  image              String?   @default("")
+  id                  String    @id @default(cuid()) @map("_id")
+  name                String?   @default("")
+  last_name           String?   @default("")
+  email               String?   @unique
+  created             DateTime  @default(now())
+  emailVerified       DateTime?
+  onboarded           Boolean?  @default(false)
+  image               String?   @default("")
   // role          Role      @default(USER)
-  accounts           Account[]
-  sessions           Session[]
-  likes              Like[]
-  Review             Review[]
-  stripe_customer_id String?
-  tier               String?
+  accounts            Account[]
+  sessions            Session[]
+  likes               Like[]
+  Review              Review[]
+  stripe_customer_id  String?
+  tier                String?
+  receivedBoilerplate Boolean?  @default(false)
+}
+
+model Boilerplate { 
+  id          String   @id @default(cuid()) @map("_id")
+  title       String
+  description String
+  previewLink String?
 }
 
 model VerificationToken {
