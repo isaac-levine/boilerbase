@@ -74,47 +74,46 @@ export default function NavigationBar() {
                 Home
               </Link>
             </SheetClose>
-            <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
-                href="/dashboard"
-              >
-                Dashboard
-              </Link>
-            </SheetClose>
-            {/* <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
-                href="/dashboard/feature-marketplace"
-              >
-                Feature Marketplace
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
-                href="/dashboard/post-a-feature"
-              >
-                Post a Feature
-              </Link>
-            </SheetClose> */}
+            {session.data?.user ? (
+              // User is signed in, show these options
+              <>
+                <SheetClose asChild>
+                  <Link
+                    className="hover:underline hover:underline-offset-4"
+                    href="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    className="hover:underline hover:underline-offset-4"
+                    href="/settings"
+                  >
+                    Settings
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    className="hover:underline hover:underline-offset-4"
+                    href="/api/auth/signout"
+                  >
+                    Sign Out
+                  </Link>
+                </SheetClose>
+              </>
+            ) : (
+              // User is not signed in, show these options
+              <SheetClose asChild>
+                <Link
+                  className="hover:underline hover:underline-offset-4"
+                  href="/api/auth/signin"
+                >
+                  Sign In
+                </Link>
+              </SheetClose>
+            )}
             <DarkModeToggle />
-            <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
-                href="/settings"
-              >
-                Settings
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link
-                className="hover:underline hover:underline-offset-4"
-                href="/api/auth/signout"
-              >
-                Sign Out
-              </Link>
-            </SheetClose>
           </nav>
         </SheetContent>
       </Sheet>
@@ -131,26 +130,7 @@ export default function NavigationBar() {
       <nav
         className="hidden md:flex items-center gap-6 text-sm font-medium"
         ref={navRef}
-      >
-        {/* <Link
-          className="hover:underline hover:underline-offset-4 font-semibold"
-          href="/dashboard"
-        >
-          Dashboard
-        </Link> */}
-        {/* <Link
-          className="hover:underline hover:underline-offset-4"
-          href="/dashboard/feature-marketplace"
-        >
-          Feature Marketplace
-        </Link>
-        <Link
-          className="hover:underline hover:underline-offset-4"
-          href="/dashboard/post-a-feature"
-        >
-          Post a Feature
-        </Link> */}
-      </nav>
+      ></nav>
       {session.data?.user ? (
         <div className="flex items-center justify-end gap-2 w-1/3 sm:w-auto">
           <DarkModeToggle className="hidden sm:block"></DarkModeToggle>
@@ -158,29 +138,28 @@ export default function NavigationBar() {
             href="/dashboard"
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex flex-row gap-2`}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex-row gap-2 hidden sm:flex`}
           >
             <span className="hidden sm:block">Dashboard</span>
-            <Gauge className="block sm:hidden" size={16}></Gauge>
+            {/* <Gauge className="block sm:hidden" size={16}></Gauge> */}
           </Link>
           <Link
             href="/settings"
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex flex-row gap-2`}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex-row gap-2 hidden sm:flex`}
           >
             <span className="hidden sm:block">Settings</span>
-            <Settings className="block sm:hidden" size={16}></Settings>
+            {/* <Settings className="block sm:hidden" size={16}></Settings> */}
           </Link>
           <Link
             href="/api/auth/signout"
-            // onClick={() => signOut}
             className={`${buttonVariants({
               variant: "outline",
-            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 `}
+            })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 hidden sm:flex`}
           >
             <span className="hidden sm:block">Sign out</span>
-            <LogOut className="block sm:hidden" size={16}></LogOut>
+            {/* <LogOut className="block sm:hidden" size={16}></LogOut> */}
           </Link>
         </div>
       ) : (
