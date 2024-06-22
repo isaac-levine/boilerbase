@@ -17,7 +17,7 @@ export default function MoreThanJustABoilerplateSection() {
               people.
             </p>
           </div>
-          <div className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-950 dark:shadow-none">
+          <div className="rounded-xl  dark:shadow-none bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-12">
             <div className="grid gap-4">
               <div className="grid gap-1">
                 <h3 className="text-xl font-bold">

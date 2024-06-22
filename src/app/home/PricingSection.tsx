@@ -93,11 +93,11 @@ const PricingSection = async () => {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-5xl items-center gap-6 py-8 lg:grid-cols-3 lg:gap-12">
+        <div className="mx-auto grid max-w-5xl items-center gap-6 py-8 lg:grid-cols-3 lg:gap-12 ">
           {plans.map((plan) => (
             <div
               key={plan.title}
-              className={`grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-950 ${
+              className={`grid gap-4  border border-gray-200 dark:border-gray-800  bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 ${
                 plan.title === "Founder" ? "" : ""
               } mx-12 my-2 lg:mx-0`}
             >
