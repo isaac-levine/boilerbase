@@ -50,8 +50,8 @@ const HeroSection = () => {
                 <span className="text-primary">{timeOfDay}</span>.
               </h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Simply answer a few questions and receive your boilerplate code
-                in minutes.
+                All you have to do is answer a few questions about your product
+                and tech stack preferences.
               </p>
             </div>
           </div>

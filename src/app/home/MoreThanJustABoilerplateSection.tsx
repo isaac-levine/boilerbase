@@ -38,12 +38,10 @@ export default function MoreThanJustABoilerplateSection() {
                 </p>
               </div>
               <div className="grid gap-1">
-                <h3 className="text-xl font-bold">
-                  Learning and Development Resources
-                </h3>
+                <h3 className="text-xl font-bold">Beta Testing Marketplace</h3>
                 <p className="text-gray-500 dark:text-gray-400">
-                  Get access to our curated resources and tools to help you
-                  launch and grow your SaaS product effectively.
+                  Get early feedback on your product from other founders and
+                  early adopters.
                 </p>
               </div>
             </div>
