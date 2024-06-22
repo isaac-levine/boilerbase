@@ -21,9 +21,9 @@ export const Footer = () => {
             <Link href="/" passHref>
               <span className="hover:underline cursor-pointer">Home</span>
             </Link>
-            <Link href="/about" passHref>
+            {/* <Link href="/about" passHref>
               <span className="hover:underline cursor-pointer">About</span>
-            </Link>
+            </Link> */}
             <Link href="mailto:help@boilerbase.io" passHref>
               <span className="hover:underline cursor-pointer">Contact</span>
             </Link>
@@ -36,9 +36,9 @@ export const Footer = () => {
               </span>
             </Link>
           </nav>
-          {/* <p className="text-sm text-gray-500 dark:text-gray-400">
-          © 2024 Acme Inc. All rights reserved.
-        </p> */}
+          {/* <p className="text-sm text-gray-500 dark:text-gray-400 ">
+            © 2024 Acme Inc. All rights reserved.
+          </p> */}
         </div>
       </MaxWidthWrapper>
     </footer>
