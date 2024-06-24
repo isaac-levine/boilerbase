@@ -49,7 +49,7 @@ export const MagicLinkEmail = ({
         <Container className="mx-auto">
           <Section className="">
             <Text className={"text-lg text-[#1a1a1a] font-semibold"}>
-              Your one-time login link
+              welcome to boilerbase! :)
             </Text>
 
             <Link
@@ -61,10 +61,10 @@ export const MagicLinkEmail = ({
 
             <Text>
               {
-                "This code will expire within 24 hours. If you have not requested this code, kindly contact support promptly at the following email address: support@brndndiaz.dev."
+                "This code will expire within 24 hours. If you have not requested this code, kindly contact support at the following email address: help@boilerbase.io."
               }
             </Text>
-            <Text>— boilerbase.io</Text>
+            <Text>— boilerbase team</Text>
           </Section>
         </Container>
       </Body>

@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   if (!user) {
     return (
       <div className="flex flex-col items-center h-screen ">
-        <title>Dashboard • BoilerBase</title>
+        <title>Dashboard • Boilerbase</title>
         <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800 mt-12 mx-8">
           <div className="space-y-4 text-center">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
@@ -47,7 +47,7 @@ export default async function DashboardLayout({
   // User is signed in, so we can display the dashboard
   return (
     <div className="flex min-h-screen">
-      <title>Dashboard • BoilerBase</title>
+      <title>Dashboard • Boilerbase</title>
       <div className="dark:bg-gray-900 dark:text-white w-72 p-6 space-y-6 hidden sm:block">
         <Link
           href="/dashboard"
@@ -58,24 +58,25 @@ export default async function DashboardLayout({
           <span>Dashboard</span>
         </Link>
         <nav className="space-y-3">
-          <Link
+          {/* <Link
             href="/dashboard"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
             prefetch={false}
           >
             <HomeIcon className="w-5 h-5" />
             <span>Home</span>
-          </Link>
-          <hr className="border-t border-gray-700" />
+          </Link> */}
+          {/* <hr className="border-t border-gray-700" /> */}
           <Link
-            href="/form"
+            href="/dashboard/form"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
             prefetch={false}
           >
-            <BoilerbaseIconBlocks size={28} />
+            <BoilerbaseIconBlocks size={26} />
             <span>Get Boilerplate</span>
           </Link>
-          <hr className="border-t border-gray-700" />
+          {/* ---- Feature requests section with 3 links ---- */}
+          {/* <hr className="border-t border-gray-700" />
           <div>
             <Link
               href="/dashboard/feature-requests"
@@ -102,34 +103,31 @@ export default async function DashboardLayout({
               <span>Feature Marketplace</span>
             </Link>
           </div>
-          <hr className="border-t border-gray-700" />
-          <div>
-            <Link
-              href="/dashboard/beta-tests"
-              className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
-              prefetch={false}
-            >
-              <FlaskConical className="w-5 h-5" />
-              <span>My Beta Tests</span>
-            </Link>
-            <Link
-              href="/dashboard/beta-tests"
-              className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
-              prefetch={false}
-            >
-              <FlaskConical className="w-5 h-5" />
-              <span>Post a Beta Test</span>
-            </Link>
-            <Link
-              href="/dashboard/beta-tests"
-              className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
-              prefetch={false}
-            >
-              <FlaskConical className="w-5 h-5" />
-              <span>Beta Test Marketplace</span>
-            </Link>
-          </div>
-          <hr className="border-t border-gray-700" />
+          <hr className="border-t border-gray-700" /> */}
+          <Link
+            href="/dashboard/beta-tests"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
+            prefetch={false}
+          >
+            <FlaskConical className="w-5 h-5" />
+            <span>My Beta Tests</span>
+          </Link>
+          <Link
+            href="/dashboard/beta-tests"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
+            prefetch={false}
+          >
+            <FlaskConical className="w-5 h-5" />
+            <span>Post a Beta Test</span>
+          </Link>
+          <Link
+            href="/dashboard/beta-tests"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
+            prefetch={false}
+          >
+            <FlaskConical className="w-5 h-5" />
+            <span>Beta Test Marketplace</span>
+          </Link>
 
           <Link
             href="/settings"
@@ -147,25 +145,5 @@ export default async function DashboardLayout({
         </main>
       </div>
     </div>
-  );
-}
-
-function HomeIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
   );
 }

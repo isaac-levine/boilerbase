@@ -17,7 +17,7 @@ export default async function Component() {
   if (!user) {
     return (
       <div className="flex flex-col items-center h-screen ">
-        <title>Dashboard • BoilerBase</title>
+        <title>Dashboard • Boilerbase</title>
         <div className="max-w-md p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800 mt-12 mx-8">
           <div className="space-y-4 text-center">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
@@ -44,7 +44,7 @@ export default async function Component() {
   // User is signed in, so we can display the dashboard
   return (
     <div className="flex min-h-screen">
-      <title>Dashboard • BoilerBase</title>
+      <title>Dashboard • Boilerbase</title>
       <div className="flex-1 bg-gray-100 dark:bg-gray-950 p-8">
         <main className="p-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
