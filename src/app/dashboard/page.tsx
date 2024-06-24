@@ -61,11 +61,11 @@ export default async function Component() {
               </CardHeader>
               <CardContent className="flex items-center justify-center">
                 {gotBoilerplate ? (
-                  <Link className={buttonVariants()} href="/form">
+                  <Link className={buttonVariants()} href="/dashboard/form">
                     Get Boilerplate
                   </Link>
                 ) : (
-                  <Link className={buttonVariants()} href="/form">
+                  <Link className={buttonVariants()} href="/dashboard/form">
                     Get Boilerplate
                   </Link>
                 )}
