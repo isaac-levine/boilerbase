@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import UpgradeSection from "./UpgradeSection";
+import { getSubscriptionLevel, FOUNDER, HACKER, PRO, FREE } from "@/lib/stripe";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/options";
 import { buttonVariants } from "@/components/ui/button";
@@ -13,8 +14,8 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-
   const user = session?.user;
+  const subscriptionLevel = await getSubscriptionLevel();
 
   // If user is not signed in, prompt them to sign in to view the dashboard
   if (!user) {
@@ -40,6 +41,8 @@ export default async function DashboardLayout({
         </div>
       </div>
     );
+  } else if (![FOUNDER, HACKER, PRO].includes(subscriptionLevel)) {
+    return <UpgradeSection />;
   }
 
   const gotBoilerplate = user.receivedBoilerplate;
@@ -113,7 +116,7 @@ export default async function DashboardLayout({
             <span>My Beta Tests</span>
           </Link>
           <Link
-            href="/dashboard/beta-tests"
+            href="/dashboard/post-a-test"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
             prefetch={false}
           >
@@ -121,7 +124,7 @@ export default async function DashboardLayout({
             <span>Post a Beta Test</span>
           </Link>
           <Link
-            href="/dashboard/beta-tests"
+            href="/dashboard/test-marketplace"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
             prefetch={false}
           >

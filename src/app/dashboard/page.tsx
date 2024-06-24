@@ -7,11 +7,13 @@ import { buttonVariants } from "@/components/ui/button";
 import FeatureRequestsTable from "./FeatureRequestsTable";
 import BetaTestsTable from "./BetaTestsTable";
 import { CodeXml, LayoutDashboard, FlaskConical, Settings } from "lucide-react";
+import { getSubscriptionLevel, FOUNDER, HACKER, PRO, FREE } from "@/lib/stripe";
+import UpgradeSection from "./UpgradeSection";
 
 export default async function Component() {
   const session = await getServerSession(authOptions);
-
   const user = session?.user;
+  const subscriptionLevel = await getSubscriptionLevel();
 
   // If user is not signed in, prompt them to sign in to view the dashboard
   if (!user) {
@@ -45,8 +47,8 @@ export default async function Component() {
   return (
     <div className="flex min-h-screen">
       <title>Dashboard • Boilerbase</title>
-      <div className="flex-1 bg-gray-100 dark:bg-gray-950 p-8">
-        <main className="p-6 space-y-6">
+      <div className="flex-1 bg-gray-100 dark:bg-gray-950">
+        <main className="space-y-6 ">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="flex flex-col gap-4">
               <CardHeader className="flex items-center justify-between">

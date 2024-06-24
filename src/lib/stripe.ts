@@ -30,6 +30,11 @@ export async function hasSubscription() {
   return false;
 }
 
+export const FOUNDER = "Boilerbase Founder";
+export const HACKER = "Boilerbase Hacker";
+export const PRO = "Boilerbase Pro";
+export const FREE = "Free";
+
 // Get the subscription level of the current user (free, hacker, founder, pro)
 export async function getSubscriptionLevel() {
   const session = await getServerSession(authOptions);

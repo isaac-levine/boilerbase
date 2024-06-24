@@ -18,15 +18,14 @@ import {
   generateCustomerPortalLink,
   hasSubscription,
   getSubscriptionLevel,
+  FOUNDER,
+  HACKER,
+  PRO,
+  FREE,
 } from "@/lib/stripe";
 import Link from "next/link";
 
 // Subscription levels -- returned from getSubscriptionLevel in stripe.ts
-const FOUNDER = "Boilerbase Founder";
-const HACKER = "Boilerbase Hacker";
-const PRO = "Boilerbase Pro";
-const FREE = "Free";
-
 export default async function BillingCard() {
   const session = await getServerSession(authOptions);
   let user = null;
@@ -89,7 +88,7 @@ export default async function BillingCard() {
               Manage Billing
             </Link>
           </div>
-          <Separator />
+          {/* <Separator /> */}
           {/* <div className="grid gap-2">
             <p className="font-medium">Available Plans</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
