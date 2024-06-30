@@ -25,9 +25,14 @@ import {
 import React, { useState } from "react";
 
 const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
+  title: z
+    .string()
+    .min(2, {
+      message: "Title must be at least 2 characters.",
+    })
+    .refine((value) => !value.includes(" "), {
+      message: "Title must be one word, no spaces.",
+    }),
   typescript: z.string(),
   eslint: z.string(),
   tailwind: z.string(),
@@ -193,11 +198,12 @@ export default function BoilerplateGenerationForm() {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>
+                What is your project&apos;s title? (No spaces)
+              </FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
-              <FormDescription>What is your project named?</FormDescription>
               <FormMessage />
             </FormItem>
           )}
