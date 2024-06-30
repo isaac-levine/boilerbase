@@ -9,8 +9,8 @@ import { useSession } from "next-auth/react";
 export default function Component() {
   const session = useSession();
   const user = session?.data?.user;
-  console.log(session);
-  console.log(user);
+  // console.log(session);
+  // console.log(user);
 
   return (
     <MaxWidthWrapper>
