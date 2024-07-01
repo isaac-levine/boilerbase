@@ -1,8 +1,6 @@
 "use client";
 import { FcGoogle } from "react-icons/fc";
-
-import Image from "next/image";
-import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,15 +18,6 @@ export default function SignIn() {
 
   const [authError, setAuthError] = useState<string | null>(null);
 
-  // const query = useSearchParams();
-
-  // useEffect(() => {
-  //   if (query?.get("error")) {
-  //     setAuthError(query.get("error"));
-  //     console.log(authError);
-  //   }
-  // }, [query, authError]);
-
   const handleSignIn = async (event: FormEvent) => {
     event.preventDefault(); // prevent the form from doing a page refresh
     setLoading(true);
@@ -40,7 +29,7 @@ export default function SignIn() {
     //redirect to /dashboard in 1 second
     setTimeout(() => {
       router.push("/");
-    }, 1000);
+    }, 100);
 
     return (
       <div className="flex flex-col w-full h-screen justify-center items-center select-none">
@@ -91,10 +80,18 @@ export default function SignIn() {
             >
               <FcGoogle /> Login with Google
             </Button>
+            <Button
+              variant="outline"
+              className="w-full dark:bg-foreground shadow-sm dark:text-background gap-2 border-foreground/10"
+              onClick={() => {
+                signIn("github", { callbackUrl: process.env.NEXTAUTH_URL });
+              }}
+            >
+              <FaGithub /> Login with GitHub
+            </Button>
           </div>
         </div>
       </div>
-      {/* <div className="hidden bg-muted sm:flex overflow-hidden select-none user-select-none  justify-center items-center w-full h-full"></div> */}
     </div>
   );
 }

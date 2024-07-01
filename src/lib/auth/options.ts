@@ -4,6 +4,7 @@ import { randomUUID } from "crypto";
 import NextAuth, { AuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 import { sendMagicLinkEmail } from "../email/mailer";
 import { prisma } from "../prisma";
 import { User } from "@prisma/client";
@@ -44,17 +45,6 @@ export const authOptions = {
       });
 
       if (userExist) {
-        // logsnag.track({
-        //   channel: "sweepverse",
-        //   event: "Sign In",
-        //   user_id: userExist.id,
-        //   icon: "🔐",
-        //   notify: true,
-        //   tags: {
-        //     email: `${userExist.email}`,
-        //     role: `${userExist.role}`,
-        //   },
-        // })
         return true;
       } else {
         if (IS_BETA) {
@@ -96,6 +86,10 @@ export const authOptions = {
       clientId: `${process.env.GOOGLE_CLIENT}`,
       clientSecret: `${process.env.GOOGLE_SECRET}`,
       allowDangerousEmailAccountLinking: true,
+    }),
+    GitHubProvider({
+      clientId: `${process.env.GITHUB_CLIENT_ID}`,
+      clientSecret: `${process.env.GITHUB_SECRET}`,
     }),
   ],
 
