@@ -84,7 +84,7 @@ export default function SignIn() {
               variant="outline"
               className="w-full dark:bg-foreground shadow-sm dark:text-background gap-2 border-foreground/10"
               onClick={() => {
-                signIn("github", { callbackUrl: process.env.NEXTAUTH_URL });
+                signIn("github", { callbackUrl: "/api/auth/callback/github" });
               }}
             >
               <FaGithub /> Login with GitHub
