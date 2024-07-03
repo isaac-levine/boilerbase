@@ -36,6 +36,12 @@ export const authOptions = {
 
       return session;
     },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (account?.accessToken) {
+        token.accessToken = account.accessToken;
+      }
+      return token;
+    },
     async redirect({ url, baseUrl }) {
       return baseUrl;
     },
