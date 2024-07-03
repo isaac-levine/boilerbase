@@ -45,6 +45,7 @@
     "nextjs-toploader": "^1.6.11",
     "nodemailer": "^6.9.13",
     "npm": "^10.5.2",
+    "octokit": "^4.0.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.4",
