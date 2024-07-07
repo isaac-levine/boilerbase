@@ -62,37 +62,37 @@ export const authOptions = {
     },
   },
   providers: [
-    EmailProvider({
-      async sendVerificationRequest({
-        identifier: email,
-        url,
-        provider: { server, from },
-        token,
-      }) {
-        // Check if the user exists
-        const user = await prisma.user.findUnique({ where: { email } });
+    // EmailProvider({
+    //   async sendVerificationRequest({
+    //     identifier: email,
+    //     url,
+    //     provider: { server, from },
+    //     token,
+    //   }) {
+    //     // Check if the user exists
+    //     const user = await prisma.user.findUnique({ where: { email } });
 
-        // if(user && IS_BETA){
-        //   await sendMagicLinkEmail(email, url);
-        // }
+    //     // if(user && IS_BETA){
+    //     //   await sendMagicLinkEmail(email, url);
+    //     // }
 
-        if (IS_BETA) {
-          if (user) {
-            await sendMagicLinkEmail(email, url);
-          }
-        } else {
-          await sendMagicLinkEmail(email, url);
-        }
-      },
-      async generateVerificationToken() {
-        return "magic_link_" + randomUUID();
-      },
-    }),
-    GoogleProvider({
-      clientId: `${process.env.GOOGLE_CLIENT}`,
-      clientSecret: `${process.env.GOOGLE_SECRET}`,
-      allowDangerousEmailAccountLinking: true,
-    }),
+    //     if (IS_BETA) {
+    //       if (user) {
+    //         await sendMagicLinkEmail(email, url);
+    //       }
+    //     } else {
+    //       await sendMagicLinkEmail(email, url);
+    //     }
+    //   },
+    //   async generateVerificationToken() {
+    //     return "magic_link_" + randomUUID();
+    //   },
+    // }),
+    // GoogleProvider({
+    //   clientId: `${process.env.GOOGLE_CLIENT}`,
+    //   clientSecret: `${process.env.GOOGLE_SECRET}`,
+    //   allowDangerousEmailAccountLinking: true,
+    // }),
     GitHubProvider({
       clientId: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_SECRET}`,
