@@ -46,12 +46,12 @@ export default function SignIn() {
         <div className="mx-auto grid w-[350px] gap-6 ">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
-            <p className="text-balance text-muted-foreground">
+            {/* <p className="text-balance text-muted-foreground">
               Enter your email below to login or join now
-            </p>
+            </p> */}
           </div>
           <div className="grid gap-4">
-            <form onSubmit={handleSignIn} className="gap-4 flex flex-col">
+            {/* <form onSubmit={handleSignIn} className="gap-4 flex flex-col">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -70,8 +70,8 @@ export default function SignIn() {
               >
                 Login With Email
               </Button>
-            </form>
-            <Button
+            </form> */}
+            {/* <Button
               variant="outline"
               className="w-full dark:bg-foreground shadow-sm dark:text-background gap-2 border-foreground/10"
               onClick={() => {
@@ -79,7 +79,7 @@ export default function SignIn() {
               }}
             >
               <FcGoogle /> Login with Google
-            </Button>
+            </Button> */}
             <Button
               variant="outline"
               className="w-full dark:bg-foreground shadow-sm dark:text-background gap-2 border-foreground/10"
