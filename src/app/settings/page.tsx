@@ -1,16 +1,10 @@
-import { createCustomerIfNull } from "@/lib/stripe";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { FormEvent, useEffect, useState } from "react";
-import { getServerSession } from "next-auth";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { toast } from "@/components/ui/use-toast";
-import Link from "next/link";
 import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
-import BillingCard from "./BillingCard";
+import { createCustomerIfNull } from "@/lib/stripe";
+import { getServerSession } from "next-auth";
 import AccountSettingsForm from "./AccountSettingsForm";
+import BillingCard from "./BillingCard";
 
 export default async function Component() {
   const session = await getServerSession(authOptions);
@@ -32,7 +26,7 @@ export default async function Component() {
       {user ? (
         <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56 px-6 lg:px-8 sm:text-center flex flex-col gap-6">
           <h1 className="text-4xl font-extrabold mb-6">
-            {user?.name ? `${user.name}'s` : ""} Settings
+            {user?.first_name ? `${user.first_name}'s` : ""} Settings
           </h1>
           <AccountSettingsForm />
           <BillingCard />

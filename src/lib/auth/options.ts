@@ -1,13 +1,9 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 // import { Role } from "@prisma/client";
-import { randomUUID } from "crypto";
-import NextAuth, { AuthOptions } from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import GoogleProvider from "next-auth/providers/google";
-import GitHubProvider from "next-auth/providers/github";
-import { sendMagicLinkEmail } from "../email/mailer";
-import { prisma } from "../prisma";
 import { User } from "@prisma/client";
+import NextAuth, { AuthOptions } from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
+import { prisma } from "../prisma";
 const IS_BETA = false;
 export const authOptions = {
   session: {
@@ -29,7 +25,7 @@ export const authOptions = {
 
         // Assign properties to session.user according to the user in the database
         session.user.id = dbUser.id;
-        session.user.name = dbUser.name ?? "";
+        session.user.first_name = dbUser.first_name ?? "";
         session.user.last_name = dbUser.last_name ?? "";
         session.user.onboarded = dbUser.onboarded ?? false;
       }
@@ -46,6 +42,7 @@ export const authOptions = {
       return baseUrl;
     },
     async signIn({ user, account, profile, email, credentials }) {
+      console.log("[/api/auth/signin/] signing in user: ", user);
       const userExist = await prisma.user.findUnique({
         where: { email: `${user.email}`.toLowerCase() },
       });
@@ -53,11 +50,7 @@ export const authOptions = {
       if (userExist) {
         return true;
       } else {
-        if (IS_BETA) {
-          return "/auth/sign-in?error=Application is currently in private beta. Please try again later.";
-        } else {
-          return true;
-        }
+        return true;
       }
     },
   },
@@ -96,6 +89,15 @@ export const authOptions = {
     GitHubProvider({
       clientId: `${process.env.GITHUB_CLIENT_ID}`,
       clientSecret: `${process.env.GITHUB_SECRET}`,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          first_name: profile.name || profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          username: profile.login,
+        };
+      },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,

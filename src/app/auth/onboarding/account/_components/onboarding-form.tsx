@@ -2,46 +2,31 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { completeOnboarding } from "../_actions/complete-onboarding-action";
 import { User } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { completeOnboarding } from "../_actions/complete-onboarding-action";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-
-// let roles = [
-//   { label: "User", value: "USER" },
-//   { label: "Seller", value: "SELLER" },
-// ];
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const onboardingSchema = z.object({
-  name: z.string().min(2).max(64),
+  first_name: z.string().min(2).max(64),
   last_name: z.string().min(2).max(64),
-  // role: z
-  //   .string({
-  //     required_error: "Please select a role.",
-  //   })
-  //   .default("USER"),
 });
 
 export function OnboardingForm({ user }: { user: User }) {
-  // if (user.role === "ADMIN") {
-  //   roles.push({ label: "Admin", value: "ADMIN" });
-  // }
-
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +34,7 @@ export function OnboardingForm({ user }: { user: User }) {
     //@ts-ignore
     resolver: zodResolver(onboardingSchema),
     defaultValues: {
-      name: "" + user.name,
+      first_name: "" + user.first_name,
       last_name: "" + user.last_name,
       // role: user.role,
     },
@@ -57,7 +42,7 @@ export function OnboardingForm({ user }: { user: User }) {
 
   async function onSubmit(values: z.infer<typeof onboardingSchema>) {
     setLoading(true);
-    await completeOnboarding(values.name, values.last_name);
+    await completeOnboarding(values.first_name, values.last_name);
     toast({
       title: "Updated",
       description: "You have successfully changed your personal information",
@@ -78,7 +63,7 @@ export function OnboardingForm({ user }: { user: User }) {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
-            name="name"
+            name="first_name"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>First name</FormLabel>

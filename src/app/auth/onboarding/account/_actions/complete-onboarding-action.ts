@@ -21,7 +21,7 @@ export async function completeOnboarding(
       id: session?.user.id,
     },
     data: {
-      name: updatedName,
+      first_name: updatedName,
       last_name: updatedLastName,
       onboarded: true,
     },

@@ -1,7 +1,5 @@
 import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
-import { createCustomerIfNull } from "@/lib/stripe";
-import { NextApiRequest } from "next";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
@@ -18,8 +16,6 @@ export async function POST(req: any) {
   }
 
   const { email, firstName, lastName } = await req.json();
-  const name = firstName;
-  const last_name = lastName;
 
   console.log("Updating user settings:", {
     email,
@@ -33,8 +29,8 @@ export async function POST(req: any) {
     },
     data: {
       email,
-      name,
-      last_name,
+      first_name: firstName,
+      last_name: lastName,
     },
   });
 
@@ -63,8 +59,6 @@ export async function PUT(req: any) {
   }
 
   const { email, firstName, lastName } = await req.json();
-  const name = firstName;
-  const last_name = lastName;
 
   console.log("Updating user settings:", {
     email,
@@ -78,8 +72,8 @@ export async function PUT(req: any) {
     },
     data: {
       email,
-      name,
-      last_name,
+      first_name: firstName,
+      last_name: lastName,
     },
   });
 

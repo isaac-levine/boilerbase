@@ -1,18 +1,11 @@
 "use client";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FormEvent, useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
+import { useSession } from "next-auth/react";
+import { FormEvent, useEffect, useState } from "react";
 
 export default function AccountSettingsForm() {
   const session = useSession();
@@ -23,10 +16,10 @@ export default function AccountSettingsForm() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    setFirstName(user?.name ?? "");
+    setFirstName(user?.first_name ?? "");
     setLastName(user?.last_name ?? "");
     setEmail(user?.email ?? "");
-  }, [user?.name, user?.last_name, user?.email]);
+  }, [user?.first_name, user?.last_name, user?.email]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
