@@ -1,10 +1,9 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-// import { Role } from "@prisma/client";
 import { User } from "@prisma/client";
 import NextAuth, { AuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { prisma } from "../prisma";
-const IS_BETA = false;
+
 export const authOptions = {
   session: {
     strategy: "database",
