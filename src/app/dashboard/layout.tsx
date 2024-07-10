@@ -1,12 +1,11 @@
+import { authOptions } from "@/lib/auth/options";
+import { FOUNDER, HACKER, PRO, getSubscriptionLevel } from "@/lib/stripe";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import UpgradeSection from "./UpgradeSection";
-import { getSubscriptionLevel, FOUNDER, HACKER, PRO, FREE } from "@/lib/stripe";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth/options";
-import { buttonVariants } from "@/components/ui/button";
 
-import { Gauge, LayoutDashboard, FlaskConical, Settings } from "lucide-react";
 import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
+import { FlaskConical, Gauge, Settings } from "lucide-react";
 
 export default async function DashboardLayout({
   children,
@@ -71,12 +70,12 @@ export default async function DashboardLayout({
           </Link> */}
           {/* <hr className="border-t border-gray-700" /> */}
           <Link
-            href="/dashboard/form"
+            href="/dashboard/generate"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
             prefetch={false}
           >
             <BoilerbaseIconBlocks size={26} />
-            <span>Get Boilerplate</span>
+            <span>Generate Boilerplate</span>
           </Link>
           {/* ---- Feature requests section with 3 links ---- */}
           {/* <hr className="border-t border-gray-700" />
