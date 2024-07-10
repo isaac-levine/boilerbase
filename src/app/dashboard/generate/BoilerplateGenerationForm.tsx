@@ -1,28 +1,26 @@
 "use client";
-import { useSession } from "next-auth/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
-import { toast } from "@/components/ui/use-toast";
-import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import React, { useState } from "react";
+import { sendMagicLinkEmail } from "@/lib/email/mailer";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const formSchema = z.object({
   title: z
@@ -90,7 +88,13 @@ export default function BoilerplateGenerationForm() {
     const kirimaseCommand = buildKirimaseCommand(values);
     const createNextAppCommand = buildCreateNextAppCommand(values);
     const fullCommand = `${createNextAppCommand} && cd ${values.title} && ${kirimaseCommand}`;
-    console.log(fullCommand);
+    // console.log(fullCommand);
+
+    // sendGenerationEmailToIsaac(
+    //   session?.data?.user?.username || "",
+    //   fullCommand
+    // );
+    sendMagicLinkEmail("isaacmlevine4@gmail.com", "testLink");
   }
 
   const buildKirimaseCommand = (values: z.infer<typeof formSchema>) => {
