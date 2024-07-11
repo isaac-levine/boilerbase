@@ -5,7 +5,7 @@ import Link from "next/link";
 import UpgradeSection from "./UpgradeSection";
 
 import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
-import { FlaskConical, Gauge, Settings } from "lucide-react";
+import { Gauge, Settings } from "lucide-react";
 
 export default async function DashboardLayout({
   children,
@@ -106,7 +106,8 @@ export default async function DashboardLayout({
             </Link>
           </div>
           <hr className="border-t border-gray-700" /> */}
-          <Link
+
+          {/* <Link
             href="/dashboard/beta-tests"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
             prefetch={false}
@@ -129,7 +130,7 @@ export default async function DashboardLayout({
           >
             <FlaskConical className="w-5 h-5" />
             <span>Beta Test Marketplace</span>
-          </Link>
+          </Link> */}
 
           <Link
             href="/settings"

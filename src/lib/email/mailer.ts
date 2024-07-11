@@ -25,7 +25,7 @@ export const sendGenerationEmailToIsaac = async (
   const data = await resend.emails.send({
     from: `Boilerbase <help@${resendDomain}>`,
     to: "isaacmlevine4@gmail.com",
-    subject: `Customer ${githubUsername} requested a Boilerplate!`,
+    subject: `Customer '${githubUsername}' requested a Boilerplate!`,
     react: GenerationEmail({
       githubUsername: githubUsername,
       cliCommand: cliCommand,

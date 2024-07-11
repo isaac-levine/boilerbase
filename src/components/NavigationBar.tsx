@@ -1,22 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { Settings } from "lucide-react";
-import * as React from "react";
-import BoilerbaseIcon from "./BoilerbaseIcon";
-import { Button, buttonVariants } from "./ui/button";
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { LogIn, Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { LogIn, LogOut, Menu, Gauge } from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
+import BoilerbaseIcon from "./BoilerbaseIcon";
 import { DarkModeToggle } from "./DarkModeToggle";
+import { buttonVariants } from "./ui/button";
 
 interface NavItems {
   name: string;
@@ -38,7 +36,7 @@ export default function NavigationBar() {
   // }
 
   return (
-    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-background dark:bg-foreground/5 shadow sticky inset-0 backdrop-blur-md border-b border-foreground/10">
+    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-background dark:bg-foreground/5 shadow sticky inset-0 backdrop-blur-md border-b border-foreground/10 z-50">
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1"

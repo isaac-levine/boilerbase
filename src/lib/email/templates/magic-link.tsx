@@ -107,12 +107,10 @@ export const GenerationEmail = ({
         <Container className="mx-auto">
           <Section className="">
             <Text className={"text-lg text-[#1a1a1a] font-semibold"}>
-              `Customer ${githubUsername} requested a Boilerplate!`
+              Customer &apos;${githubUsername}&apos; requested a Boilerplate!
             </Text>
-            <Text>
-              `Geneate the boilerplate using the following command: $
-              {cliCommand}`
-            </Text>
+            <Text>Geneate the boilerplate using the following command:</Text>
+            <Text>{cliCommand}</Text>
           </Section>
         </Container>
       </Body>

@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { Button, buttonVariants } from "@/components/ui/button";
 import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
-import { ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { QualityPromise } from "@/components/home/QualityPromise";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const router = useRouter();
