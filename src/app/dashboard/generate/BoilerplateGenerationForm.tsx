@@ -15,7 +15,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
-import { sendMagicLinkEmail } from "@/lib/email/mailer";
+import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -48,6 +48,42 @@ const formSchema = z.object({
   Stripe: z.string(),
   Resend: z.string(),
 });
+
+const sendGenerationEmail = async (
+  githubUsername: string,
+  cliCommand: string
+) => {
+  try {
+    const requestBody = {
+      githubUsername: githubUsername,
+      cliCommand: cliCommand,
+    };
+    const response = await fetch("/api/boilerplate/send-generation-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Sent boilerpalte generation email!");
+      // Reset form fields or display a success message
+      toast({
+        title: "Thank you!",
+        description:
+          "You should get added to a repository on GitHub containing your boilerplate shortly!",
+      });
+    } else {
+      const errorData = await response.json();
+      console.error("Error creating boilerplate generation email", errorData);
+    }
+  } catch (error) {
+    console.error("Error sending boilerplate generation email", error);
+  }
+};
+
 export default function BoilerplateGenerationForm() {
   const session = useSession();
   const [databaseType, setDatabaseType] = useState("Postgres");
@@ -77,7 +113,7 @@ export default function BoilerplateGenerationForm() {
   });
 
   // Handle the values from the form submission
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log("Form submitted!");
     if (!session?.data?.user?.id) {
       console.error("Something wrong with session or user object");
@@ -89,13 +125,9 @@ export default function BoilerplateGenerationForm() {
     const createNextAppCommand = buildCreateNextAppCommand(values);
     const fullCommand = `${createNextAppCommand} && cd ${values.title} && ${kirimaseCommand}`;
     // console.log(fullCommand);
-
-    // sendGenerationEmailToIsaac(
-    //   session?.data?.user?.username || "",
-    //   fullCommand
-    // );
-    sendMagicLinkEmail("isaacmlevine4@gmail.com", "testLink");
-  }
+    console.log(session?.data.user);
+    sendGenerationEmail(session?.data?.user?.username || "", fullCommand);
+  };
 
   const buildKirimaseCommand = (values: z.infer<typeof formSchema>) => {
     let cliCommand = "npx kirimase init";

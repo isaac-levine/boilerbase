@@ -27,6 +27,7 @@ export const authOptions = {
         session.user.first_name = dbUser.first_name ?? "";
         session.user.last_name = dbUser.last_name ?? "";
         session.user.onboarded = dbUser.onboarded ?? false;
+        session.user.username = dbUser.username;
       }
 
       return session;
