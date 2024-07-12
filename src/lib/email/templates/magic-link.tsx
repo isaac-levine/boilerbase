@@ -110,6 +110,7 @@ export const GenerationEmail = ({
               Customer {githubUsername} requested a Boilerplate!
             </Text>
             <Text>Geneate the boilerplate using the following command:</Text>
+            <hr />
             <Text className="font-light">{cliCommand}</Text>
           </Section>
         </Container>
