@@ -81,7 +81,7 @@ export const GenerationEmail = ({
 }) => (
   <Html>
     <Head />
-    <Preview>`Customer ${githubUsername} requested a Boilerplate!`</Preview>
+    <Preview>Customer {githubUsername} requested a Boilerplate!</Preview>
     <Tailwind>
       <Body style={main} className="py-8 text-[#1a1a1a]">
         <Container>
@@ -107,10 +107,10 @@ export const GenerationEmail = ({
         <Container className="mx-auto">
           <Section className="">
             <Text className={"text-lg text-[#1a1a1a] font-semibold"}>
-              Customer &apos;${githubUsername}&apos; requested a Boilerplate!
+              Customer {githubUsername} requested a Boilerplate!
             </Text>
             <Text>Geneate the boilerplate using the following command:</Text>
-            <Text>{cliCommand}</Text>
+            <Text className="font-light">{cliCommand}</Text>
           </Section>
         </Container>
       </Body>
