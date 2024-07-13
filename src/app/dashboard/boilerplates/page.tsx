@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
-import "./styles.css";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listings?limit=${limit}`, {

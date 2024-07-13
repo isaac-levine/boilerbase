@@ -1,27 +1,23 @@
-import type { Metadata, Viewport } from "next";
-import { Inter, Montserrat } from "next/font/google";
-import "./globals.css";
-import NextTopLoader from "nextjs-toploader";
-const montserrat = Montserrat({
-  subsets: ["latin"],
-});
-const inter = Inter({ subsets: ["latin"] });
-
+import { Footer } from "@/components/Footer";
+import NavigationBar from "@/components/NavigationBar";
 import { AuthProvider } from "@/components/providers/auth-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import type { Metadata, Viewport } from "next";
+import { Cabin } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import "./globals.css";
+const cabin = Cabin({
+  subsets: ["latin"],
+  weight: "700",
+});
+
 export const metadata: Metadata = {
   title: "Boilerbase",
-  description: "Your one-stop shop for web app boilerplates and templates",
+  description: "The fastest way to ship your SaaS app.",
   icons: ["/boilerbase-icon.png"],
 };
-import NavigationBar from "@/components/NavigationBar";
-import { Footer } from "@/components/Footer";
-import { useSession } from "next-auth/react";
-import { getSignedInUser } from "@/lib/auth/helper";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth/options";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 export const viewport: Viewport = {
   themeColor: "#000000",
   initialScale: 1,
@@ -44,7 +40,7 @@ export default async function RootLayout({
         <body
           className={cn(
             "relative h-full font-sans antialiased",
-            inter.className
+            cabin.className
           )}
         >
           <ThemeProvider
