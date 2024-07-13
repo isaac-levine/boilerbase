@@ -20,11 +20,11 @@ const TestimonialsSection = () => {
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-            <div className="grid gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-300 hover:scale-105">
+            <div className="grid gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-md bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-300 hover:scale-105">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800">
                   <img
-                    src="/placeholder.svg"
+                    src="/maria-gorskikh-headhsot.jpeg"
                     width="48"
                     height="48"
                     alt="Avatar"
@@ -32,23 +32,24 @@ const TestimonialsSection = () => {
                   />
                 </div>
                 <div>
-                  <div className="text-base font-medium">John Doe</div>
+                  <div className="text-base font-medium">Maria Gorskikh</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                    Founder, Acme Inc.
+                    Founder, Global Venture Labs
                   </div>
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400">
-                &quot;Boilerbase has been a game-changer for my team. The\n
-                pre-built boilerplate code has helped us launch our app\n much
-                faster than we could have on our own.&quot;
+                &quot;Boilerbase has allowed our stealth startup to finish our
+                MVP and validate our idea in the matter of days! I can not
+                recommend Boilerbase enough to founders or anyone building a
+                product!&quot;
               </p>
             </div>
             <div className="grid gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-300 hover:scale-105">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800">
                   <img
-                    src="/placeholder.svg"
+                    src="/minh-nguyen-headshot.jpeg"
                     width="48"
                     height="48"
                     alt="Avatar"
@@ -56,16 +57,17 @@ const TestimonialsSection = () => {
                   />
                 </div>
                 <div>
-                  <div className="text-base font-medium">Jane Smith</div>
+                  <div className="text-base font-medium">Minh Nguyen</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                    CTO, Globex Corp.
+                    Co-Founder, Ricefield
                   </div>
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400">
-                &quot;Boilerbase has saved us countless hours of setup and\n
-                configuration. The customizable templates have allowed us\n to
-                quickly build and deploy our app.&quot;
+                &quot;Boilerbase has saved us countless hours of setup and
+                configuration. We generated our own custom boilerplate, and we
+                were able to develop our MVP way faster than I ever thought
+                possible!&quot;
               </p>
             </div>
           </div>
