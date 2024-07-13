@@ -59,7 +59,7 @@ export default async function DashboardLayout({
           <Gauge className="w-6 h-6" />
           <span>Dashboard</span>
         </Link>
-        <nav className="space-y-3">
+        <nav className="space-y-4">
           {/* <Link
             href="/dashboard"
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
@@ -74,27 +74,29 @@ export default async function DashboardLayout({
             className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
             prefetch={false}
           >
-            <BoilerbaseIconBlocks size={32} />
+            <BoilerbaseIconBlocks size={30} />
             <span>Generate Boilerplate</span>
           </Link>
           <hr className="border-t border-gray-700" />
-          <Link
-            href="/dashboard/boilerplates"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
-            prefetch={false}
-          >
-            {/* <LayoutDashboard className="w-5 h-5" /> */}
-            <span>Browse Boilerplates</span>
-          </Link>
+          <div>
+            <Link
+              href="/dashboard/boilerplates"
+              className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+              prefetch={false}
+            >
+              {/* <LayoutDashboard className="w-5 h-5" /> */}
+              <span>Browse Boilerplates</span>
+            </Link>
 
-          <Link
-            href="/dashboard/boilerplates/post"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
-            prefetch={false}
-          >
-            {/* <LayoutDashboard className="w-5 h-5" /> */}
-            <span>Post a Boilerplate</span>
-          </Link>
+            <Link
+              href="/dashboard/boilerplates/post"
+              className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+              prefetch={false}
+            >
+              {/* <LayoutDashboard className="w-5 h-5" /> */}
+              <span>Post a Boilerplate</span>
+            </Link>
+          </div>
           {/* ---- Feature requests section with 3 links ---- */}
           {/* <hr className="border-t border-gray-700" />
           <div>
@@ -150,14 +152,24 @@ export default async function DashboardLayout({
             <span>Beta Test Marketplace</span>
           </Link> */}
           <hr className="border-t border-gray-700" />
-          <Link
-            href="/dashboard/settings"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
-            prefetch={false}
-          >
-            <Settings className="w-5 h-5" />
-            <span>Settings</span>
-          </Link>
+          <div>
+            <Link
+              href="https://boilerbase.featurebase.app/"
+              className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+              prefetch={false}
+              target="_blank"
+            >
+              <span>Feature Requests</span>
+            </Link>
+            <Link
+              href="/dashboard/settings"
+              className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+              prefetch={false}
+            >
+              <Settings className="w-5 h-5" />
+              <span>Settings</span>
+            </Link>
+          </div>
         </nav>
       </div>
       <div className="flex-1 bg-gray-100 dark:bg-gray-950 p-8">
