@@ -1,14 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
 import { QualityPromise } from "@/components/home/QualityPromise";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 
 import { Input } from "@/components/ui/input";
-import { StarIcon } from "lucide-react";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listings?limit=${limit}`, {
@@ -187,7 +185,7 @@ export default function Home() {
               <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {listings.map((listing) => (
                   <Link
-                    href={`/listings/${listing.id}`}
+                    href={`/dashboard/boilerplates/${listing.id}`}
                     key={listing.id}
                     className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
                   >
@@ -199,9 +197,9 @@ export default function Home() {
                         {listing.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-primary font-semibold">
+                        {/* <span className="text-primary font-semibold">
                           ${listing.price}
-                        </span>
+                        </span> */}
                         {/* <Button
                       className="ransition-transform transform hover:scale-105 cursor-pointer"
                       size="sm"

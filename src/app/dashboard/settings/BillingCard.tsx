@@ -1,28 +1,20 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { getServerSession } from "next-auth";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
 import {
+  FOUNDER,
+  HACKER,
+  PRO,
   createCustomerIfNull,
   createFounderCheckoutLink,
   createHackerCheckoutLink,
   createProCheckoutLink,
   generateCustomerPortalLink,
-  hasSubscription,
   getSubscriptionLevel,
-  FOUNDER,
-  HACKER,
-  PRO,
-  FREE,
+  hasSubscription,
 } from "@/lib/stripe";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 // Subscription levels -- returned from getSubscriptionLevel in stripe.ts
@@ -52,9 +44,9 @@ export default async function BillingCard() {
 
   // Get this user's subscription level
   const subscriptionLevel = await getSubscriptionLevel();
-  console.log("Subscription Level: ", subscriptionLevel);
+  // console.log("Subscription Level: ", subscriptionLevel);
 
-  console.log("hasSub: ", hasSub);
+  // console.log("hasSub: ", hasSub);
   // console.log("manage_link: ", manage_link);
   // console.log("hacker_checkout_link: ", hacker_checkout_link);
   // console.log("founder_checkout_link: ", founder_checkout_link);
