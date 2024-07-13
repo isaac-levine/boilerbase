@@ -78,13 +78,14 @@ model Listing {
   updatedAt   DateTime @updatedAt
   title       String
   description String
-  price       Float
+  // price       Float
   likes       Like[]
   tags        String[]
   reviews     Review[]
   imageUrl    String?
   approved    Boolean  @default(false)
   previewLink String?
+  gitHubLink String?
 }
 
 model Like {
