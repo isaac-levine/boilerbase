@@ -86,7 +86,7 @@ export default function NavigationBar() {
                 <SheetClose asChild>
                   <Link
                     className="hover:underline hover:underline-offset-4"
-                    href="/settings"
+                    href="/dashboard/settings"
                   >
                     Settings
                   </Link>
@@ -142,7 +142,7 @@ export default function NavigationBar() {
             {/* <Gauge className="block sm:hidden" size={16}></Gauge> */}
           </Link>
           <Link
-            href="/settings"
+            href="/dashboard/settings"
             className={`${buttonVariants({
               variant: "outline",
             })} border-[0px] sm:border-[1px] dark:bg-foreground/10 border-foreground/10 flex-row gap-2 hidden sm:flex`}
