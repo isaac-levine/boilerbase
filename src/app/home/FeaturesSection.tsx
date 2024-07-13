@@ -1,5 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { Joystick, Wrench, Cpu, CircleGauge, Users, Cross } from "lucide-react";
+import { CircleGauge, Cpu, Cross, Joystick, Users, Wrench } from "lucide-react";
 
 const FeaturesSection = () => {
   return (
@@ -15,15 +15,15 @@ const FeaturesSection = () => {
                 By developers, for developers.
               </h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                We are not an outsourcing agency. We offer a custom-tailored
-                boilerplate to let you skip through all of the basic
-                integrations and set up that typically slows founders down.
+                We are not a development agency. We are a platform that allows
+                you to generate your own code boilerplate for your SaaS app,
+                allowing you to ship faster and focus on what makes you unique.
               </p>
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
             <div className="grid gap-1">
-              <Joystick />
+              <Joystick className="opacity-50" />
               <h3 className="text-xl font-bold">Everything in your control</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 We send you a zip file with all the starter code you will need,
@@ -31,7 +31,7 @@ const FeaturesSection = () => {
               </p>
             </div>
             <div className="grid gap-1">
-              <Wrench />
+              <Wrench className="opacity-50" />
               <h3 className="text-xl font-bold">100% customizable</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 Our boilerplates are designed to be easily customizable, so you
@@ -39,7 +39,7 @@ const FeaturesSection = () => {
               </p>
             </div>
             <div className="grid gap-1">
-              <Cpu />
+              <Cpu className="opacity-50" />
               <h3 className="text-xl font-bold">
                 Industry-standard technology
               </h3>
@@ -49,7 +49,7 @@ const FeaturesSection = () => {
               </p>
             </div>
             <div className="grid gap-1">
-              <CircleGauge />
+              <CircleGauge className="opacity-50" />
               <h3 className="text-xl font-bold">
                 Performance-First Architecture
               </h3>
@@ -59,7 +59,7 @@ const FeaturesSection = () => {
               </p>
             </div>
             <div className="grid gap-1">
-              <Cross />
+              <Cross className="opacity-50" />
               <h3 className="text-xl font-bold">Dedicated Support</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 Get help from our team of experts if you have any issues setting
@@ -67,7 +67,7 @@ const FeaturesSection = () => {
               </p>
             </div>
             <div className="grid gap-1">
-              <Users />
+              <Users className="opacity-50" />
               <h3 className="text-xl font-bold">Exclusive community</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 Join our exclusive community of SaaS founders to get support
