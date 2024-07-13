@@ -1,8 +1,7 @@
 import { authOptions } from "@/lib/auth/options";
+import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import Stripe from "stripe";
-import { randomUUID } from "crypto";
-import { prisma } from "@/lib/prisma";
 
 export const stripe = new Stripe(String(process.env.STRIPE_SECRET), {
   apiVersion: "2022-11-15",
@@ -135,7 +134,7 @@ export async function generateCustomerPortalLink(customerId: string) {
   try {
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      return_url: process.env.NEXTAUTH_URL + "/settings",
+      return_url: process.env.NEXTAUTH_URL + "/dashboard/settings",
     });
 
     console.log();
