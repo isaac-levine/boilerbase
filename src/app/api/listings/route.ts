@@ -1,19 +1,17 @@
 // app/listings/route.ts
 
 import { prisma } from "@/lib/prisma"; // Adjust the import path as needed
-import { Like, Review } from "@prisma/client";
 
 // Add a new listing
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { userId, title, description, price, tags } = body;
+    const { userId, title, description, tags, previewLink, gitHubLink } = body;
 
     if (
       !userId ||
       !title ||
       !description ||
-      typeof price !== "number" ||
       !Array.isArray(tags) ||
       tags.length === 0
     ) {
@@ -28,8 +26,9 @@ export async function POST(request: Request) {
         userId,
         title,
         description,
-        price,
         tags,
+        previewLink,
+        gitHubLink,
       },
     });
 
