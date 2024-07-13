@@ -10,7 +10,6 @@ import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 const cabin = Cabin({
   subsets: ["latin"],
-  weight: "700",
 });
 
 export const metadata: Metadata = {
