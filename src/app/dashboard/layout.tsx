@@ -71,11 +71,29 @@ export default async function DashboardLayout({
           {/* <hr className="border-t border-gray-700" /> */}
           <Link
             href="/dashboard/generate"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
             prefetch={false}
           >
-            <BoilerbaseIconBlocks size={26} />
+            <BoilerbaseIconBlocks size={32} />
             <span>Generate Boilerplate</span>
+          </Link>
+          <hr className="border-t border-gray-700" />
+          <Link
+            href="/dashboard/boilerplates"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+            prefetch={false}
+          >
+            {/* <LayoutDashboard className="w-5 h-5" /> */}
+            <span>Browse Boilerplates</span>
+          </Link>
+
+          <Link
+            href="/dashboard/boilerplates/post"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+            prefetch={false}
+          >
+            {/* <LayoutDashboard className="w-5 h-5" /> */}
+            <span>Post a Boilerplate</span>
           </Link>
           {/* ---- Feature requests section with 3 links ---- */}
           {/* <hr className="border-t border-gray-700" />
@@ -131,10 +149,10 @@ export default async function DashboardLayout({
             <FlaskConical className="w-5 h-5" />
             <span>Beta Test Marketplace</span>
           </Link> */}
-
+          <hr className="border-t border-gray-700" />
           <Link
-            href="/settings"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-800"
+            href="/dashboard/settings"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
             prefetch={false}
           >
             <Settings className="w-5 h-5" />
