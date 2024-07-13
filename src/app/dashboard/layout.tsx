@@ -78,7 +78,7 @@ export default async function DashboardLayout({
             <span>Generate Boilerplate</span>
           </Link>
           <hr className="border-t border-gray-700" />
-          <div>
+          <div className="flex flex-col gap-1">
             <Link
               href="/dashboard/boilerplates"
               className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
@@ -152,7 +152,7 @@ export default async function DashboardLayout({
             <span>Beta Test Marketplace</span>
           </Link> */}
           <hr className="border-t border-gray-700" />
-          <div>
+          <div className="flex flex-col gap-1">
             <Link
               href="https://boilerbase.featurebase.app/"
               className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
