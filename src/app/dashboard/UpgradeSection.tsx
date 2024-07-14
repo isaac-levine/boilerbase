@@ -1,25 +1,22 @@
-import { features } from "process";
-import { Check, X } from "lucide-react";
+import GetStartedButton from "@/components/home/components/GetStartedButton";
 import {
   createCustomerIfNull,
   createFounderCheckoutLink,
   createHackerCheckoutLink,
-  createProCheckoutLink,
-  generateCustomerPortalLink,
   hasSubscription,
 } from "@/lib/stripe";
-import Link from "next/link";
+import { Check, X } from "lucide-react";
 import { getServerSession } from "next-auth";
-import GetStartedButton from "@/components/home/components/GetStartedButton";
 
 const UpgradeSection = async () => {
   const customerId = (await createCustomerIfNull()) || "";
   const hasSub = await hasSubscription();
   const hacker_checkout_link =
     (await createHackerCheckoutLink(customerId)) || "";
+  // TODO: the founder checkout link really uses the stripe plan called "pro" so we should refactor all of this "founder" stuff to be called "pro" and delete all the commented out "pro" stuff that's old
   const founder_checkout_link =
     (await createFounderCheckoutLink(customerId)) || "";
-  const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
+  // const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
 
   const session = await getServerSession();
   const user = session?.user;
@@ -59,24 +56,24 @@ const UpgradeSection = async () => {
       ],
       checkout_link: founder_checkout_link,
     },
-    {
-      title: "Pro",
-      price: "$99",
-      pricePeriod: "/month",
-      description:
-        "Tailored for teams who are serious about growth and profitability.",
-      features: [
-        { text: "Tailored code boilerplate", offered: true },
-        { text: "Priority support", offered: true },
-        { text: "Exclusive founder community", offered: true },
-        { text: "Logo design for your company", offered: true },
-        { text: "Feature marketplace access", offered: true },
-        { text: "Beta testing marketplace access", offered: true },
-        { text: "Early feature access", offered: true },
-        { text: "SaaS growth course access", offered: true },
-      ],
-      checkout_link: pro_checkout_link,
-    },
+    // {
+    //   title: "Pro",
+    //   price: "$99",
+    //   pricePeriod: "/month",
+    //   description:
+    //     "Tailored for teams who are serious about growth and profitability.",
+    //   features: [
+    //     { text: "Tailored code boilerplate", offered: true },
+    //     { text: "Priority support", offered: true },
+    //     { text: "Exclusive founder community", offered: true },
+    //     { text: "Logo design for your company", offered: true },
+    //     { text: "Feature marketplace access", offered: true },
+    //     { text: "Beta testing marketplace access", offered: true },
+    //     { text: "Early feature access", offered: true },
+    //     { text: "SaaS growth course access", offered: true },
+    //   ],
+    //   checkout_link: pro_checkout_link,
+    // },
   ];
 
   return (
