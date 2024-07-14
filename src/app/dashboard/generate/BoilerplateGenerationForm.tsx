@@ -695,7 +695,6 @@ export default function BoilerplateGenerationForm() {
             </FormItem>
           )}
         />
-
         <Button className={buttonVariants()} type="submit">
           Submit
         </Button>
