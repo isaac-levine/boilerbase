@@ -105,26 +105,26 @@ export async function createFounderCheckoutLink(customer: string) {
   return checkout.url;
 }
 
-export async function createProCheckoutLink(customer: string) {
-  if (!customer) {
-    return;
-  }
-  const checkout = await stripe.checkout.sessions.create({
-    success_url: process.env.NEXTAUTH_URL + "/dashboard",
-    cancel_url: process.env.NEXTAUTH_URL + "",
-    customer: customer,
-    line_items: [
-      {
-        price: process.env.STRIPE_PRO_PRICE,
-        quantity: 1,
-      },
-    ],
-    mode: "subscription",
-    allow_promotion_codes: true,
-  });
+// export async function createProCheckoutLink(customer: string) {
+//   if (!customer) {
+//     return;
+//   }
+//   const checkout = await stripe.checkout.sessions.create({
+//     success_url: process.env.NEXTAUTH_URL + "/dashboard",
+//     cancel_url: process.env.NEXTAUTH_URL + "",
+//     customer: customer,
+//     line_items: [
+//       {
+//         price: process.env.STRIPE_PRO_PRICE,
+//         quantity: 1,
+//       },
+//     ],
+//     mode: "subscription",
+//     allow_promotion_codes: true,
+//   });
 
-  return checkout.url;
-}
+//   return checkout.url;
+// }
 
 export async function generateCustomerPortalLink(customerId: string) {
   if (!customerId) {

@@ -74,7 +74,7 @@ const PricingSection = async () => {
             </div> */}
             <h2 className="text-3xl font-bold sm:text-5xl">Pricing</h2>
             <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Choose the plan best suited to your current stage.
+              All plans are billed every 6 months. You can cancel at any time.
             </p>
           </div>
         </div>
