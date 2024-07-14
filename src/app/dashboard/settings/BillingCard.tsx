@@ -9,7 +9,7 @@ import {
   createCustomerIfNull,
   createFounderCheckoutLink,
   createHackerCheckoutLink,
-  createProCheckoutLink,
+  // createProCheckoutLink,
   generateCustomerPortalLink,
   getSubscriptionLevel,
   hasSubscription,
@@ -40,7 +40,7 @@ export default async function BillingCard() {
     (await createHackerCheckoutLink(customerId)) || "";
   const founder_checkout_link =
     (await createFounderCheckoutLink(customerId)) || "";
-  const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
+  // const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
 
   // Get this user's subscription level
   const subscriptionLevel = await getSubscriptionLevel();

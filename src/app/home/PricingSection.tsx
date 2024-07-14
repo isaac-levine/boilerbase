@@ -3,7 +3,7 @@ import {
   createCustomerIfNull,
   createFounderCheckoutLink,
   createHackerCheckoutLink,
-  createProCheckoutLink,
+  // createProCheckoutLink,
   hasSubscription,
 } from "@/lib/stripe";
 import { Check, X } from "lucide-react";
@@ -16,7 +16,7 @@ const PricingSection = async () => {
     (await createHackerCheckoutLink(customerId)) || "";
   const founder_checkout_link =
     (await createFounderCheckoutLink(customerId)) || "";
-  const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
+  // const pro_checkout_link = (await createProCheckoutLink(customerId)) || "";
 
   const session = await getServerSession();
   const user = session?.user;
@@ -50,7 +50,7 @@ const PricingSection = async () => {
       checkout_link: hacker_checkout_link,
     },
     {
-      title: "Founder",
+      title: "Pro",
       price: "$18",
       pricePeriod: "/month",
       description: "Ship fast and often with likeminded founders.",
