@@ -16,24 +16,9 @@ import BoilerbaseIcon from "./BoilerbaseIcon";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { buttonVariants } from "./ui/button";
 
-interface NavItems {
-  name: string;
-  href: string;
-  requiresAuth?: boolean | false;
-}
-
 export default function NavigationBar() {
   const navRef = React.useRef(null);
   const session = useSession();
-  // console.log("role:" + session.data?.user.role);
-
-  // if (session.data != null) {
-  //   userSession = session.data.user;
-  // } else if (session.user != null) {
-  //   userSession = session.user;
-  // } else {
-  //   userSession = null;
-  // }
 
   return (
     <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-background dark:bg-foreground/5 shadow sticky inset-0 backdrop-blur-md border-b border-foreground/10 z-50">
@@ -41,13 +26,10 @@ export default function NavigationBar() {
         name="viewport"
         content="width=device-width, initial-scale=1"
       ></meta>
+      {/* ---- MOBILE START ---- */}
       <Sheet>
         <SheetTrigger className="sm:hidden items-start justify-start w-1/3">
-          {/* <Link className="flex items-center gap-2" href="/"> */}
-          {/* <BoilerbaseIcon /> */}
-          {/* <span className="font-semibold text-xl">Boilerbase</span> */}
-          {/* </Link> */}
-          <Menu size={34}></Menu>
+          <Menu size={34} />
         </SheetTrigger>
         <SheetContent side={"left"} className="w-full border-none">
           <SheetHeader>
@@ -78,9 +60,25 @@ export default function NavigationBar() {
                 <SheetClose asChild>
                   <Link
                     className="hover:underline hover:underline-offset-4"
-                    href="/dashboard"
+                    href="/dashboard/generate"
                   >
-                    Dashboard
+                    Generate
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    className="hover:underline hover:underline-offset-4"
+                    href="/dashboard/boilerplates"
+                  >
+                    Browse
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    className="hover:underline hover:underline-offset-4"
+                    href="/dashboard/boilerplates/post"
+                  >
+                    Post
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
@@ -115,7 +113,7 @@ export default function NavigationBar() {
           </nav>
         </SheetContent>
       </Sheet>
-
+      {/* ---- MOBILE END ---- */}
       <Link
         className="flex items-center justify-center gap-2 w-1/3 sm:w-auto"
         href="/"
