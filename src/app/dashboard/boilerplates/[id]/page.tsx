@@ -156,7 +156,7 @@ export default function Component() {
                   <p>No tags yet.</p>
                 )}
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <h2 className="text-2xl font-semibold mb-2">Reviews:</h2>
                 {listing?.reviews.length || 0 > 0 ? (
                   <ul className="list-disc pl-5">
@@ -169,7 +169,7 @@ export default function Component() {
                 ) : (
                   <p>No reviews yet.</p>
                 )}
-              </div>
+              </div> */}
             </CardContent>
           </Card>
         </div>
