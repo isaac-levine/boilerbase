@@ -9,31 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Listing } from "@prisma/client";
 import { format } from "date-fns";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-export interface Listing {
-  id: string;
-  userId: string;
-  createdAt: string;
-  updatedAt: string;
-  title: string;
-  description: string;
-  price: number;
-  likes: Like[];
-  tags: string[];
-  reviews: string[];
-  imageUrl: string | null;
-}
-
-export interface Like {
-  id: string;
-  createdAt: string;
-  userId: string;
-  listingId: string;
-}
 
 export default function Component() {
   const pathname = usePathname();
@@ -122,6 +102,43 @@ export default function Component() {
                 Last Updated:{" "}
                 <span>{format(listing?.updatedAt || "", "PPP")}</span>
               </p>
+
+              <div className="mb-4 mt-4">
+                {listing?.gitHubLink && (
+                  <>
+                    <h2 className="text-2xl font-semibold mb-2">
+                      GitHub Link:
+                    </h2>
+                    <a
+                      href={listing?.gitHubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary"
+                    >
+                      {listing?.gitHubLink}
+                    </a>
+                  </>
+                )}
+              </div>
+
+              <div className="mb-4 mt-4">
+                {listing?.previewLink && (
+                  <>
+                    <h2 className="text-2xl font-semibold mb-2">
+                      Preview Link:
+                    </h2>
+                    <a
+                      href={listing?.previewLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary"
+                    >
+                      {listing?.previewLink}
+                    </a>
+                  </>
+                )}
+              </div>
+
               <div className="mb-4 mt-4">
                 <h2 className="text-2xl font-semibold mb-2">Tags:</h2>
                 {listing?.tags.length || 0 > 0 ? (
