@@ -26,9 +26,9 @@ export default async function Component() {
       {user ? (
         <div className="my-12">
           <div className="items-center justify-between mb-8 text-center">
-            <h1 className="text-2xl font-bold text-foreground sm:block hidden mb-4 flex flex-col gap-6">
-              Post your boilerplate in just 30 seconds.
-            </h1>
+            {/* <h1 className="text-2xl font-bold text-foreground sm:block hidden mb-4 flex flex-col gap-6">
+              Settings
+            </h1> */}
             {/* <div className="mx-auto max-w-5xl sm:mt-56 px-6 lg:px-8 sm:text-center flex flex-col gap-6">
           <h1 className="text-4xl font-extrabold mb-6">
             {user?.first_name ? `${user.first_name}'s` : ""} Settings
