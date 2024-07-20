@@ -110,7 +110,7 @@ import { useEffect } from "react";
 const Component = async () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/dashboard/generate");
+    router.push("/dashboard/boilerplates");
   });
   return <div></div>;
 };
