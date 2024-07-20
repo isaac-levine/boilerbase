@@ -1,6 +1,13 @@
 "use client";
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -64,65 +71,78 @@ export default function Component() {
   }, []);
 
   return (
-    <MaxWidthWrapper>
-      <title>Feature Marketplace • BoilerBase</title>
-      <div className="my-12">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
-            Discover pre-built boilerplates from the community.
-          </h1>
-          <div className="flex items-center space-x-4">
-            <div className="relative w-full max-w-md">
-              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
-              <form onSubmit={handleSearch}>
-                <Input
-                  className="pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="Search boilerplates..."
-                  onChange={(e) => setQuery(e.target.value)}
-                  type="text"
-                />
-              </form>
+    <>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard/boilerplates">
+              All Boilerplates
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <MaxWidthWrapper>
+        <title>Feature Marketplace • BoilerBase</title>
+        <div className="my-12">
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
+              Discover pre-built boilerplates from the community.
+            </h1>
+            <div className="flex items-center space-x-4">
+              <div className="relative w-full max-w-md">
+                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
+                <form onSubmit={handleSearch}>
+                  <Input
+                    className="pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Search boilerplates..."
+                    onChange={(e) => setQuery(e.target.value)}
+                    type="text"
+                  />
+                </form>
+              </div>
+              {/* <FilterButton /> */}
             </div>
-            {/* <FilterButton /> */}
           </div>
-        </div>
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <PulseLoader loading={loading} size={10} color="#2563EB" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {listings.map((listing) => (
-              <Link
-                href={`/dashboard/boilerplates/${listing.id}`}
-                key={listing.id}
-                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-2 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
-              >
-                <div className="flex flex-col justify-between flex-grow p-4">
-                  <h3 className="text-lg font-semibold mb-2">
-                    {listing.title}
-                  </h3>
-                  <p className="text-gray-500 dark:text-gray-400 mb-4">
-                    {truncateString(listing.description, 100)}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    {/* <span className="text-primary font-semibold">
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <PulseLoader loading={loading} size={10} color="#2563EB" />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {listings.map((listing) => (
+                <Link
+                  href={`/dashboard/boilerplates/${listing.id}`}
+                  key={listing.id}
+                  className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-2 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
+                >
+                  <div className="flex flex-col justify-between flex-grow p-4">
+                    <h3 className="text-lg font-semibold mb-2">
+                      {listing.title}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400 mb-4">
+                      {truncateString(listing.description, 100)}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      {/* <span className="text-primary font-semibold">
                       ${listing.price}
                     </span> */}
-                    {/* <Button
+                      {/* <Button
                       className="ransition-transform transform hover:scale-105 cursor-pointer"
                       size="sm"
                     >
                       Buy Now
                     </Button> */}
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    </MaxWidthWrapper>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </MaxWidthWrapper>
+    </>
   );
 }
 

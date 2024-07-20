@@ -2,6 +2,14 @@
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import {
   Card,
   CardContent,
   CardDescription,
@@ -71,92 +79,110 @@ export default function Component() {
   }
 
   return (
-    <MaxWidthWrapper>
-      <title>{`${listing?.title} • BoilerBase`}</title>
-      <div className="py-4 sm:py-10">
-        <div className="max-w-2xl mx-auto shadow-md">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl sm:text-4xl font-bold mb-4">
-                {listing?.title}
-              </CardTitle>
-              {/* <CardDescription className="text-md sm:text-lg font-semibold mb-4">
+    <>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard/boilerplates">
+              All Boilerplates
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{listing?.title}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+      <MaxWidthWrapper>
+        <title>{`${listing?.title} • BoilerBase`}</title>
+
+        <div className="py-4 sm:py-10">
+          <div className="max-w-2xl mx-auto shadow-md">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-4xl font-bold mb-4">
+                  {listing?.title}
+                </CardTitle>
+                {/* <CardDescription className="text-md sm:text-lg font-semibold mb-4">
                 Price: ${listing?.price.toFixed(2)}
               </CardDescription> */}
-            </CardHeader>
-            <CardContent>
-              {listing?.imageUrl && (
-                <Image
-                  src={listing.imageUrl}
-                  alt={listing.title}
-                  width={500}
-                  height={300}
-                  className="rounded mb-4"
-                />
-              )}
-              <p className="text-md sm:text-xl mb-4">{listing?.description}</p>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Created: <span>{format(listing?.createdAt || "", "PPP")}</span>
-              </p>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Last Updated:{" "}
-                <span>{format(listing?.updatedAt || "", "PPP")}</span>
-              </p>
-
-              <div className="mb-4 mt-4">
-                {listing?.gitHubLink && (
-                  <>
-                    <h2 className="text-2xl font-semibold mb-2">
-                      GitHub Link:
-                    </h2>
-                    <a
-                      href={listing?.gitHubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary"
-                    >
-                      {listing?.gitHubLink}
-                    </a>
-                  </>
+              </CardHeader>
+              <CardContent>
+                {listing?.imageUrl && (
+                  <Image
+                    src={listing.imageUrl}
+                    alt={listing.title}
+                    width={500}
+                    height={300}
+                    className="rounded mb-4"
+                  />
                 )}
-              </div>
+                <p className="text-md sm:text-xl mb-4">
+                  {listing?.description}
+                </p>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Created:{" "}
+                  <span>{format(listing?.createdAt || "", "PPP")}</span>
+                </p>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Last Updated:{" "}
+                  <span>{format(listing?.updatedAt || "", "PPP")}</span>
+                </p>
 
-              <div className="mb-4 mt-4">
-                {listing?.previewLink && (
-                  <>
-                    <h2 className="text-2xl font-semibold mb-2">
-                      Preview Link:
-                    </h2>
-                    <a
-                      href={listing?.previewLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary"
-                    >
-                      {listing?.previewLink}
-                    </a>
-                  </>
-                )}
-              </div>
-
-              <div className="mb-4 mt-4">
-                <h2 className="text-2xl font-semibold mb-2">Tags:</h2>
-                {listing?.tags.length || 0 > 0 ? (
-                  <div className="flex flex-wrap">
-                    {listing?.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="border-foreground/20 border-[1px] dark:bg-foreground/30 rounded-full px-3 py-1 text-sm font-semibold text-foreground mr-2 mb-2"
+                <div className="mb-4 mt-4">
+                  {listing?.gitHubLink && (
+                    <>
+                      <h2 className="text-2xl font-semibold mb-2">
+                        GitHub Link:
+                      </h2>
+                      <a
+                        href={listing?.gitHubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary"
                       >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                ) : (
-                  <p>No tags yet.</p>
-                )}
-              </div>
-              {/* <div className="mb-4">
+                        {listing?.gitHubLink}
+                      </a>
+                    </>
+                  )}
+                </div>
+
+                <div className="mb-4 mt-4">
+                  {listing?.previewLink && (
+                    <>
+                      <h2 className="text-2xl font-semibold mb-2">
+                        Preview Link:
+                      </h2>
+                      <a
+                        href={listing?.previewLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary"
+                      >
+                        {listing?.previewLink}
+                      </a>
+                    </>
+                  )}
+                </div>
+
+                <div className="mb-4 mt-4">
+                  <h2 className="text-2xl font-semibold mb-2">Tags:</h2>
+                  {listing?.tags.length || 0 > 0 ? (
+                    <div className="flex flex-wrap">
+                      {listing?.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="border-foreground/20 border-[1px] dark:bg-foreground/30 rounded-full px-3 py-1 text-sm font-semibold text-foreground mr-2 mb-2"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p>No tags yet.</p>
+                  )}
+                </div>
+                {/* <div className="mb-4">
                 <h2 className="text-2xl font-semibold mb-2">Reviews:</h2>
                 {listing?.reviews.length || 0 > 0 ? (
                   <ul className="list-disc pl-5">
@@ -170,10 +196,11 @@ export default function Component() {
                   <p>No reviews yet.</p>
                 )}
               </div> */}
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
-      </div>
-    </MaxWidthWrapper>
+      </MaxWidthWrapper>
+    </>
   );
 }
