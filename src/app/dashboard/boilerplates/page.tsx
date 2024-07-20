@@ -14,6 +14,14 @@ const getListings = async (limit: number) => {
   return data;
 };
 
+const truncateString = (str: String, num: number) => {
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
+  }
+};
+
 export default function Component() {
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +69,7 @@ export default function Component() {
       <div className="my-12">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
-            Discover fully-featured boilerplates from the community
+            Discover pre-built boilerplates from the community.
           </h1>
           <div className="flex items-center space-x-4">
             <div className="relative w-full max-w-md">
@@ -83,19 +91,19 @@ export default function Component() {
             <PulseLoader loading={loading} size={10} color="#2563EB" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {listings.map((listing) => (
               <Link
                 href={`/dashboard/boilerplates/${listing.id}`}
                 key={listing.id}
-                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-4 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
+                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-2 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
               >
                 <div className="flex flex-col justify-between flex-grow p-4">
                   <h3 className="text-lg font-semibold mb-2">
                     {listing.title}
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400 mb-4">
-                    {listing.description}
+                    {truncateString(listing.description, 100)}
                   </p>
                   <div className="flex items-center justify-between">
                     {/* <span className="text-primary font-semibold">
@@ -107,7 +115,6 @@ export default function Component() {
                     >
                       Buy Now
                     </Button> */}
-                    {/* HEART ICON SHOULD GO HERE */}
                   </div>
                 </div>
               </Link>
