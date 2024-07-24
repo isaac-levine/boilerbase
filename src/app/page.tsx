@@ -1,14 +1,10 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import HeroSection from "./home/HeroSection";
 import FeaturesSection from "./home/FeaturesSection";
-import TestimonialsSection from "./home/TestimonialsSection";
-import PricingSection from "./home/PricingSection";
-import CompaniesSection from "./home/CompaniesSection";
-import TechStackSection from "./home/TechStackSection";
 import FrequentlyAskedQuestionsSection from "./home/FrequentlyAskedQuestionsSection";
+import HeroSection from "./home/HeroSection";
 import MoreThanJustABoilerplateSection from "./home/MoreThanJustABoilerplateSection";
+import PricingSection from "./home/PricingSection";
+import TechStackSection from "./home/TechStackSection";
+import TestimonialsSection from "./home/TestimonialsSection";
 
 export default function Component() {
   return (
@@ -17,6 +13,7 @@ export default function Component() {
       <main className="flex-1">
         <HeroSection />
         {/* <CompaniesSection /> */}
+        {/* <DemoSection /> */}
         <TechStackSection />
         <MoreThanJustABoilerplateSection />
         <FeaturesSection />
