@@ -1,6 +1,13 @@
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   Form,
   FormControl,
   FormField,
@@ -15,12 +22,13 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
-import { toast } from "@/components/ui/use-toast";
+import { sendGenerationEmail } from "@/lib/email/mailer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { FormFieldNames, questions } from "./questions";
 
 const formSchema = z.object({
   title: z
@@ -49,46 +57,18 @@ const formSchema = z.object({
   Resend: z.string(),
 });
 
-const sendGenerationEmail = async (
-  githubUsername: string,
-  cliCommand: string
-) => {
-  try {
-    const requestBody = {
-      githubUsername: githubUsername,
-      cliCommand: cliCommand,
-    };
-    const response = await fetch("/api/boilerplate/send-generation-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Sent boilerpalte generation email!");
-      // Reset form fields or display a success message
-      toast({
-        title: "Thank you!",
-        description:
-          "You should get added to a repository on GitHub containing your boilerplate shortly!",
-      });
-    } else {
-      const errorData = await response.json();
-      console.error("Error creating boilerplate generation email", errorData);
-    }
-  } catch (error) {
-    console.error("Error sending boilerplate generation email", error);
-  }
-};
-
 export default function BoilerplateGenerationForm() {
+  useEffect(() => {
+    setShowPopup(false);
+  }, []);
   const session = useSession();
-  const [databaseType, setDatabaseType] = useState("Postgres");
-  const [authenticationPackage, setAuthenticationPackage] =
-    useState("NextAuth");
+  const [showPopup, setShowPopup] = useState(false);
+  const [command, setCommand] = useState("");
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(command);
+    setCopied(true);
+  };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -123,9 +103,10 @@ export default function BoilerplateGenerationForm() {
     // Use the buildCommand function to generate the CLI command
     const kirimaseCommand = buildKirimaseCommand(values);
     const createNextAppCommand = buildCreateNextAppCommand(values);
-    const fullCommand = `${createNextAppCommand} && cd ${values.title} && ${kirimaseCommand}`;
-    // console.log(fullCommand);
-    console.log(session?.data.user);
+    const fullCommand = `${createNextAppCommand}`; /* && cd ${values.title} && ${kirimaseCommand}`; */
+
+    setCommand(fullCommand);
+    setShowPopup(true);
     sendGenerationEmail(session?.data?.user?.username || "", fullCommand);
   };
 
@@ -205,10 +186,6 @@ export default function BoilerplateGenerationForm() {
       cliCommand += " --src-dir";
     }
 
-    // Custom Import Alias
-    // Note: The form schema indicates presence of a customImportAlias field but does not specify its usage in the CLI command.
-    // Assuming "No" means no custom alias is set, thus no corresponding CLI option is added.
-
     // Preferred Package Manager
     if (values.preferredPackageManager) {
       const packageManager = values.preferredPackageManager.toLowerCase();
@@ -228,6 +205,53 @@ export default function BoilerplateGenerationForm() {
 
   return (
     <Form {...form}>
+      {showPopup && (
+        <Dialog defaultOpen>
+          {/* <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          className="w-full bg-muted text-muted-foreground dark:bg-secondary dark:text-secondary-foreground"
+        >
+          Copy Command
+        </Button>
+      </DialogTrigger> */}
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>Copy This Command</DialogTitle>
+              <DialogDescription>
+                Run this command in your terminal to get started.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="rounded-md bg-muted p-4 dark:bg-card dark:text-card-foreground">
+                <code className="font-mono">{command}</code>
+              </div>
+              <div className="flex justify-end">
+                <Button
+                  onClick={handleCopy}
+                  className={`w-full px-4 py-2 text-sm flex items-center gap-2 ${
+                    copied
+                      ? "bg-green-500 text-green-50 hover:bg-green-600"
+                      : "bg-muted hover:bg-accent hover:text-accent-foreground dark:bg-secondary dark:text-secondary-foreground"
+                  }`}
+                >
+                  {copied ? (
+                    <>
+                      <CheckIcon className="h-4 w-4" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <ClipboardIcon className="h-4 w-4" />
+                      Copy Command
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -244,371 +268,30 @@ export default function BoilerplateGenerationForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="typescript"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Would you like to use TypeScript?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => form.setValue("typescript", value)}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="eslint"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Would you like to use ESLint?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => form.setValue("eslint", value)}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="tailwind"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Would you like to use Tailwind CSS?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => form.setValue("tailwind", value)}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="srcDirectory"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Would you like to use <b>src/</b> directory?
-              </FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) =>
-                    form.setValue("srcDirectory", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="appRouter"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Would you like to use App Router?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => form.setValue("appRouter", value)}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="customImportAlias"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Would you like to use a custom import alias? (Other than @/*?)
-              </FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) =>
-                    form.setValue("customImportAlias", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="preferredPackageManager"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Please pick your preferred package manager</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) =>
-                    form.setValue("preferredPackageManager", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="NPM">NPM</SelectItem>
-                    <SelectItem value="Yarn">Yarn</SelectItem>
-                    <SelectItem value="PNPM">PNPM</SelectItem>
-                    <SelectItem value="Bun">Bun</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="componentLibrary"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select a component library to use</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) =>
-                    form.setValue("componentLibrary", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Shadcn UI (with next-themes)">
-                      ShadCN UI (with next-themes)
-                    </SelectItem>
-                    <SelectItem value="None">None</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="orm"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select an ORM to use</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => form.setValue("orm", value)}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Drizzle">Drizzle</SelectItem>
-                    <SelectItem value="Prisma">Prisma</SelectItem>
-                    <SelectItem value="None">None</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="database"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select your database type</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    form.setValue("database", value);
-                    setDatabaseType(value);
-                    form.setValue("databaseProvider", "");
-                  }}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Postgres">Postgres</SelectItem>
-                    <SelectItem value="MySQL">MySQL</SelectItem>
-                    <SelectItem value="SQLite">SQLite</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="databaseProvider"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select your database provider</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) =>
-                    form.setValue("databaseProvider", value)
-                  }
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {databaseType === "Postgres" && (
-                      <>
-                        <SelectItem value="Postgres.js">Postgres.js</SelectItem>
-                        <SelectItem value="node-postgres">
-                          node-postgres
-                        </SelectItem>
-                        <SelectItem value="Neon">Neon</SelectItem>
-                        <SelectItem value="Vercel Postgres">
-                          Vercel Postgres
-                        </SelectItem>
-                        <SelectItem value="Supabase">Supabase</SelectItem>
-                      </>
-                    )}
-                    {databaseType === "MySQL" && (
-                      <>
-                        <SelectItem value="PlanetScale">PlanetScale</SelectItem>
-                        <SelectItem value="MySQL 2">MySQL 2</SelectItem>
-                      </>
-                    )}
-                    {databaseType === "SQLite" && (
-                      <>
-                        <SelectItem value="better-sqlite3">
-                          better-sqlite3
-                        </SelectItem>
-                        <SelectItem value="turso">turso</SelectItem>
-                      </>
-                    )}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="authenticationPackage"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select an authentication package to use</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    form.setValue("authenticationPackage", value);
-                    setAuthenticationPackage(value);
-                  }}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="NextAuth">NextAuth</SelectItem>
-                    <SelectItem value="Clerk">Clerk</SelectItem>
-                    <SelectItem value="Lucia">Lucia</SelectItem>
-                    <SelectItem value="Kinde">Kinde</SelectItem>
-                    <SelectItem value="None">None</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {authenticationPackage === "NextAuth" && (
+        {questions.map((q) => (
           <FormField
+            key={q.formFieldName}
             control={form.control}
-            name="authProvider"
+            name={q.formFieldName as FormFieldNames}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Select an authentication provider to use</FormLabel>
+                <FormLabel>{q.formLabel}</FormLabel>
                 <FormControl>
                   <Select
                     value={field.value}
-                    onValueChange={(value) => {
-                      form.setValue("authProvider", value);
-                    }}
+                    onValueChange={(value) =>
+                      form.setValue(q.formFieldName as FormFieldNames, value)
+                    }
                   >
                     <SelectTrigger>
                       <span>{field.value}</span>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Discord">Discord</SelectItem>
-                      <SelectItem value="GitHub">GitHub</SelectItem>
-                      <SelectItem value="Google">Google</SelectItem>
-                      <SelectItem value="Apple">Apple</SelectItem>
+                      {q.options.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -616,89 +299,51 @@ export default function BoilerplateGenerationForm() {
               </FormItem>
             )}
           />
-        )}
-        <FormField
-          control={form.control}
-          name="tRPC"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Do you want to add tRPC?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    form.setValue("tRPC", value);
-                  }}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="Stripe"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Do you want to add Stripe?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    form.setValue("Stripe", value);
-                  }}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="Resend"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Do you want to add Resend?</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    form.setValue("Resend", value);
-                  }}
-                >
-                  <SelectTrigger>
-                    <span>{field.value}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Yes">Yes</SelectItem>
-                    <SelectItem value="No">No</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        ))}
+
         <Button className={buttonVariants()} type="submit">
           Submit
         </Button>
       </form>
     </Form>
+  );
+}
+
+function CheckIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function ClipboardIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+    </svg>
   );
 }
