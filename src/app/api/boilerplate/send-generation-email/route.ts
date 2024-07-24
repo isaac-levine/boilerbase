@@ -1,4 +1,4 @@
-import { sendGenerationEmailToIsaac } from "@/lib/email/mailer";
+import { sendGenerationEmailToIsaac } from "../service";
 
 export async function POST(request: Request) {
   try {
