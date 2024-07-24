@@ -1,34 +1,38 @@
-import { Resend } from "resend";
-import { GenerationEmail, MagicLinkEmail } from "./templates/magic-link";
+"use client";
 
-export const resend = new Resend(process.env.RESEND_SECRET);
-export const resendDomain = process.env.RESEND_DOMAIN;
+import { toast } from "@/components/ui/use-toast";
 
-export async function sendMagicLinkEmail(to: string, signInLink: string) {
-  const data = await resend.emails.send({
-    from: `Boilerbase <help@${resendDomain}>`,
-    to: [to],
-    subject: "Magic sign-in link",
-    react: MagicLinkEmail({ signInLink: signInLink, sentTo: to }),
-  });
-}
-
-export const sendGenerationEmailToIsaac = async (
+export const sendGenerationEmail = async (
   githubUsername: string,
   cliCommand: string
 ) => {
-  if (!githubUsername || githubUsername === "") {
-    console.error(
-      "No github username provided. Can not send generation email to Isaac"
-    );
-  }
-  const data = await resend.emails.send({
-    from: `Boilerbase <help@${resendDomain}>`,
-    to: "isaacmlevine4@gmail.com",
-    subject: `Customer ${githubUsername} requested a Boilerplate!`,
-    react: GenerationEmail({
+  try {
+    const requestBody = {
       githubUsername: githubUsername,
       cliCommand: cliCommand,
-    }),
-  });
+    };
+    const response = await fetch("/api/boilerplate/send-generation-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Sent boilerpalte generation email!");
+      // Reset form fields or display a success message
+      toast({
+        title: "Thank you!",
+        description:
+          "You should get added to a repository on GitHub containing your boilerplate shortly!",
+      });
+    } else {
+      const errorData = await response.json();
+      console.error("Error creating boilerplate generation email", errorData);
+    }
+  } catch (error) {
+    console.error("Error sending boilerplate generation email", error);
+  }
 };
