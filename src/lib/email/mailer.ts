@@ -1,7 +1,5 @@
 "use client";
 
-import { toast } from "@/components/ui/use-toast";
-
 export const sendGenerationEmail = async (
   githubUsername: string,
   cliCommand: string
@@ -23,11 +21,11 @@ export const sendGenerationEmail = async (
       const data = await response.json();
       console.log("Sent boilerpalte generation email!");
       // Reset form fields or display a success message
-      toast({
-        title: "Thank you!",
-        description:
-          "You should get added to a repository on GitHub containing your boilerplate shortly!",
-      });
+      // toast({
+      //   title: "Thank you!",
+      //   description:
+      //     "You should get added to a repository on GitHub containing your boilerplate shortly!",
+      // });
     } else {
       const errorData = await response.json();
       console.error("Error creating boilerplate generation email", errorData);

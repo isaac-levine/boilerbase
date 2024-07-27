@@ -103,7 +103,7 @@ export default function BoilerplateGenerationForm() {
     // Use the buildCommand function to generate the CLI command
     const kirimaseCommand = buildKirimaseCommand(values);
     const createNextAppCommand = buildCreateNextAppCommand(values);
-    const fullCommand = `${createNextAppCommand}`; /* && cd ${values.title} && ${kirimaseCommand}`; */
+    const fullCommand = `npm i create-next-app && ${createNextAppCommand}`; /* && cd ${values.title} && ${kirimaseCommand}`; */
 
     setCommand(fullCommand);
     setShowPopup(true);
