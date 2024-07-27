@@ -12,6 +12,7 @@
     "@auth/prisma-adapter": "^2.0.0",
     "@emotion/react": "^11.11.4",
     "@hookform/resolvers": "^3.3.4",
+    "@loomhq/loom-embed": "^1.7.0",
     "@motionone/utils": "^10.17.0",
     "@prisma/client": "^5.14.0",
     "@radix-ui/react-avatar": "^1.0.4",
