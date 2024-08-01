@@ -38,7 +38,7 @@ const formSchema = z.object({
   previewLink: z.string().optional(),
   gitHubLink: z.string().optional(),
 });
-export default function SellAnItemForm() {
+export default function PostBoilerplateForm() {
   const session = useSession();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -2,7 +2,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import SellAnItemForm from "./SellAnItemForm";
+import PostBoilerplateForm from "./PostBoilerplateForm";
 
 export default function Home() {
   const session = useSession();
@@ -17,7 +17,7 @@ export default function Home() {
             <h1 className="text-2xl font-bold text-foreground sm:block hidden mb-4">
               Post your boilerplate in just 30 seconds.
             </h1>
-            <SellAnItemForm />
+            <PostBoilerplateForm />
           </div>
         </div>
       ) : (

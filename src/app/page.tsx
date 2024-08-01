@@ -13,9 +13,9 @@ export default function Component() {
       <main className="flex-1">
         <HeroSection />
         {/* <CompaniesSection /> */}
-        {/* <DemoSection /> */}
         <TechStackSection />
         <MoreThanJustABoilerplateSection />
+        {/* <DemoSection /> */}
         <FeaturesSection />
         <TestimonialsSection />
         <FrequentlyAskedQuestionsSection />
