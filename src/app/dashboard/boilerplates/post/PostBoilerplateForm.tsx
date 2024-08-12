@@ -17,6 +17,7 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
+import { sendBoilerplatePostedEmail } from "@/lib/email/mailer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -91,6 +92,7 @@ export default function PostBoilerplateForm() {
           description:
             "We will review your listing and publish it within the next few days.",
         });
+        sendBoilerplatePostedEmail(listing);
       } else {
         const errorData = await response.json();
         console.error("Error creating listing:", errorData);
