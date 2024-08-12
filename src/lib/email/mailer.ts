@@ -9,7 +9,7 @@ export const sendGenerationEmail = async (
       githubUsername: githubUsername,
       cliCommand: cliCommand,
     };
-    const response = await fetch("/api/boilerplate/send-generation-email", {
+    const response = await fetch("/api/email/generation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,12 +20,29 @@ export const sendGenerationEmail = async (
     if (response.ok) {
       const data = await response.json();
       console.log("Sent boilerpalte generation email!");
-      // Reset form fields or display a success message
-      // toast({
-      //   title: "Thank you!",
-      //   description:
-      //     "You should get added to a repository on GitHub containing your boilerplate shortly!",
-      // });
+    } else {
+      const errorData = await response.json();
+      console.error("Error creating boilerplate generation email", errorData);
+    }
+  } catch (error) {
+    console.error("Error sending boilerplate generation email", error);
+  }
+};
+
+export const sendBoilerplatePostedEmail = async (listing: any) => {
+  try {
+    // TODO validate inputs
+    const response = await fetch("/api/email/boilerplate-posted", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(listing),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Sent boilerpalte generation email!");
     } else {
       const errorData = await response.json();
       console.error("Error creating boilerplate generation email", errorData);
