@@ -1,3 +1,4 @@
+import DemoSection from "./home/DemoSection";
 import FeaturesSection from "./home/FeaturesSection";
 import FrequentlyAskedQuestionsSection from "./home/FrequentlyAskedQuestionsSection";
 import HeroSection from "./home/HeroSection";
@@ -15,7 +16,7 @@ export default function Component() {
         {/* <CompaniesSection /> */}
         <TechStackSection />
         <MoreThanJustABoilerplateSection />
-        {/* <DemoSection /> */}
+        <DemoSection />
         <FeaturesSection />
         <TestimonialsSection />
         <FrequentlyAskedQuestionsSection />
