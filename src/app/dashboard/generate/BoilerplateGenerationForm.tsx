@@ -22,6 +22,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
+import { generateBoilerplate } from "@/lib/boilerplate/generateBoilerplate";
 import { sendGenerationEmail } from "@/lib/email/mailer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
@@ -95,10 +96,12 @@ export default function BoilerplateGenerationForm() {
   // Handle the values from the form submission
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log("Form submitted!");
-    if (!session?.data?.user?.id) {
-      console.error("Something wrong with session or user object");
+    if (!session?.data?.user?.id || !session?.data?.user?.username) {
+      console.error("User is invalid.");
       return;
     }
+
+    let gitHubUsername = session?.data?.user?.username;
     // Create the CLI string to generate the boilerplate
     // Use the buildCommand function to generate the CLI command
     const kirimaseCommand = buildKirimaseCommand(values);
@@ -107,7 +110,8 @@ export default function BoilerplateGenerationForm() {
 
     setCommand(fullCommand);
     setShowPopup(true);
-    sendGenerationEmail(session?.data?.user?.username || "", fullCommand);
+    sendGenerationEmail(gitHubUsername, fullCommand);
+    generateBoilerplate(values.title, gitHubUsername, fullCommand);
   };
 
   const buildKirimaseCommand = (values: z.infer<typeof formSchema>) => {
