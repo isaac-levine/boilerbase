@@ -19,7 +19,7 @@ export const sendGenerationEmail = async (
 
     if (response.ok) {
       const data = await response.json();
-      console.log("Sent boilerpalte generation email!");
+      console.log("Sent boilerplate generation email!");
     } else {
       const errorData = await response.json();
       console.error("Error creating boilerplate generation email", errorData);
@@ -42,12 +42,12 @@ export const sendBoilerplatePostedEmail = async (listing: any) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("Sent boilerpalte generation email!");
+      console.log("Sent boilerplate posted email!");
     } else {
       const errorData = await response.json();
-      console.error("Error creating boilerplate generation email", errorData);
+      console.error("Error creating boilerplate posted email", errorData);
     }
   } catch (error) {
-    console.error("Error sending boilerplate generation email", error);
+    console.error("Error sending boilerplate posted email", error);
   }
 };
