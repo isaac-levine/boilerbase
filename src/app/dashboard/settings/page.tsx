@@ -22,7 +22,7 @@ export default async function Component() {
 
   return (
     <MaxWidthWrapper>
-      <title>Settings • Boilerbase</title>
+      <title>Settings • {process.env.SITE_TITLE}</title>
       {user ? (
         <div className="my-12">
           <div className="items-center justify-between mb-8 text-center">

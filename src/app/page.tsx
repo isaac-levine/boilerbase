@@ -10,13 +10,12 @@ import TestimonialsSection from "./home/TestimonialsSection";
 export default function Component() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <title>Home • Boilerbase</title>
+      <title>Home • {process.env.SITE_TITLE}</title>
       <main className="flex-1">
         <HeroSection />
-        {/* <CompaniesSection /> */}
         <TechStackSection />
         <MoreThanJustABoilerplateSection />
-        <DemoSection />
+        {/* <DemoSection /> */}
         <FeaturesSection />
         <TestimonialsSection />
         <FrequentlyAskedQuestionsSection />

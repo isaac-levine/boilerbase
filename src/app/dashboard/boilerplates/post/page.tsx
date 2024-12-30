@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <MaxWidthWrapper>
-      <title>Post a Boilerplate • Boilerbase</title>
+      <title>Post a Boilerplate • {process.env.SITE_TITLE}</title>
 
       {session?.data?.user ? (
         <div className="my-12">

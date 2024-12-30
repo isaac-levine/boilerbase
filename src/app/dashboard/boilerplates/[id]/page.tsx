@@ -94,7 +94,7 @@ export default function Component() {
         </BreadcrumbList>
       </Breadcrumb>
       <MaxWidthWrapper>
-        <title>{`${listing?.title} • BoilerBase`}</title>
+        <title>{`${listing?.title} • ${process.env.SITE_TITLE}`}</title>
 
         <div className="py-4 sm:py-10">
           <div className="max-w-2xl mx-auto shadow-md">
