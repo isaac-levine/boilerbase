@@ -39,10 +39,9 @@ const TestimonialsSection = () => {
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400">
-                &quot;Boilerbase has allowed our stealth startup to finish our
-                MVP and validate our idea in the matter of days! I can not
-                recommend Boilerbase enough to founders or anyone building a
-                product!&quot;
+                We finished our MVP and validate our idea in the matter of days!
+                I can not recommend Boilerbase enough to founders or anyone
+                building a product!
               </p>
             </div>
             <div className="grid gap-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-8 transition-transform duration-300 hover:scale-105">
@@ -64,10 +63,9 @@ const TestimonialsSection = () => {
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400">
-                &quot;Boilerbase has saved us countless hours of setup and
-                configuration. We generated our own custom boilerplate, and we
-                were able to develop our MVP way faster than I ever thought
-                possible!&quot;
+                Boilerbase has saved us countless hours of setup and
+                configuration. We got a custom boilerplate and finished our MVP
+                way faster than I ever thought possible!
               </p>
             </div>
           </div>
