@@ -9,9 +9,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
+import { Listing } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
+import BoilerplateCard from "@/components/BoilerplateCard";
+import { SearchIcon } from "@/components/SearchIcon";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listings?limit=${limit}`, {
@@ -21,16 +23,8 @@ const getListings = async (limit: number) => {
   return data;
 };
 
-const truncateString = (str: String, num: number) => {
-  if (str.length > num) {
-    return str.slice(0, num) + "...";
-  } else {
-    return str;
-  }
-};
-
 export default function Component() {
-  const [listings, setListings] = useState<any[]>([]);
+  const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
 
@@ -84,7 +78,7 @@ export default function Component() {
       </Breadcrumb>
 
       <MaxWidthWrapper>
-        <title>Feature Marketplace • BoilerBase</title>
+        <title>Browse Boilerplates • {process.env.SITE_TITLE}</title>
         <div className="my-12">
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl font-bold text-[--background] sm:block hidden dark:text-[--foreground]">
@@ -112,56 +106,12 @@ export default function Component() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {listings.map((listing) => (
-                <Link
-                  href={`/dashboard/boilerplates/${listing.id}`}
-                  key={listing.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer flex flex-col justify-between p-2 bg-background dark:bg-foreground/5 backdrop-blur-md flex-grow-0 border-t border-foreground/10"
-                >
-                  <div className="flex flex-col justify-between flex-grow p-4">
-                    <h3 className="text-lg font-semibold mb-2">
-                      {listing.title}
-                    </h3>
-                    <p className="text-gray-500 dark:text-gray-400 mb-4">
-                      {truncateString(listing.description, 100)}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      {/* <span className="text-primary font-semibold">
-                      ${listing.price}
-                    </span> */}
-                      {/* <Button
-                      className="ransition-transform transform hover:scale-105 cursor-pointer"
-                      size="sm"
-                    >
-                      Buy Now
-                    </Button> */}
-                    </div>
-                  </div>
-                </Link>
+                <BoilerplateCard key={listing.id} listing={listing} />
               ))}
             </div>
           )}
         </div>
       </MaxWidthWrapper>
     </>
-  );
-}
-
-function SearchIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
   );
 }
