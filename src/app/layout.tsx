@@ -8,6 +8,8 @@ import type { Metadata, Viewport } from "next";
 import { Cabin } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+
 const cabin = Cabin({
   subsets: ["latin"],
 });
@@ -69,6 +71,7 @@ export default async function RootLayout({
               />
               <NavigationBar />
               <div className="flex-grow flex-1">{children}</div>
+              <Analytics />
               <Footer />
             </main>
             <Toaster />
