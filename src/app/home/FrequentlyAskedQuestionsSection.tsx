@@ -6,25 +6,31 @@ import {
 import { ChevronDownIcon } from "lucide-react";
 
 const faq = [
+  // {
+  //   question: "Is Boilerbase really free and open source?",
+  //   answer:
+  //     "Yes! Boilerbase is 100% open source and free to use. Our mission is to empower indie developers and the SaaS community by providing high-quality boilerplate code and tools without any cost barriers. You can find our entire codebase on GitHub and contribute to make it even better.",
+  // },
   {
-    question: "Do you offer refunds?",
+    question:
+      "What makes Boilerbase different from other boilerplate solutions?",
     answer:
-      "We do not offer refunds on the first month of membership because we deliver the boilerplate code right away upon payment. However, if you are not satisfied with the product, we can offer a refund for the current month if you reach out to us within 7 days of your payment, and it is not the first month of your membership.",
+      "Boilerbase is completely free and built on transparency. Our community-driven marketplace features honest reviews, detailed ratings, and open discussions about each boilerplate. We combine powerful code generation tools with genuine user feedback, helping developers make informed decisions about the code they use.",
   },
   {
-    question: "What will I get from joining the community?",
+    question: "How can I contribute to Boilerbase?",
     answer:
-      "Our community is a great place to connect with other developers, share your work, and get feedback on your projects. You will also get access to exclusive content, such as tutorials, webinars, and live Q&A sessions with our team. Joining the community is a great way to stay up to date on the latest SaaS growth tactics and connect with other founders who can help you grow your business.",
+      "There are many ways to contribute! You can submit your own boilerplates, improve existing code, report bugs, suggest features, or help with documentation. Join our GitHub discussions to connect with other contributors and see where you can make the most impact. We welcome contributors of all experience levels.",
   },
   {
-    question: "What kind of customer support do you offer?",
+    question: "How do I get help if I'm stuck?",
     answer:
-      "We are committed to providing excellent customer support to all of our users. Our team is committed to responding to all inquiries within 24 hours via email, and we have a comprehensive knowledge base with answers to common questions and issues.",
+      "Our community is here to help! You can ask questions in our GitHub discussions, join our Discord channel for real-time support, or browse our documentation. Since we're community-driven, experienced developers often help newcomers get started and solve problems.",
   },
   {
-    question: "Do you offer any trial or demo options?",
+    question: "Can I use Boilerbase code in commercial projects?",
     answer:
-      "No, we currently do not offer a free trial or demo of our product. Given the nature of our product and code boilerplates, we are unable to offer a free trial or demo. Please refer to our pricing page for more information on our plans and pricing. If you have any questions or concerns, please feel free to reach out to our support team.",
+      "For code generated using our tool - yes, you can use it freely in any project. For community-submitted boilerplates, you'll need to check the specific license included with each boilerplate. Each submission clearly displays its license terms to help you understand usage rights.",
   },
 ];
 
