@@ -19,7 +19,7 @@ export default function Component() {
         <FeaturesSection />
         <TestimonialsSection />
         <FrequentlyAskedQuestionsSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
       </main>
     </div>
   );
