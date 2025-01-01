@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import DemoSection from "./home/DemoSection";
 import FeaturesSection from "./home/FeaturesSection";
 import FrequentlyAskedQuestionsSection from "./home/FrequentlyAskedQuestionsSection";
@@ -7,10 +8,13 @@ import PricingSection from "./home/PricingSection";
 import TechStackSection from "./home/TechStackSection";
 import TestimonialsSection from "./home/TestimonialsSection";
 
+export const metadata: Metadata = {
+  title: "Home",
+};
+
 export default function Component() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <title>Home • {process.env.SITE_TITLE}</title>
       <main className="flex-1">
         <HeroSection />
         <TechStackSection />

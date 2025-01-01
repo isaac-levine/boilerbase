@@ -13,10 +13,14 @@ const cabin = Cabin({
 });
 
 export const metadata: Metadata = {
-  title: "Boilerbase",
+  title: {
+    default: "Boilerbase",
+    template: "%s • Boilerbase",
+  },
   description: "The fastest way to ship your SaaS app.",
   icons: ["/boilerbase-icon.png"],
 };
+
 export const viewport: Viewport = {
   themeColor: "#000000",
   initialScale: 1,

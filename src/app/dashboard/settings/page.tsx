@@ -5,6 +5,11 @@ import { createCustomerIfNull } from "@/lib/stripe";
 import { getServerSession } from "next-auth";
 import AccountSettingsForm from "./AccountSettingsForm";
 import BillingCard from "./BillingCard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Settings",
+};
 
 export default async function Component() {
   const session = await getServerSession(authOptions);
@@ -22,7 +27,6 @@ export default async function Component() {
 
   return (
     <MaxWidthWrapper>
-      <title>Settings • {process.env.SITE_TITLE}</title>
       {user ? (
         <div className="my-12">
           <div className="items-center justify-between mb-8 text-center">
