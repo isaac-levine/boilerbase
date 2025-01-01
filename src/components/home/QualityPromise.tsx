@@ -74,7 +74,7 @@ export function QualityPromise() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="secondary">Our quality promise &rarr;</Button>
+        <Button variant="secondary">Our quality promise</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
