@@ -32,6 +32,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "@typeform/embed-react": "^3.17.0",
     "@uidotdev/usehooks": "^2.4.1",
+    "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
