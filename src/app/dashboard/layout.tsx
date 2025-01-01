@@ -5,7 +5,16 @@ import Link from "next/link";
 import UpgradeSection from "./UpgradeSection";
 
 import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
-import { Gauge, Settings } from "lucide-react";
+import {
+  Gauge,
+  Settings,
+  BookOpen,
+  PlusCircle,
+  MessageSquare,
+  Sparkles,
+  Upload,
+  LayoutGrid,
+} from "lucide-react";
 
 export default async function DashboardLayout({
   children,
@@ -71,22 +80,14 @@ export default async function DashboardLayout({
             <span>Home</span>
           </Link> */}
           {/* <hr className="border-t border-gray-700" /> */}
-          <Link
-            href="/dashboard/generate"
-            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
-            prefetch={false}
-          >
-            <BoilerbaseIconBlocks size={30} />
-            <span>Generate Boilerplate</span>
-          </Link>
-          <hr className="border-t border-gray-700" />
+
           <div className="flex flex-col gap-1">
             <Link
               href="/dashboard/boilerplates"
               className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
               prefetch={false}
             >
-              {/* <LayoutDashboard className="w-5 h-5" /> */}
+              <LayoutGrid className="w-5 h-5" />
               <span>Browse Boilerplates</span>
             </Link>
 
@@ -95,7 +96,7 @@ export default async function DashboardLayout({
               className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
               prefetch={false}
             >
-              {/* <LayoutDashboard className="w-5 h-5" /> */}
+              <Upload className="w-5 h-5" />
               <span>Post a Boilerplate</span>
             </Link>
           </div>
@@ -154,6 +155,15 @@ export default async function DashboardLayout({
             <span>Beta Test Marketplace</span>
           </Link> */}
           <hr className="border-t border-gray-700" />
+          <Link
+            href="/dashboard/generate"
+            className="flex items-center gap-2 px-4 py-2 rounded-md hover:dark:bg-gray-800"
+            prefetch={false}
+          >
+            <BoilerbaseIconBlocks size={30} />
+            <span>Generate Boilerplate</span>
+          </Link>
+          <hr className="border-t border-gray-700" />
           <div className="flex flex-col gap-1">
             <Link
               href="https://boilerbase.featurebase.app/"
@@ -161,6 +171,7 @@ export default async function DashboardLayout({
               prefetch={false}
               target="_blank"
             >
+              <MessageSquare className="w-5 h-5" />
               <span>Feature Requests</span>
             </Link>
             <Link
