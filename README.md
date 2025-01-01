@@ -93,7 +93,7 @@ We love your input! Check out our [Contributing Guide](CONTRIBUTING.md) for guid
 
 - Submit feature requests on our [Feature Board](https://boilerbase.featurebase.app)
 - Join discussions in [GitHub Discussions](https://github.com/isaac-levine/boilerbase/discussions)
-- Follow updates on [Twitter](https://twitter.com/boilerbaseHQ)
+- Follow updates on [Twitter](https://twitter.com/isaaclvn)
 
 ## License
 
