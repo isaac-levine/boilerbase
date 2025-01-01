@@ -34,8 +34,8 @@ const HeroSection = () => {
                 <span className="text-primary font-extrabold">Boilerbase</span>.
               </h1>
               <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400 mx-auto lg:mx-0">
-                Ship your MVP in hours, not weeks, with a boilerplate
-                that&apos;s tailored your needs and tech stack.
+                Free, open-source boilerplates and code generation powered by
+                community transparency
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row mx-auto lg:mx-0">

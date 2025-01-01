@@ -11,11 +11,11 @@ const TestimonialsSection = () => {
                 Testimonials
               </div>
               <h2 className="text-3xl font-bold sm:text-5xl">
-                What our users say
+                Hear from our Users
               </h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Hear from developers who have used Boilerbase to build their
-                apps.
+                From VC-backed founders to solo developers, see how teams of all
+                sizes are shipping faster.
               </p>
             </div>
           </div>

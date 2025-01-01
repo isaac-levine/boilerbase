@@ -1,5 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { CircleGauge, Cpu, Cross, Joystick, Users, Wrench } from "lucide-react";
+import { Eye, Code2, Users, Star, Github, Zap } from "lucide-react";
 
 const FeaturesSection = () => {
   return (
@@ -8,70 +8,63 @@ const FeaturesSection = () => {
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg bg-background dark:bg-foreground/5 border-t p-12">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              {/* <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-950">
-                Key Features
-              </div> */}
               <h2 className="text-3xl font-bold sm:text-5xl">
-                By developers, for developers.
+                Open Source, Open Community
               </h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                We are not a development agency. We are a platform that allows
-                you to generate your own code boilerplate for your SaaS app,
-                allowing you to ship faster and focus on what makes you unique.
+                Free tools to generate production-ready code, plus a transparent
+                marketplace of community-reviewed boilerplates to help you ship
+                faster.
               </p>
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
             <div className="grid gap-1">
-              <Joystick className="opacity-50" />
-              <h3 className="text-xl font-bold">Everything in your control</h3>
+              <Code2 className="opacity-50" />
+              <h3 className="text-xl font-bold">Smart Generation</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                We send you a zip file with all the starter code you will need,
-                so you own the code entirely.
+                Generate custom boilerplates instantly based on your specific
+                needs and tech stack.
               </p>
             </div>
             <div className="grid gap-1">
-              <Wrench className="opacity-50" />
-              <h3 className="text-xl font-bold">100% customizable</h3>
+              <Eye className="opacity-50" />
+              <h3 className="text-xl font-bold">Full Transparency</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                Our boilerplates are designed to be easily customizable, so you
-                can build your app your way.
+                Every boilerplate comes with community reviews, ratings, and
+                detailed documentation.
               </p>
             </div>
             <div className="grid gap-1">
-              <Cpu className="opacity-50" />
-              <h3 className="text-xl font-bold">
-                Industry-standard technology
-              </h3>
+              <Github className="opacity-50" />
+              <h3 className="text-xl font-bold">100% Open Source</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                We use the latest technology to ensure your app is visually and
-                functionally stunning.
+                All code is open source. Fork, customize, and contribute back to
+                help others.
               </p>
             </div>
             <div className="grid gap-1">
-              <CircleGauge className="opacity-50" />
-              <h3 className="text-xl font-bold">
-                Performance-First Architecture
-              </h3>
+              <Zap className="opacity-50" />
+              <h3 className="text-xl font-bold">Modern Stack</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                All of our boilerplates are designed with speed as a top
-                priortity, so your app will be fast and responsive.
+                Built with latest tech and best practices for performance and
+                developer experience.
               </p>
             </div>
             <div className="grid gap-1">
-              <Cross className="opacity-50" />
-              <h3 className="text-xl font-bold">Dedicated Support</h3>
+              <Star className="opacity-50" />
+              <h3 className="text-xl font-bold">Quality First</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                Get help from our team of experts if you have any issues setting
-                up your app.
+                Community-vetted code following best practices and security
+                standards.
               </p>
             </div>
             <div className="grid gap-1">
               <Users className="opacity-50" />
-              <h3 className="text-xl font-bold">Exclusive community</h3>
+              <h3 className="text-xl font-bold">Active Community</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                Join our exclusive community of SaaS founders to get support
-                growing your business or find your next co-founder.
+                Share knowledge, get help, and collaborate with other
+                developers.
               </p>
             </div>
           </div>
@@ -80,4 +73,5 @@ const FeaturesSection = () => {
     </section>
   );
 };
+
 export default FeaturesSection;
