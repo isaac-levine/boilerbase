@@ -21,7 +21,7 @@ export default function Page() {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink href="/dashboard/boilerplates">
-              All Boilerplates
+              Boilerplates
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
