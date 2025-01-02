@@ -14,10 +14,13 @@ const HeroSection = () => {
 
   const handleGetStartedClick = () => {
     if (user) {
-      const pricingSection = document.getElementById("pricing");
-      if (pricingSection) {
-        pricingSection.scrollIntoView({ behavior: "smooth" });
-      }
+      // // Scroll the user down to the pricing section if they're already signed in
+      // const pricingSection = document.getElementById("pricing");
+      // if (pricingSection) {
+      //   pricingSection.scrollIntoView({ behavior: "smooth" });
+      // }
+
+      router.push("/dashboard");
     } else {
       router.push("/auth/sign-in");
     }
