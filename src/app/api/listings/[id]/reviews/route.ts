@@ -71,3 +71,56 @@ export async function POST(request: Request) {
     });
   }
 }
+
+// Get all reviews for a listing
+export async function GET(request: Request) {
+  try {
+    // Get the listing ID from the URL
+    const url = new URL(request.url);
+    const urlParts = url.pathname.split("/");
+    const listingId = urlParts[urlParts.length - 2];
+
+    if (!listingId) {
+      return new Response(
+        JSON.stringify({ error: "Listing ID not provided" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // Get all reviews for this listing, including user data
+    const reviews = await prisma.review.findMany({
+      where: {
+        listingId: listingId,
+      },
+      include: {
+        user: {
+          select: {
+            first_name: true,
+            last_name: true,
+            image: true,
+            username: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return new Response(JSON.stringify(reviews), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
