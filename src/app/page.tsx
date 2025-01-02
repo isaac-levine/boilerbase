@@ -1,12 +1,10 @@
+import FeaturesSection from "@/components/home/FeaturesSection";
+import FrequentlyAskedQuestionsSection from "@/components/home/FrequentlyAskedQuestionsSection";
+import HeroSection from "@/components/home/HeroSection";
+import MoreThanJustABoilerplateSection from "@/components/home/MoreThanJustABoilerplateSection";
+import TechStackSection from "@/components/home/TechStackSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import { Metadata } from "next";
-import DemoSection from "./home/DemoSection";
-import FeaturesSection from "./home/FeaturesSection";
-import FrequentlyAskedQuestionsSection from "./home/FrequentlyAskedQuestionsSection";
-import HeroSection from "./home/HeroSection";
-import MoreThanJustABoilerplateSection from "./home/MoreThanJustABoilerplateSection";
-import PricingSection from "./home/PricingSection";
-import TechStackSection from "./home/TechStackSection";
-import TestimonialsSection from "./home/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: "Home",
