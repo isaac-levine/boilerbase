@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Onboarding",
+  title: `Onboarding • Boilerbase`,
 };
 
 export default async function OnboardingLayout({

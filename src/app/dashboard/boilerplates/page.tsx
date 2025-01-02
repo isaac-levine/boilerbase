@@ -11,7 +11,7 @@ import {
 import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: `Dashboard  • Boilerbase`,
 };
 
 export default function Page() {

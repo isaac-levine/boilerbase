@@ -18,7 +18,7 @@ import {
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: `Dashboard • Boilerbase`,
 };
 
 export default async function DashboardLayout({

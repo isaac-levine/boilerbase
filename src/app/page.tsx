@@ -7,7 +7,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: `Home  • Boilerbase`,
 };
 
 export default function Component() {

@@ -11,7 +11,7 @@ export async function generateMetadata({
     `${process.env.SITE_URL}/api/listings/${params.id}`
   );
   const listing = await response.json();
-  return { title: listing.title };
+  return { title: `${listing.title} • Boilerbase` };
 }
 
 export default function Page() {

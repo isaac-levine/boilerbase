@@ -8,7 +8,7 @@ import BillingCard from "./BillingCard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Settings",
+  title: `Settings • Boilerbase`,
 };
 
 export default async function Component() {

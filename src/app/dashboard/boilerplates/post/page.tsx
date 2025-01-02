@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import AuthCheck from "./AuthCheck";
 
 export const metadata: Metadata = {
-  title: "Post",
+  title: `Post • Boilerbase`,
 };
 
 export default function Page() {
