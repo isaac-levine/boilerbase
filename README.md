@@ -98,6 +98,7 @@ We love your input! Check out our [Contributing Guide](CONTRIBUTING.md) for guid
 ## Roadmap
 
 - [ ] Filter by tech stack on "browse" page
+- [ ] Update listing detail page to have live demo and source code links like https://saasplates.com/boilerplates/nuxt-ui-pro-saas
 - [ ] Up/down vote boilerplates
 
 ## License
