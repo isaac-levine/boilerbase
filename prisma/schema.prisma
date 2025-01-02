@@ -78,7 +78,7 @@ model Listing {
   updatedAt   DateTime @updatedAt
   title       String
   description String
-  // price       Float
+  price       Float
   likes       Like[]
   tags        String[]
   reviews     Review[]

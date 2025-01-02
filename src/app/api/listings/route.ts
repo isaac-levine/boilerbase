@@ -6,7 +6,8 @@ import { prisma } from "@/lib/prisma"; // Adjust the import path as needed
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { userId, title, description, tags, previewLink, gitHubLink } = body;
+    const { userId, title, description, tags, price, previewLink, gitHubLink } =
+      body;
 
     if (
       !userId ||
@@ -27,6 +28,7 @@ export async function POST(request: Request) {
         title,
         description,
         tags,
+        price,
         previewLink,
         gitHubLink,
       },
