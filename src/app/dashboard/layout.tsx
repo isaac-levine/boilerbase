@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 import UpgradeSection from "./UpgradeSection";
 
-import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
+import BoilerbaseIconBlocks from "@/components/logo/BoilerbaseIconBlocks";
 import {
   Gauge,
   Settings,

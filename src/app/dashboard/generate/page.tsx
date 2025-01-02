@@ -1,6 +1,6 @@
 "use client";
 
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { useSession } from "next-auth/react";
 import BoilerplateGenerationForm from "./BoilerplateGenerationForm";
 

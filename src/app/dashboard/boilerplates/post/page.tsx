@@ -1,5 +1,5 @@
 // page.tsx (Server Component)
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { Metadata } from "next";
 import AuthCheck from "./AuthCheck";
 

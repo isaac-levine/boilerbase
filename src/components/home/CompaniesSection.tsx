@@ -1,5 +1,5 @@
 import React from "react";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {

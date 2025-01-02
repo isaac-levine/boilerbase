@@ -1,4 +1,4 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { authOptions } from "@/lib/auth/options";
 import { prisma } from "@/lib/prisma";
 import { createCustomerIfNull } from "@/lib/stripe";

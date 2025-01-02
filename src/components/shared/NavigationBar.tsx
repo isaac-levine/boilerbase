@@ -12,9 +12,9 @@ import { LogIn, Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import * as React from "react";
-import BoilerbaseIcon from "./BoilerbaseIcon";
+import BoilerbaseIcon from "../logo/BoilerbaseIcon";
 import { DarkModeToggle } from "./DarkModeToggle";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "../ui/button";
 
 export default function NavigationBar() {
   const navRef = React.useRef(null);

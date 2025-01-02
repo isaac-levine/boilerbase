@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BoilerbaseIcon from "./BoilerbaseIcon";
+import BoilerbaseIcon from "../logo/BoilerbaseIcon";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
 export const Footer = () => {

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import {
   MongodbOriginal,

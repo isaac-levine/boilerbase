@@ -6,7 +6,7 @@ import { Listing } from "@prisma/client";
 import { Input } from "@/components/ui/input";
 import { PulseLoader } from "react-spinners";
 import BoilerplateCard from "@/components/BoilerplateCard";
-import { SearchIcon } from "@/components/SearchIcon";
+import { SearchIcon } from "@/components/ui/SearchIcon";
 
 const getListings = async (limit: number) => {
   const response = await fetch(`/api/listings?limit=${limit}`);

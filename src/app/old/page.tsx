@@ -1,5 +1,5 @@
 "use client";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { QualityPromise } from "@/components/home/QualityPromise";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";

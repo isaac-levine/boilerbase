@@ -1,6 +1,6 @@
 "use client";
-import BoilerbaseIconBlocks from "@/components/BoilerbaseIconBlocks";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import BoilerbaseIconBlocks from "@/components/logo/BoilerbaseIconBlocks";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { QualityPromise } from "@/components/home/QualityPromise";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";

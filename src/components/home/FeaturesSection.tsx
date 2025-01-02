@@ -1,4 +1,4 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import { Eye, Code2, Users, Star, Github, Zap } from "lucide-react";
 
 const FeaturesSection = () => {

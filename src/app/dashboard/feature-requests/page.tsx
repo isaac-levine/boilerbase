@@ -1,4 +1,4 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import FeatureRequestsTable from "../FeatureRequestsTable";
 
 export default function Page() {

@@ -1,6 +1,6 @@
 "use client";
 
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/shared/MaxWidthWrapper";
 import BoilerplateForm from "./BoilerplateForm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/options";
