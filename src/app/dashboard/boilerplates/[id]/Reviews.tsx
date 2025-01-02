@@ -81,7 +81,7 @@ export default function Reviews({ listingId }: { listingId: string }) {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-semibold mb-4">Reviews</h2>
+      <h2 className="text-2xl font-semibold mb-2">Community Reviews</h2>
 
       {session?.user ? (
         <form onSubmit={handleSubmitReview} className="mb-6">
@@ -89,7 +89,7 @@ export default function Reviews({ listingId }: { listingId: string }) {
             placeholder="Share your thoughts about this boilerplate..."
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
-            className="mb-2"
+            className="mb-2 rounded-lg border border-neutral-200 bg-white shadow-md dark:border-foreground/10 dark:bg-gray-900 text-foreground"
           />
           <Button
             type="submit"

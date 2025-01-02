@@ -157,11 +157,11 @@ export default function ListingDetails() {
                     <p>No tags yet.</p>
                   )}
                 </div>
-                <Reviews listingId={listing?.id || ""} />
               </CardContent>
             </Card>
           </div>
         </div>
+        <Reviews listingId={listing?.id || ""} />
       </MaxWidthWrapper>
     </>
   );

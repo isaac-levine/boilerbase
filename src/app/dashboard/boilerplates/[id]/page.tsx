@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Breadcrumb, BreadcrumbList } from "@/components/ui/breadcrumb";
 import ListingDetails from "./ListingDetails";
+import Reviews from "./Reviews";
 
 export async function generateMetadata({
   params,
