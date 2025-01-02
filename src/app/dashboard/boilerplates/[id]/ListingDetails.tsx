@@ -20,6 +20,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Reviews from "./Reviews";
 
 export default function ListingDetails() {
   const pathname = usePathname();
@@ -156,6 +157,7 @@ export default function ListingDetails() {
                     <p>No tags yet.</p>
                   )}
                 </div>
+                <Reviews listingId={listing?.id || ""} />
               </CardContent>
             </Card>
           </div>
