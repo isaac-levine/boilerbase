@@ -95,6 +95,11 @@ We love your input! Check out our [Contributing Guide](CONTRIBUTING.md) for guid
 - Join discussions in [GitHub Discussions](https://github.com/isaac-levine/boilerbase/discussions)
 - Follow updates on [Twitter](https://twitter.com/isaaclvn)
 
+## Roadmap
+
+- [ ] Filter by tech stack on "browse" page
+- [ ] Up/down vote boilerplates
+
 ## License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
