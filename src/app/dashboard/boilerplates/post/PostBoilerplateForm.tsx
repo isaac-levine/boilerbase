@@ -27,14 +27,14 @@ const formSchema = z.object({
   title: z.string().min(2, {
     message: "Title must be at least 2 characters.",
   }),
-  description: z.string().min(1, {
+  description: z.string().min(10, {
     message: "Description must be at least 10 characters.",
   }),
-  // price: z.number().min(0, {
-  //   message: "Price must be a positive number.",
-  // }),
   techStack: z.string().nonempty({
     message: "Tech stack is required.",
+  }),
+  price: z.number().min(0, {
+    message: "Price must be a positive number.",
   }),
   previewLink: z.string().optional(),
   gitHubLink: z.string().optional(),
@@ -46,8 +46,8 @@ export default function PostBoilerplateForm() {
     defaultValues: {
       title: "",
       description: "",
-      // price: 0,
       techStack: "",
+      price: 0, // 0 means free
       previewLink: "",
       gitHubLink: "",
     },
@@ -67,8 +67,8 @@ export default function PostBoilerplateForm() {
       userId: session?.data?.user.id,
       title: values.title,
       description: values.description,
-      // price: values.price,
       tags: [values.techStack],
+      price: values.price,
       previewLink: values.previewLink,
       gitHubLink: values.gitHubLink,
     };
@@ -178,11 +178,35 @@ export default function PostBoilerplateForm() {
                     <SelectItem value="Vue">Vue</SelectItem>
                     <SelectItem value="Angular">Angular</SelectItem>
                     <SelectItem value="Svelte">Svelte</SelectItem>
+                    <SelectItem value="Spring Boot">Spring Boot</SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>
               <FormDescription>
                 Choose the primary tech stack for your boilerplate.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="price"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Price</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  step="0.01"
+                  {...field}
+                  onChange={(e) => {
+                    form.setValue("price", parseFloat(e.target.value));
+                  }}
+                />
+              </FormControl>
+              <FormDescription>
+                How much does your boilerplate cost in USD?
               </FormDescription>
               <FormMessage />
             </FormItem>
