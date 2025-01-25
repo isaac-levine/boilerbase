@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { LogIn, Menu } from "lucide-react";
+import { GithubIcon, LogIn, Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import * as React from "react";
@@ -109,6 +109,7 @@ export default function NavigationBar() {
                 </Link>
               </SheetClose>
             )}
+            
             <DarkModeToggle />
           </nav>
         </SheetContent>
